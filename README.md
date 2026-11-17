@@ -1,4 +1,4 @@
-# Independent Lean verification of the irrationality of ζ(5)
+# A new proof of the irrationality of ζ(5), with Lean verification
 
 [![Lean build and audit](https://github.com/morley988/zeta5-independent-lean/actions/workflows/lean.yml/badge.svg)](https://github.com/morley988/zeta5-independent-lean/actions/workflows/lean.yml)
 
