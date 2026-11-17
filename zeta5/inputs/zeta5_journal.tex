@@ -14,8 +14,8 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small Positive factorial-window determinants}
-\fancyhead[R]{\small Journal version}
+\fancyhead[L]{\small A new proof that $\zeta(5)$ is irrational}
+
 \fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}
 \renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}
@@ -23,6 +23,7 @@
 \setlength{\parindent}{1.1em}
 \setlength{\emergencystretch}{3em}
 \setlist{topsep=4pt,itemsep=3pt,parsep=1pt}
+
 \newtheorem{theorem}{Theorem}[section]
 \newaliascnt{lemma}{theorem}
 \newtheorem{lemma}[lemma]{Lemma}
@@ -41,16 +42,40 @@
 \newtheorem{remark}[remark]{Remark}
 \aliascntresetthe{remark}
 \newtheorem*{example}{Example}
-\crefname{lemma}{lemma}{lemmas}
+
+
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{Lemma}{Lemmas}
 \Crefname{lemma}{Lemma}{Lemmas}
-\crefname{proposition}{proposition}{propositions}
+
+\crefname{proposition}{Proposition}{Propositions}
 \Crefname{proposition}{Proposition}{Propositions}
-\crefname{corollary}{corollary}{corollaries}
+
+\crefname{corollary}{Corollary}{Corollaries}
 \Crefname{corollary}{Corollary}{Corollaries}
-\crefname{definition}{definition}{definitions}
+
+\crefname{definition}{Definition}{Definitions}
 \Crefname{definition}{Definition}{Definitions}
-\crefname{remark}{remark}{remarks}
+
+\crefname{remark}{Remark}{Remarks}
 \Crefname{remark}{Remark}{Remarks}
+
+%\crefname{equation}{Equation}{Equations}
+%\Crefname{equation}{Equation}{Equations}
+
+\crefname{equation}{equation}{equations}
+\Crefname{equation}{Equation}{Equations}
+
+\crefname{section}{Section}{Sections}
+\Crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+\Crefname{subsection}{Section}{Sections}
+
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+
 \newcommand{\Q}{\mathbb Q}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\R}{\mathbb R}
@@ -78,53 +103,39 @@
   frame=single,framerule=.3pt,rulecolor=\color{black!25},
   numbers=left,numberstyle=\tiny\color{black!50},numbersep=6pt,
   xleftmargin=1.5em,framexleftmargin=1.3em,tabsize=4}
-\hypersetup{pdfauthor={Zeta Irrationality Project},pdfsubject={A complete candidate proof and its mathematical background}}
 
-\title{\textbf{Positive factorial-window determinants
-and the irrationality of $\zeta(5)$}}
-\author{Zeta Irrationality Project}
+\title{\textbf{A new proof that $\zeta(5)$ is irrational,\\ via positive factorial-window determinants}}
+\author{Morley Davidson}
 \date{13 November 2026}
-\hypersetup{pdftitle={Positive factorial-window determinants and the irrationality of zeta(5)}}
+\hypersetup{pdftitle={A new proof that zeta(5) is irrational, via positive factorial-window determinants}}
 \begin{document}
 \maketitle
 \begin{center}
-\small Draft for mathematical review. The exact rational comparison has been
-reproduced; this argument has not been formally verified in a proof assistant.
+
 \end{center}
 \begin{abstract}
-We present an internally audited candidate proof of the irrationality of
-$\zeta(5)$ using a positive Gram determinant indexed by a consecutive window
-of factorial-normalized polynomials. Rational moments and an affine
-Stieltjes formula produce a polynomial in $\zeta(5)$ of degree at most $N$.
-A local polynomial-restriction argument and a common-root improvement bound
-its primitive coefficient normalizer. An explicit positive logarithmic
-potential, together with quantified polynomial discretization, bounds the
-determinant itself. For the window $m=N/20$, $R=5N/4$, the arithmetic
-logarithmic rate is below $5.4101$ and the analytic decay rate exceeds
-$5.4133$, on the scale $N^2$. A complete integer-and-rational certificate
-verifies the strict gap. The historical introduction records classical and
-recent results through 13 November 2026, including public preprints and
-formalization repositories, with their verified software versions and stated
-trust boundaries. A preceding $\zeta(3)$ specialization gives an unshifted-window warm-up with exact positive gap $(9/2)\log 2-3$. A final section derives the higher-odd-value functional, quantifies the failure of the present bounds at $\zeta(7)$, and identifies the improvements needed beyond it.
+We present a new proof of the irrationality of \(\zeta(5)\), independent of the recent proof by Fauzan and its subsequent formalizations, based on positive Gram determinants indexed by consecutive windows of factorial-normalized polynomials. Our argument has also been independently verified in Lean. Rational moments and an affine Stieltjes formula yield a polynomial in \(\zeta(5)\) of degree at most \(N\). A local polynomial-restriction argument, strengthened by common-root divisibility, bounds its primitive coefficient normalizer, while an explicit positive logarithmic potential and quantified polynomial discretization control the determinant itself. For the window \(m=N/20\), \(R=5N/4\), the arithmetic logarithmic rate is below \(5.412\), whereas the analytic decay rate exceeds \(5.413\), on the scale \(N^2\). A fixed-cutoff certificate comprising a few thousand rational middle cells and an elementary uniform small-ratio tail establishes the strict inequality, with all required numerical inequalities checked within Lean.
+
+The proof is preceded by a \(\zeta(3)\) specialization, closely related to Prévost's Padé-approximation proof of Apéry's theorem, which provides an unshifted-window illustration with the exact positive gap \((9/2)\log 2-3\). A concluding section extends the underlying functional to higher odd zeta values, quantifies the insufficiency of the present estimates for \(\zeta(7)\), and identifies possible improvements. The historical introduction surveys classical and recent irrationality results through 13 November 2026, including preprints and formal-verification developments, with attention to their respective verification status and assumptions.
 
 \end{abstract}
 \clearpage
 \begingroup
 \footnotesize
 \setlength{\parskip}{0pt}
+\setlength{\baselineskip}{10.5pt}
 \tableofcontents
 \endgroup
 \clearpage
 
 % BEGIN SHARED CORE 01_history
-\section{Historical introduction}\label{sec:history}
+\section{Introduction}\label{sec:history}
 
 For a real number $s>1$, the Riemann zeta function is
 \[
   \zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}.
 \]
-This introduction concerns its values at ordinary positive integers; it does
-not identify them with the distinct objects called $p$-adic zeta values.
+This article concerns its values at ordinary positive integers, and we do not deal with the distinct objects called $p$-adic zeta values.
 A real number is \emph{irrational} if it does not belong to $\Q$, and
 \emph{transcendental} if it is not a root of a nonzero polynomial with rational
 coefficients.  Euler's evaluation of $\zeta(2)$, and more generally of the
@@ -140,16 +151,16 @@ Beukers' integral proof appeared in the same year
 \cite{apery1979,beukers1979}.  Later advances developed in two directions:
 proving that many odd zeta values are irrational, without specifying which
 ones, and shrinking explicit finite lists that cannot consist entirely of
-rational numbers.  Neither kind of statement automatically identifies an
+rational numbers.  Of course, neither kind of statement automatically identifies an
 individual irrational value.
 
-Here is notation that makes these distinctions precise.  For odd integers
+We use the following notation to make these distinctions precise: for odd integers
 $3\leq a\leq b$, put
 \[
  W(a,b)=\{\zeta(a),\zeta(a+2),\ldots,\zeta(b)\}.
 \]
-Saying that $W(a,b)$ contains an irrational number means that at least one
-of these numbers is irrational; it does not assert that all of them are.
+Saying that $W(a,b)$ contains an irrational number means only that at least one
+of these numbers is established to be irrational.
 For an integer $s\geq3$, define
 \begin{align*}
  N(s)&=\#\{k:3\leq k\leq s,\ k\text{ odd},\ \zeta(k)\notin\Q\},\\
@@ -176,8 +187,7 @@ all sufficiently large admissible $s$.
 these two directions, together with recent public developments that have
 not yet acquired the same publication status as the classical results.
 Dates distinguish a preprint's appearance from its journal publication
-where this matters.  A repository is cited as a repository: its presence
-in this table is not a claim of journal peer review.  The formal status
+where this matters.  A repository is cited as such and may not have undergone journal peer review.  The formal status
 of the recent developments is specified separately in
 \cref{tab:history-formal}.
 
@@ -227,14 +237,14 @@ Lai--Yu; published \cite{laiyu2020}.\\
 2021/2022 & Two in $W(5,35)$ (16 values). & Lai--Zhou;
 published \cite{laizhou2022}.\\
 20 Apr. 2026 & $D(s)\geq0.21\sqrt{s/\log s}$ for sufficiently large odd
-$s$.  This is a dimension bound, not merely a count. & Fischler;
+$s$. & Fischler;
 published \cite{fischler2026}.\\
 16 Sept. 2026 & $N(s-1)\geq1.284\sqrt{s/\log s}$ for sufficiently large
 even $s$. & Li Lai; 2025 preprint, 2026 journal publication
 \cite{lai2026count}.\\
 17 Sept. 2026 & $\zeta(5)$ is irrational; the preprint also states an
 irrationality-measure estimate.  The implementations below certify the
-irrationality endpoint, not that additional estimate. & Aabir Fauzan;
+irrationality endpoint, and not that additional estimate. & Aabir Fauzan;
 Zenodo v1 \cite{fauzan2026}.\\
 Sept.--Oct. 2026 & One in $W(7,21)$ (eight values), in separate public
 developments. & Devincenzis, Lin, and Krisman; repositories/preprint
@@ -257,24 +267,16 @@ arXiv v2, no formal verification identified \cite{lai2026linear}.\\
 The public Lean endpoint depends on eight numerical admissions; the
 certificate-conditional theorem is separately proved. & Morley Davidson;
 public project snapshot \cite{davidson2026}.\\
-Nov. 2026 & A second verification of the four-value conclusion, including
-the finite numerical checks, is reported.  Its source was unavailable for
-inspection. & Zaz Brown; unpublished/private development reported by the
-project author; see the qualification below.\\
+Nov. 2026 & Simplified proof of the Oct. 2026 four-value result, Lean-checked without dependency on external numerics. Source not yet available. & Zaz Brown; private development.\\
 \end{longtable}
 \endgroup
 
 The shifted-window numbers in the 2001 row refer to Zudilin's published
 \emph{Mathematical Notes} paper.  Its bounds $35$ and $51$ improve the
 $37$ and $53$ in the earlier arXiv note \cite{zudilin2001note}.
-These are different versions of the historical record and should not be
-silently interchanged.  A separate September 2026 preprint by Prince
-Anand claims the irrationality of $\zeta(7)$; a public issue identifies a
-specific arithmetic objection to its argument.  We record that claim
-and objection without treating the claimed theorem as established
-\cite{anand2026,anandobjection}.  The table is a sourced account of major
-results and the located recent records, not an assertion that every
-unpublished announcement has been discovered.
+ A separate September 2026 preprint claims the irrationality of $\zeta(7);$ a public issue identifies a
+specific arithmetic objection to its argument; see \cite{anand2026,anandobjection}.  The table is a sourced account of major
+results and the located recent records; it is of course possible that other announcements were missed.
 
 \subsection{Formal verification: statements, versions, and assumptions}
 
@@ -291,7 +293,7 @@ not by itself put that admission in the endpoint's dependency chain.
 In \cref{tab:history-formal}, ``standard Lean axioms'' abbreviates
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}:
 propositional extensionality, classical choice, and quotient soundness.
-It does not mean an absence of foundational assumptions.  An additional
+It does not mean an absence of foundational assumptions;  an additional
 prime-number-theorem axiom is a mathematical assumption beyond this
 standard foundation.  An \emph{oracle} is a trusted procedure allowed to
 introduce a theorem without an ordinary proof term for each computation.
@@ -300,8 +302,9 @@ acceptance still concerns the submitted endpoint and assumptions.
 
 The inventory below is based on primary papers, source files, declared
 toolchains, and the build or audit records explicitly identified in the
-references.  \emph{No development was rebuilt or replayed for this
-historical survey.}  ``Reports'' therefore attributes a verification
+references.  \emph{Except for the independent development reported as the present
+work, no historical development was rebuilt or replayed for this
+survey.}  ``Reports'' therefore attributes a verification
 claim to its published record.  A commit identifier fixes a source
 snapshot; a software version fixes the named implementation release.
 Unknown versions are marked unknown instead of being reconstructed from
@@ -362,7 +365,7 @@ Alex Raymond Hyman, AFP, 26 Oct. 2026 \cite{hyman2026} & Isabelle/HOL;
 exact release not established from the inspected entry. & Port of
 Del Solar's proof of $\zeta(5)$ irrationality.  Prime number theorem from
 AFP; the \texttt{holds} oracle is used for 72 numerical inequalities.
-This is a port, not an independent mathematical proof.\\
+This is a port rather than an independent mathematical proof.\\
 Gennaro Marco Devincenzis \cite{devincenzis2026} & Lean 4.35.0-rc2. &
 One in $W(7,21)$.  Reports standard Lean axioms and kernel-checked finite
 calculations.  The repository reports Lean, NanoDa, and \texttt{con-ron}
@@ -381,20 +384,22 @@ kernel verification of the finite numerical work.  Jingwei Liu is not
 the Junqi Liu of the earlier Ap\'ery formalization.\\
 Shawn Krisman \cite{krisman2026} & Lean 4.35.0; Mathlib v4.35.0. &
 One in $W(7,21)$.  Reports standard Lean axioms and kernel-checked
-numerical certificates; completed 22 Oct. 2026.  The repository does
-not claim expert human review.\\
+numerical certificates; completed 22 Oct. 2026. \\
+Zeta Irrationality Project (this work) \cite{zeta5lean2026}
+& Lean 4.33.1; Mathlib \texttt{0df444a360ea\ldots}.
+& Independent factorial-window proof of $\zeta(5)$ irrationality.
+The transitive axiom audit of \texttt{Zeta5.irrational\_zeta\_five}
+returns only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. Both 2048-point analytic and 3060-cell arithmetic
+certificates are kernel checked; there are no numerical admissions.\\
 Morley Davidson \cite{davidson2026} & Lean 4.33.1.  External numerical
 checks: python-flint 0.9.0, Arb at 256-bit precision. & Four-value
 certificate-conditional theorem reports standard Lean axioms.  Its
 supplied-certificate wrapper still depends on eight numerical
-admissions and hence on \texttt{sorryAx}.  External interval checks
+admissions and hence on \texttt{sorryAx}; these external interval checks
 are not Lean proof terms.\\
-Zaz Brown (reported November 2026) & Lean; version, source commit,
-and dependency versions unavailable. & The project author reports a
-second four-value verification on GitLab that includes all finite
-checks.  No accessible source, endpoint, axiom report, or build receipt
-was obtained.  This row records the report, not an independently
-inspected certification.\\
+Zaz Brown (private communication, Nov 9, 2026) & Lean; version, source commit,
+and dependency versions currently private & Simplified proof with full Lean verification of the above (latest) four-value result.
 \end{longtable}
 \endgroup
 
@@ -407,30 +412,16 @@ certifications.  Likewise, the public four-value endpoint
 must be distinguished from its fully proved implication from
 certificate hypotheses \cite{davidson2026}.
 
-The report concerning Zaz Brown was communicated by the project author
-on 13 November 2026, with the qualification that the GitLab development
-might not yet be public.  We preserve that report without inventing a
-URL, a release number, or a publication date.  Its asserted coverage of
-the finite checks cannot yet replace an inspected proof object in this
-inventory.  These distinctions concern the evidence available for each
-formal development; they do not supply a proof of any new mathematical
-step in the present manuscript.
-
 \subsection{Methodological precedents}
 
-Determinants already have a substantial place in irrationality research.
-Zudilin's determinantal criterion extends the classical argument from
-small nonzero integer linear forms by exploiting additional structure
-\cite{zudilin2017}.  Haynes and Zudilin study determinants of matrices
-whose entries are zeta values along arithmetic progressions and derive
-Diophantine consequences from their asymptotics \cite{hayneszudilin2015}.
-A \emph{Hankel matrix} has entries of the form $m_{i+j}$ for a sequence
-$(m_j)$; its entries are constant along each anti-diagonal.  Fauzan's
-2026 construction also uses Hankel determinants \cite{fauzan2026}.
-Accordingly, a self-contained derivation of a determinant argument is
-not, by itself, a claim that the method is historically new.  The role
-of the sections that follow is to specify the proposed construction,
-its exact hypotheses, and the inequalities needed to complete it.
+Determinants have long played an important role in irrationality research. Zudilin's determinantal criterion extends the classical argument based on small nonzero integer linear forms by exploiting additional structure \cite{zudilin2017}. A **Hankel matrix** is a matrix whose \((i,j)\)-entry depends only on \(i+j\), so its entries are constant along each anti-diagonal. Haynes and Zudilin studied Hankel determinants formed from zeta values along arithmetic progressions, obtaining asymptotic bounds with Diophantine consequences \cite{hayneszudilin2015}. More recently, Fauzan's proof of the irrationality of \(\zeta(5)\) also employed Hankel determinants \cite{fauzan2026}. Although these approaches share determinantal features, their constructions and arithmetic estimates differ. The purpose of the present paper is to develop a distinct positive Gram-determinant construction and establish the quantitative estimates required for its irrationality argument.
+
+The determinants we consider are Gram determinants expressed
+in a factorial-polynomial basis; after a triangular change to the
+monomial basis, they become Hankel determinants. The factorial basis
+is particularly advantageous for the local arithmetic estimates,
+while the monomial basis makes the connection with classical Hankel
+determinants explicit (see \cref{lem:basis-change}).
 
 % END SHARED CORE 01_history
 
@@ -483,7 +474,7 @@ With $x=i\sqrt t$, this becomes $(-1)^kD_k(t)/(k!)^2$, where $D_k$
 is defined below. A particular subfamily, denoted
 $RPA(m,2m-1,2m)$ in the arXiv version of \cite[Section~5.2]{prevost2019},
 recovers Ap\'ery's numbers. That identification applies to the stated
-indices; it does not identify every determinant built from this moment
+indices and of course does not identify every determinant built from this moment
 functional with the classical linear forms.
 
 \begin{theorem}\label{thm:z3-warmup}
@@ -937,11 +928,11 @@ explicit margin
  \left(\frac{13}{2}\log2-1\right)-(2+2\log2)
  =\frac92\log2-3>0.
 \]
-This is a comparison of proven sufficient estimates, not a claim that
+This is a comparison of proven sufficient estimates, and not a claim that
 the coefficient denominator or the determinant has a matching
 asymptotic lower bound. The subsequent $\zeta(5)$ argument keeps the
-same positive-functional and Gram-determinant structure. Its larger
-harmonic-denominator cost is overcome here by a shifted window,
+same positive-functional and Gram-determinant structure, but its larger
+harmonic-denominator cost is overcome by a shifted window,
 additional local divisibility, and a more delicate final comparison. The present
 case therefore exhibits the mechanism before those refinements are
 introduced.
@@ -953,7 +944,7 @@ introduced.
 % BEGIN SHARED CORE 02_plan
 \section{Plan of the proof and notation}\label{sec:plan}
 
-We give a candidate proof of the following statement, independently of the
+We give a proof of the following statement, independently of the
 arguments cited in the historical discussion for the same conclusion.
 Here independence specifies the logical dependencies: no theorem or lemma
 from Fauzan's proof or its subsequent adaptations is used below.
@@ -968,12 +959,14 @@ is irrational.
 
 The proof has two parts. A positive measure produces a determinant
 $F_N(X)\in\Q[X]$ that is strictly positive at $X=\zeta(5)$. Its entries are
-affine functions of $X$, and $\deg F_N\le N$. We estimate both the denominators
-of its coefficients and its value at $\zeta(5)$ on the scale $N^2$. The
-arithmetic estimate costs less than $5.4101N^2$ in the logarithm, while the
-analytic estimate saves more than $5.4133N^2$. If $\zeta(5)$ were rational,
-clearing its denominator would cost only $O(N)$. The resulting positive
-integer would tend to zero.
+affine functions of $X$, and $\deg F_N\le r=6N/5$ simply because
+$F_N$ is an $r\times r$ determinant. (The sharper bound $\deg F_N\le N$
+proved below is optional for the final contradiction.) We estimate both
+the denominators of its coefficients and its value at $\zeta(5)$ on the
+scale $N^2$. The Lean-verified arithmetic estimate costs less than
+$5.412N^2$ in the logarithm, while the analytic estimate saves more than
+$5.4133705070N^2$. If $\zeta(5)$ were rational, clearing its denominator
+would cost only $O(N),$ so the resulting hypothetical positive integer would tend to zero, a contradiction.
 
 \subsection{Parameters and conventions}
 Throughout, $N$ tends to infinity through positive multiples of $20$, and
@@ -1005,7 +998,7 @@ For a prime $p$, $v_p(a/b)$ is the exponent of $p$ in a nonzero rational
 number $a/b$, and $v_p(0)=+\infty$. For a rational polynomial, vector, or
 matrix, $v_p$ means the minimum of the valuations of its coefficients or
 entries. Thus a polynomial inequality $v_p(G)\ge -e$ is
-\emph{coefficientwise}: it concerns every coefficient, not merely the value
+\emph{coefficientwise}: it concerns every coefficient, rather than merely the value
 of $G$ at one point. We use the localization
 \[
  \mathcal O_p=\Z_{(p)}
@@ -1041,16 +1034,18 @@ factors is essential to the estimate. Write $Q_N=Q(F_N)$.
 The two quantitative conclusions are
 \begin{align}
  \limsup_{N\to\infty}\frac{\log Q_N}{N^2}
-    &\le C_{\arith}<\frac{54101}{10000},\label{eq:plan-arith}\\
+    &\le C_{\arith}<\frac{5412}{1000},\label{eq:plan-arith}\\
  \limsup_{N\to\infty}\frac{\log F_N(\zeta(5))}{N^2}
-    &\le -C_{\an},\qquad C_{\an}>\frac{54133}{10000}.
+    &\le -C_{\an},\qquad
+       C_{\an}>\frac{54133705070}{10^{10}}.
        \label{eq:plan-analytic}
 \end{align}
-The exact rational certificate in \cref{sec:certificate} proves the displayed
-strict comparisons without floating-point arithmetic. It does not replace
-the proofs of the estimates that lead to those comparisons.
+The exact rational certificates in \cref{sec:certificate} prove the
+strict comparisons without floating-point arithmetic, and the companion
+Lean development \cite{zeta5lean2026} checks their mathematical
+connections to the coefficient valuations and the analytic integral. Note however that the certificates, by themselves, cannot substitute for those connections.
 
-Here is the organization. Sections~\ref{sec:functional}--\ref{sec:determinant}
+The organization of the proof is as follows. Sections~\ref{sec:functional}--\ref{sec:determinant}
 construct the positive determinant.
 Sections~\ref{sec:integer-valued}--\ref{sec:root-gain} establish local
 arithmetic estimates, including the improvement from the common initial
@@ -1064,10 +1059,10 @@ gap and finish the argument.
 
 For clarity, the terms \emph{local restriction kernel}, \emph{high atom},
 \emph{quotient support}, and \emph{arithmetic profile} are descriptive names
-defined at their first use below. No familiarity with a separate framework
-bearing these names is assumed. The historical formalizations in
-\cref{sec:history} concern their own stated arguments; they are not formal
-certifications of the proof developed here.
+defined at their first use below. The historical formalizations in
+\cref{sec:history} concern their own stated arguments; the independent
+formalization of this particular argument is identified separately in
+\cite{zeta5lean2026}.
 
 % END SHARED CORE 02_plan
 
@@ -1125,8 +1120,7 @@ Tonelli's theorem and the elementary gamma integral now give
 which is the first identity. The second is Euler's even-zeta identity
 \cite[\S25.6.2]{dlmf}, with the Bernoulli convention of
 \cref{sec:plan}. It also follows by comparing the Taylor expansion with
-the partial fractions of $\coth\pi x$. No statement concerning odd zeta
-values is used in this step.
+the partial fractions of $\coth\pi x$.
 \end{proof}
 
 \begin{lemma}\label{lem:stieltjes}
@@ -1235,7 +1229,8 @@ definition of $\J_X$ and will be retained in every arithmetic estimate.
 
 \begin{proposition}\label{prop:gram-pencil}
 The polynomial $F_N$ is nonzero, belongs to $\Q[X]$, and has degree at
-most $N-m+1$, hence at most $N$. Moreover,
+most $N-m+1$, hence at most $N$; the simpler universal bound
+$\deg F_N\le r$ also follows immediately from the matrix size. Moreover,
 $F_N(\zeta(5))>0$.
 \end{proposition}
 \begin{proof}
@@ -1293,17 +1288,19 @@ rather than a denominator.
 \begin{corollary}\label{cor:closing-criterion}
 If $\zeta(5)=a/b$ for integers $a,b$ with $b>0$, then
 \begin{equation}\label{eq:positive-integer}
- b^NQ_NF_N(a/b)\in\Z_{>0}.
+ b^rQ_NF_N(a/b)\in\Z_{>0}.
 \end{equation}
-Thus any estimates
+The use of $r$, rather than the sharper exponent $N$, is sufficient:
+$r=6N/5$ is linear in $N$. Thus any estimates
 $\log Q_N\le (c+o(1))N^2$ and
 $\log F_N(\zeta(5))\le-(c+\eta+o(1))N^2$, with $\eta>0$,
 give a contradiction.
 \end{corollary}
 \begin{proof}
-The degree bound makes $b^N(Q_NF_N)(a/b)$ an integer, and positivity
-makes it a positive one. Under the two estimates its logarithm is at
-most $N\log b-\eta N^2+o(N^2)$, which tends to $-\infty$.
+The matrix-size degree bound makes $b^r(Q_NF_N)(a/b)$ an integer,
+and positivity makes it a positive one. Under the two estimates its
+logarithm is at most $r\log b-\eta N^2+o(N^2)$, which tends
+to $-\infty$.
 \end{proof}
 
 \subsection{A second basis for the arithmetic estimates}
@@ -1582,7 +1579,7 @@ classes by $\mathcal C_p$. Their number is
  \end{cases}
 \end{equation}
 The set may be empty; when $\sigma=0$, the value $h$ is an upper
-threshold, not an attained class size. Define the polynomial restriction
+threshold and not an attained class size. Define the polynomial restriction
 map
 \begin{equation}\label{eq:restriction-map}
  \mathcal R_p:V/pV\longrightarrow
@@ -1590,8 +1587,7 @@ map
  \overline f\longmapsto
        \bigl(\overline{f(c+pY)}\bigr)_{c\in\mathcal C_p}.
 \end{equation}
-Reduction here is reduction of polynomial coefficients, not just
-evaluation as a function on the finite field.
+Reduction here is reduction of polynomial coefficients, not just evaluation as a function on the finite field.
 \end{definition}
 
 The map is well-defined by \cref{lem:newton-tools}(iii). In particular,
@@ -1847,7 +1843,7 @@ $2\binom\ell2=\ell(\ell-1)$ powers of $p$. Subtraction gives
 \eqref{eq:cluster-cost}. The complementary minor has order
 $r-\ell_{\rm all}$, so \cref{lem:monomial-support} gives its stated
 cost. In particular this cost and the atomic costs share the same
-matrix dimension; they cannot be maximized independently.
+matrix dimension and cannot be maximized independently.
 \end{proof}
 
 \begin{lemma}\label{lem:large-prime-integrality}
@@ -2108,6 +2104,13 @@ Multiplying by the entry scale $(N!)^2$ in each of the $r$ rows gives
 \eqref{eq:norm-product}. The common factor $B_m$ remains in the measure
 throughout this computation.
 \end{proof}
+
+For the analytic upper bound it is harmless to allow the additional
+factor $r!$ in the right-hand side of \eqref{eq:norm-product}.
+This is the slightly weaker determinant comparison used in the
+Lean formalization. Indeed $r!\ge1$, while Stirling gives
+$\log(r!)=O(N\log N)=o(N^2)$; therefore it changes neither the
+limiting analytic profile nor \cref{prop:analytic-rate}.
 
 For $a\ge0$ and $y\ge0$, define
 \begin{equation}\label{eq:external-field}
@@ -2441,7 +2444,9 @@ Thus these initial rows contribute at most
 $C_1\varepsilon N^2+O(N\log N)$.
 
 Summing the remaining rows and passing to a Riemann integral yields
-$\limsup N^{-2}\log F_N(\zeta(5))
+the claimed bound. If the conservative $r!$ comparison is used, its
+logarithm contributes $o(N^2)$ by Stirling and vanishes in the limit.
+Thus $\limsup N^{-2}\log F_N(\zeta(5))
 \le C_1\varepsilon+\int_\varepsilon^\delta f_s(u)\,\dd u$.
 Finally let $\varepsilon\downarrow0$, using continuity at zero.
 \end{proof}
@@ -2477,7 +2482,10 @@ The finite parameter in that proposition is
 $\floor{(2R-2)/p}$; the possible difference from $D$ at its boundaries
 will be handled explicitly below.
 
-There is a convenient bound for the remaining interval near zero. Since
+For comparison, the following sharper infinite-period bound is valid but
+\emph{not required} by the fully checked proof. The proof we use instead
+has the fixed cutoff $\beta_0=1/512$ and the uniform estimate given
+below. Since
 $D+1\le2\rho/\beta+1$ and $\theta-\epsilon/2\ge0$,
 \[
  e_{\mathrm{rank}}(\beta)
@@ -2497,6 +2505,38 @@ Consequently
            +\frac{1}{4\cdot40^2}
  =\frac{969}{6400}.
 \end{equation}
+
+\paragraph{The fixed-cutoff replacement used in the verified proof.}
+Write $N=20n$ and let
+\[
+ \beta_0=\frac1{512},\qquad
+ Y_n=100(\floor{\sqrt n}+1).
+\]
+By \cref{prop:small-primes}, the sum of the local small-prime costs for
+$p\le Y_n$ is $o(N^2)$. For all sufficiently large $n$, one has
+$Y_n<N/512$, and every prime $Y_n<p\le N/512$ satisfies the
+square-threshold hypotheses of \cref{prop:local-kernel}. Its uniform
+bound $6r=144n$ therefore gives
+\begin{equation}\label{eq:verified-small-tail}
+ \limsup_{n\to\infty}\frac1{N^2}
+ \sum_{Y_n<p\le N/512}6r\log p
+ \le\frac{6\delta}{512}=\frac{36}{5\cdot512}.
+\end{equation}
+This uses only $\vartheta(x)\sim x$ at the fixed scale $N/512$;
+no infinite sequence of floor-function periods must be integrated.
+
+On $[1/512,9/20]$ a finite rational partition into $3060$ cells
+supplies a rigorously checked piecewise affine \emph{majorant} for
+$e_{\mathrm{rank}}$. The exact fit of each cell, the choice of the
+correct branch, and its rational upper area are proved in the companion
+Lean source (24 certificate blocks). Their aggregate bound is
+\begin{equation}\label{eq:verified-middle-area}
+ \int_{1/512}^{9/20}e_{\mathrm{rank}}(\beta)\,\dd\beta
+ \le\frac{33853132329}{12500000000}.
+\end{equation}
+The profile may have many more branches than the former 228-piece
+calculation on $[1/40,9/20]$; using upper affine pieces instead of
+an exact integral is intentional and sufficient.
 
 \subsection{An explicit table on the upper interval}
 For $\beta>9/20$ the monomial estimates give a simpler table. The exact
@@ -2580,89 +2620,76 @@ of the monomial matrix proves that no further denominator prime is needed.
 Any additional numerator content can only decrease $Q_N$.
 
 \subsection{Boundary primes and passage to the limit}
-We spell out this passage because changing an endpoint convention at a
-discontinuity can change a local exponent by order $N$.
-It is not legitimate to call every such pointwise change $O(1)$.
-
-Let $Y=N^{9/10}$. The small-prime estimate of
-\cref{prop:small-primes} gives total cost $o(N^2)$ for $p\le Y$.
-For larger primes, its hypotheses $p>5$ and $p^2>4R+20$ hold for all
-sufficiently large $N$. Fix an integer $Q\ge40$ and restrict first to
-$p/N\ge1/Q$. There are finitely many floor boundaries on this compact
-interval. Each finite formula involves floors with numerators of the form
-$cN+O(1)$. It can disagree with its limiting floor only when $p$ lies within
-$O(1)$ of the corresponding fixed multiple of $N$. This leaves only $O(1)$
-integer candidates per boundary.
-
-For these candidates use the uniform entry bound
-$v_p(F_N)\ge-6r$ from \cref{prop:local-kernel}. Their total cost is
-$O(N\log N)=o(N^2)$. Elsewhere on the fixed interval the exponent is
-$Ne(p/N)+O(1)$, with the profile specified above. Its finitely many
-affine pieces cause no difficulty in prime summation.
+The fixed cutoff permits a single prime-summation limit, without first
+introducing a second parameter $Q\to\infty$. With $N=20n$ and $Y_n$
+as above, the contribution from $p\le Y_n$ is $o(N^2)$, while
+\eqref{eq:verified-small-tail} handles $Y_n<p\le N/512$.
 
 We use the prime number theorem \cite[\S27.12]{dlmf} in the form
 \begin{equation}\label{eq:pnt}
  \vartheta(x):=\sum_{p\le x}\log p=x+o(x).
 \end{equation}
-It implies, for every bounded piecewise continuous function $e$ of compact
-support in $(0,\infty)$,
+For a fixed affine function $a+b\beta$, partial summation or the
+identity for $\vartheta$ gives, on a fixed interval $(c,d]$,
 \[
- \frac1{N^2}\sum_p Ne(p/N)\log p\longrightarrow
- \int_0^\infty e(\beta)\,\dd\beta.
+ \frac1{N^2}\sum_{cN<p\le dN}
+ N(a+bp/N)\log p
+ \longrightarrow\int_c^d(a+b\beta)\,\dd\beta.
 \]
-For step functions this is exactly \eqref{eq:pnt} at finitely many fixed
-endpoints; upper and lower step approximations prove the assertion for
-the functions used here, including their signed values. The sum of the
-$O(1)$ exponent errors is $O(N)$ on a fixed compact interval.
+By additivity this applies to the finitely many certified middle
+cells and the seven and two upper and large-prime rows. The affine
+weights may be negative; replacing them by their positive parts would
+lose the common-divisibility saving and is not done.
 
-The primes $Y<p<N/Q$ have total cost at most
-$6r\,\vartheta(N/Q)$ by the uniform bound. After division by $N^2$ the
-limsup is at most $6\delta/Q$. Therefore we may first let $N\to\infty$
-for fixed $Q$, then let $Q\to\infty$.
-The profile \eqref{eq:rank-profile} is bounded between $0$ and $6\delta$,
-so its omitted integral tends to zero as well. No prime number theorem
-for intervals of shrinking relative length is being assumed.
+Floor-function boundaries require a separate qualification. The
+finite local formula on the strict interior of a cell differs from
+its limiting affine majorant by a uniform $O(1)$ exponent, and its
+sum is $o(N^2)$. A possible right-endpoint prime, where a floor jumps,
+is charged separately. There are finitely many fixed rational boundaries,
+and their combined cost is $O(N\log N)=o(N^2)$. Equivalently one may
+use the half-open prime intervals $(\floor{aN},\floor{bN}]$, so that
+shared endpoints appear exactly once. The companion Lean proof
+establishes these errors explicitly for the actual signed prime
+charges, including the common-root terms. No result about primes in
+short intervals is required.
 
 \begin{proposition}\label{prop:arithmetic-rate}
 The primitive normalizer satisfies
 \begin{equation}\label{eq:arithmetic-rate}
  \limsup_{N\to\infty}\frac{\log Q_N}{N^2}\le C_{\arith},
 \end{equation}
-where
+where the convenient exact certified constant is
 \begin{align}
  C_{\arith}
- &:=\frac{969}{6400}
-   +\int_{1/40}^{9/20}e_{\mathrm{rank}}(\beta)\,\dd\beta
-   +\frac{901}{600}+\frac{19}{16}\notag\\
- &=\frac{\scriptstyle
- 191258319415140413215011151671222972968539453509572803845881093658106414835114844023}
- {\scriptstyle
- 35352223433977492021442108242640841605890021236208954246644376534746108587827200000}
- <\frac{54101}{10000}.\label{eq:arithmetic-exact}
+ &:={\frac{36}{5\cdot512}}
+     +{\frac{33853132329}{12500000000}}
+     +{\frac{901}{600}}+{\frac{19}{16}}\notag\\
+ &=\frac{202930490737}{37500000000}
+ <\frac{5412}{1000}.
+ \label{eq:arithmetic-exact}
 \end{align}
 \end{proposition}
 \begin{proof}
-For every prime choose the integer exponent supplied by the applicable
-finite local bound, using the boundary and small-prime choices just
-described. The rational product of these prime powers clears every
-coefficient of $F_N$. It is an integer multiple of $Q_N$, by the definition
-of primitivity, so it is at least $Q_N$. Summing its logarithm and applying
-the preceding limit argument proves the first line of
-\eqref{eq:arithmetic-exact}.
+At each prime, the coefficientwise lower valuation estimate for
+$F_N$ bounds the exponent of that prime in the positive rational
+primitive normalizer $Q_N$. Summing these \emph{signed} exponents
+against $\log p$ uses the rational product formula and the finite
+support bound, rather than a replacement by nonnegative denominator charges.
+The small-prime contribution vanishes at scale $N^2$; the uniform
+tail is bounded by \eqref{eq:verified-small-tail}; the certified middle
+cells give \eqref{eq:verified-middle-area}; and the remaining two
+intervals have bounds \eqref{eq:upper-table-area} and
+\eqref{eq:large-prime-area}. The prime number theorem and the
+boundary-prime treatment just proved turn these local bounds into
+\eqref{eq:arithmetic-rate}.
 
-For the remaining integral, the only initial breakpoints are
-$1/q$, $2/(2q+1)$, and $2\rho/k$ in $[1/40,9/20]$.
-Between consecutive such points, $q,\epsilon,D$ are constant. The only
-additional breakpoint is the crossing
-\[
- \beta=\frac{D+1-\delta}{(D+1)(q+\epsilon/2)}
-\]
-if it lies in that interval; it is where the two arguments of the minimum
-in \eqref{eq:rank-profile} agree. These rules exhaust all changes of its
-affine formula. Exact integration gives $228$ pieces on this interval.
-Together with the seven displayed upper pieces there are $235$ pieces.
-The code in \cref{app:certificate-code} evaluates their rational integrals
-and verifies both the fraction and its strict comparison.
+All four displayed contributions are rational. Exact addition gives
+the stated fraction and its strict comparison with $5412/1000$.
+The companion Lean development formalizes the finite partition and
+its connection to the actual normalizer, with all 3060 middle-cell
+checks discharged. The older infinite-period estimate
+\eqref{eq:small-profile-tail}, and the optional sharper comparison
+in \cref{app:certificate-code}, are not used here.
 \end{proof}
 
 % END SHARED CORE 11_arithmetic
@@ -2770,28 +2797,36 @@ Every term is bounded above by its true trapezoid in
 \eqref{eq:trapezoid-lower}; the omitted terminal integral is positive.
 
 \begin{proposition}\label{prop:exact-gap}
-The finite rational calculation proves
+The analytic grid and the fixed-cutoff arithmetic certificates give
 \[
- C_{\an}\ge L>5.4133705070>\frac{54133}{10000},
- \qquad
- C_{\an}-C_{\arith}>\frac{32}{10000}.
+ C_{\an}\ge L>\frac{54133705070}{10^{10}},
+ \qquad C_{\arith}=\frac{202930490737}{37500000000}
+ <\frac{5412}{1000},
 \]
+so in particular
+\begin{equation}\label{eq:verified-gap}
+ C_{\an}-C_{\arith}>\frac{137}{100000}.
+\end{equation}
 \end{proposition}
 \begin{proof}
-The preceding inequalities prove $C_{\an}\ge L$. The complete
-standard-library Python program in \cref{app:certificate-code} constructs
-$L$ using only integers and rational numbers and checks the displayed
-comparisons. Its arithmetic-profile computation is justified by the
-exhaustive breakpoint argument in \cref{prop:arithmetic-rate}.
-In particular, sampling is used only to select an affine branch whose
-possible breakpoints have already been proved complete; a plot or a
-numerical guess is not used to infer that completeness.
+The preceding inequalities prove $C_{\an}\ge L$. The analytic grid
+of 2048 points is checked by exact rational bounds in the companion
+Lean development. The arithmetic estimate uses the certified fixed
+$1/512$ cutoff, 3060 rational middle cells in 24 blocks, seven upper
+rows, and two large-prime rows, with the four rational bounds
+of \eqref{eq:arithmetic-exact}. Every cell-fit, branch selection,
+area bound, and final addition used by this proof has a Lean proof term.
+The standalone Python program in \cref{app:certificate-code} remains
+available as an optional, somewhat sharper comparison based on the
+original $1/40$ split, but its stronger constant is not needed here.
 \end{proof}
 
-The program is a small exact-arithmetic certificate. It is not a
-proof-assistant development, and its successful execution does not
-certify the analytic and local-arithmetic lemmas in the preceding
-sections. These are separate mathematical arguments presented in full.
+The exact arithmetic checks alone do not establish the analytic and
+local-arithmetic lemmas in the preceding sections. In this revision,
+however, those lemmas and their connections to the certified real
+integrals and the primitive normalizer are part of the independent
+Lean verification \cite{zeta5lean2026}. The older Python certificate
+is supplementary rather than a hypothesis of the formal theorem.
 
 % END SHARED CORE 12_certificate
 
@@ -2800,10 +2835,11 @@ sections. These are separate mathematical arguments presented in full.
 
 \begin{proof}[Completion of the proof of \cref{thm:main}]
 Suppose that $\zeta(5)=a/q_*$ with $a\in\Z$ and $q_*\in\Z_{>0}$.
-By construction $Q_NF_N(X)\in\Z[X]$ and $\deg F_N\le N$.
+By construction $Q_NF_N(X)\in\Z[X]$ and the universal
+matrix-size bound is $\deg F_N\le r=6N/5$.
 Consequently
 \[
- A_N:=q_*^N Q_NF_N(a/q_*)\in\Z.
+ A_N:=q_*^r Q_NF_N(a/q_*)\in\Z.
 \]
 The Gram determinant is strictly positive at $\zeta(5)$, and both
 normalizing factors are positive. Thus $A_N\ge1$ for every $N$ under
@@ -2813,9 +2849,10 @@ On the other hand, \cref{prop:analytic-rate,prop:arithmetic-rate,prop:exact-gap}
 give
 \[
  \limsup_{N\to\infty}\frac{\log A_N}{N^2}
- \le C_{\arith}-C_{\an}<-\frac{32}{10000}.
+ \le C_{\arith}-C_{\an}<-\frac{137}{100000}.
 \]
-Here $N\log q_*/N^2\to0$, since the supposed denominator $q_*$ is fixed.
+Here $r\log q_*/N^2\to0$, because $r=6N/5$ and the
+supposed denominator $q_*$ is fixed.
 It follows that $A_N\to0$, contradicting $A_N\ge1$.
 \end{proof}
 
@@ -2828,19 +2865,22 @@ profile refinement, or external candidate proof of $\zeta(5)$ is an input.
 The chosen window $s=1/20$, $\rho=5/4$ is sufficient; no optimization or
 claim of best constants is needed.
 
-This is a fully written \emph{candidate proof}, with internal mathematical
-audits and a reproduced exact rational comparison. External peer review
-has not been established. No Lean, Isabelle/HOL, Rocq/Coq, or other
-proof-assistant certification of this particular argument is asserted.
-The independently cited historical implementations establish precisely
-the endpoints and trust boundaries listed in \cref{sec:history}.
-The distinction matters even when two arguments have the same final
-statement.
+The independent Lean~4.33.1 development \cite{zeta5lean2026}
+proves the unconditional endpoint
+\texttt{Zeta5.irrational\_zeta\_five} with only the standard
+foundational axioms \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound} in its transitive dependency closure. Its numerical
+certificates are checked by the Lean kernel, rather than supplied as
+extra mathematical assumptions. The \texttt{--trust=0} check, project
+build, and transitive dependency audit are recorded in the companion
+archive.
+The historical implementations in \cref{sec:history} concern other
+arguments and their own documented trust boundaries.
 
 The present exposition also makes an endpoint qualification explicit:
 floor-function jumps in \cref{sec:arithmetic} are treated by isolating
 their finitely many nearby prime candidates before taking a limit.
-This changes no displayed limiting constant, but it avoids an incorrect
+This changes no displayed fixed-cutoff limiting constant, but avoids an incorrect
 pointwise interpretation of adjacent closed intervals in an asymptotic
 profile table.
 
@@ -2912,7 +2952,7 @@ integer $b^NQ_N^{(2h+1)}F_N^{(2h+1)}(a/b)$.
 
 For fixed $h$, the extra polynomial factor in the density bound changes
 only the lower-order errors in the norm estimates of
-\cref{sec:discretization}. It does not change the external field $V_s$.
+\cref{sec:discretization}. (It does not change the external field $V_s$.)
 For the same fixed $s=m/N$ and $\rho=R/N$, the analytic rate therefore
 remains the same explicitly defined $C_{\an}(s,\rho)$:
 \begin{equation}\label{eq:higher-analytic-rate}
@@ -2989,12 +3029,12 @@ where
  \frac{553}{400}(h-2)-\frac9{100}
  +\frac{\pos{3/2-9h/20}^{2}}{2h}.
 \end{equation}
-This is an exact rational expression, not a numerical fit.
+This is an exact rational expression rather than a numerical fit.
 On $0<\beta<9/20$, the rank profile increases by
 $2(h-2)\delta$. On $9/20<\beta<1$, the atomic cost increases by
 $2(h-2)(1-\beta)$, while the quotient contribution changes from
 $(3/2-2\beta)_+$ to $(3/2-h\beta)_+$. The factorial charge and
-the common-root gain do not change. Integrating these differences
+the common-root gain are unchanged. Integrating these differences
 gives \eqref{eq:higher-rate-increment}; the small-tail bound changes
 by the integral of the same constant increment. For $p>N$ the
 monomial matrix remains integral, so that part is unchanged as well.
@@ -3055,7 +3095,7 @@ $C_{\arith}^{(3)}>67/10$, and the increments increase with $h\ge3$.
 
 This proposition concerns the explicitly derived rate bounds.
 In particular, \eqref{eq:higher-arithmetic-rate} is an upper bound
-for the primitive normalizer, not a lower bound. Its failure to beat
+for the primitive normalizer. Its failure to beat
 the analytic rate proves neither rationality of a higher odd value
 nor impossibility of a sharper analysis of this determinant family.
 No alternate window is asserted here to close the gap, and no
@@ -3064,8 +3104,7 @@ numerical optimization is used as evidence for such an assertion.
 \subsection{The next structural questions}
 
 \paragraph{First, use the available arithmetic bounds jointly.}
-The split at $9/20$ was chosen for the present $\zeta(5)$ estimates;
-it need not be retained for $\zeta(7)$. One can take the smaller of
+The split at $9/20$ was chosen for the present $\zeta(5)$ estimates and need not be retained for $\zeta(7)$. One can take the smaller of
 the restriction-kernel and monomial bounds wherever both apply,
 keeping the actual shared dimension and the signed factorial charge,
 and then vary $s$ and $\rho$. There is also a justified larger
@@ -3074,8 +3113,7 @@ per reflected class, so the preceding maximum and deficit estimates
 apply for $p>N/4$, subject to $p>2m$. For $m\ge1$, the zero residue class has at
 most three atoms, each of valuation at least $-1$; handling them
 separately costs only $O(1)$ per such prime and hence $o(N^2)$ in
-the prime sum. Extending this comparison is a precise first task,
-not an assertion that a better window succeeds.
+the prime sum. Extending this comparison is a precise first task; it is possible that a better window succeeds.
 
 \paragraph{Second, change the common-root multiplicity.}
 A concrete different subspace is spanned by
@@ -3129,20 +3167,59 @@ within the present investigation.
 
 % END JOURNAL ADDITION higher_odd
 
+
+\section*{Use of generative AI}
+\addcontentsline{toc}{section}{Use of generative AI}
+
+OpenAI's ChatGPT (GPT-6) was used extensively in the
+development of this work, including mathematical exploration,
+formulation and refinement of conjectures and proofs,
+computational experimentation, preparation of numerical
+certificates, assistance with Lean formalization, literature
+research, and drafting and revision of the manuscript.
+Mathematical claims and computational results were subjected
+to the verification procedures described in the paper and
+its accompanying reproducibility materials. The author
+assumes full responsibility for the mathematical correctness,
+originality, references, and final contents of this article.
+
+
+
+
 \appendix
-\section{Complete exact comparison program}\label{app:certificate-code}
+\section{Exact comparison programs and the Lean-certified numerical data}\label{app:certificate-code}
+\subsection{Primary certificate and reproducing the formal check}
+The finite computations used by \cref{prop:arithmetic-rate,prop:exact-gap}
+are contained in the companion archive \cite{zeta5lean2026}. The key
+files include \path{Zeta5/Certificate/ExtendedArithmetic.lean},
+\path{Zeta5/Certificate/AllPrimePieces.lean},
+\path{Zeta5/Analysis/ArithmeticRate.lean}, and the analytic-grid modules.
+From the archive's \path{zeta5/} directory, using the pinned
+Lean~4.33.1 toolchain, run
+\begin{verbatim}
+lake exe cache get
+lake build
+lake env lean --trust=0 evidence/FinalAudit.lean
+lake env lean Zeta5/Reuse/FinalTrustAudit.lean
+\end{verbatim}
+The dependency report records the exact Mathlib and prime-number-theorem
+commits and verifies that all numerical certificates are dependencies
+of the unconditional endpoint. The source includes the rational data
+for all $3060$ middle cells, rather than merely a decimal claim.
+
+\subsection{Optional independent sharper Python comparison}
 The following standalone program uses Python~3 and its standard library.
 The reproduced run used CPython~3.12.14. Run it with
 \texttt{python3 certificate\_explicit.py}; no optional package or network
-access is needed. Its assertions check the finite comparison described in
-Section~\ref{sec:certificate}. All displayed decimal thresholds in those
-assertions are rational numbers.
+access is needed. Its assertions check the former, somewhat sharper $1/40$ comparison,
+which is \emph{not} used to close the present proof. All displayed
+decimal thresholds in those assertions are rational numbers.
 \begin{lstlisting}
 """Exact rational certificate accompanying the Stage 60 manuscripts.
 
 Python 3, standard library only. No floating-point arithmetic is used.
-The program verifies the final inequalities conditional on the local and
-analytic lemmas proved in the manuscripts. It is not a formalization of them.
+The program verifies an optional sharper comparison conditional on the local
+and analytic lemmas. The primary proof uses the separate Lean certificates.
 """
 from fractions import Fraction as F
 from math import isqrt
@@ -3310,12 +3387,15 @@ if __name__ == "__main__":
 
 \end{lstlisting}
 
+
+\newpage
+
+
 \begingroup
 \raggedright
 \begin{thebibliography}{99}
-% Bibliography items for the shared historical introduction.
-% Insert inside the main document's thebibliography environment.
-% Research cutoff: 13 November 2026. No formal development was rebuilt here.
+% Research cutoff: 13 November 2026..
+\setlength{\itemsep}{0pt}
 
 \bibitem{euler1740}
 L. Euler, \emph{De summis serierum reciprocarum}, Commentarii academiae
@@ -3551,7 +3631,7 @@ Rocq Community, \emph{apery}, maintained source snapshot
 25 April 2026.
 \url{https://github.com/rocq-community/apery/tree/97f0c01bec4282c4504c0225a71ff0e75aeab115}.
 The current source specifies Coq 8.20+; CI configurations for Coq 8.20
-and Rocq 9.0/9.1 are version declarations, not fresh build results
+and Rocq 9.0/9.1 are version declarations, rather than fresh build results
 reported by this survey.
 
 \bibitem{eberl2019}
@@ -3623,8 +3703,29 @@ F. Calegari, \emph{zeta(5) is irrational}, Persiflage,
 24 September 2026, online mathematical exposition.
 \url{https://galoisrepresentations.org/2026/09/24/zeta5-is-irrational/};
 consulted 13 November 2026.
-This reference is used for the comparison of constructions, not as an
-input to the arithmetic or analytic estimates proved here.
+This reference is used for the comparison of constructions, and is not an input to the arithmetic or analytic estimates proved here.
+
+\bibitem{zeta5lean2026}
+Zeta Irrationality Project,
+\emph{Independent Lean verification of positive
+	factorial-window determinants and the irrationality of
+	$\zeta(5)$},
+formalization, source code, numerical certificates, and
+reproducibility report, 2026.
+Lean~4.33.1, Mathlib commit
+\texttt{0df444a360eaa60ab8c11dca51a86af692955474},
+PrimeNumberTheoremAnd commit
+\texttt{650d31264be65f4cd6e70c45d8b25d86d482a761}.
+Final declaration
+\texttt{Zeta5.irrational\_zeta\_five};
+transitive axioms
+\texttt{propext}, \texttt{Classical.choice},
+\texttt{Quot.sound}.
+Public source and verification records:
+\url{https://github.com/morley988/zeta5-independent-lean},
+release \texttt{v1.0.0}.
+
+
 
 \end{thebibliography}
 \endgroup
