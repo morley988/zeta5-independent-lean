@@ -1,0 +1,156 @@
+INDEPENDENT FINAL ENDPOINT AND ANALYTIC SEMANTICS REVIEW
+2026-11-13 23:31 UTC
+Reviewer: analytic_formalization agent
+
+OUTCOME
+
+No material semantic issue was found. The final declaration is closed:
+
+  Zeta5.irrational_zeta_five : Irrational (riemannZeta 5).re
+
+A separate file importing only Zeta5.Endpoint.Verified successfully checks
+
+  example : _root_.Irrational ((_root_.riemannZeta (5 : Complex)).re) :=
+    Zeta5.irrational_zeta_five
+
+The explicit root names exclude accidental resolution to a project-local
+replacement of either mathematical target. A source search found no local
+Irrational or riemannZeta declaration or notation. Mathlib defines Irrational
+as exclusion from the range of the rational-to-real cast, and its riemannZeta
+is the ordinary Riemann zeta function. The project's realZeta is the genuine
+sum over natural n of 1/n^k, and realZeta_eq_re proves equality with the real
+part of Mathlib's value for every integer k>1.
+
+The final #check @ output contains no arguments, hypotheses, typeclasses or
+hidden parameters. Its body applies the complete arithmetic majorant adapter
+to the concrete, stage-independent coefficients primeErrorCoefficient and
+endpointErrorCoefficient and the proved actual normalizer majorization.
+
+KERNEL AUDIT
+
+The independent final audit ran with exit status 0. The final theorem and the
+actual analytic rate, actual arithmetic majorant, arithmetic finite area and
+analytic integral certificate each report exactly:
+
+  [propext, Classical.choice, Quot.sound]
+
+No added mathematical axiom or sorryAx occurs. Source/admission/provenance
+closure is being reviewed separately by the reuse agent. This review confirms
+the exact compiled theorem type and the substantive endpoint semantics.
+
+ACTUAL OBJECTS AND NORMALIZATION
+
+1. Construction.windowDeterminant n is the determinant of the explicitly
+   defined rational affine pencil, with N=20n, m=n, r=24n and row/column
+   indices n+j, n+k. Entries retain the quotient moment and every Stieltjes
+   residue, multiplied by (20n)!^2. It is not an unconstrained sequence.
+
+2. Endpoint.windowValue n evaluates that exact polynomial at realZeta 5.
+   PhysicalMeasureStieltjes proves the genuine moment and Stieltjes bridge;
+   the latter derives the transform y^4*HurwitzFive(y)-1/(2y)-1/4 and its
+   integer specializations. The earlier StieltjesAtPositiveIntegers premise
+   is explicitly proved and discharged. The actual evaluated determinant is
+   strictly positive for every stage; its polynomial is therefore nonzero.
+
+3. Endpoint.windowNormalizer n is the chosen positive primitive rational
+   normalization of the actual polynomial. The integer polynomial map and
+   real evaluation identities are exact. The normalizer may be less than
+   one, and the signed p-adic product formula correctly permits negative
+   logarithmic contributions. It has not been replaced by a larger arbitrary
+   denominator-clearing integer that could lose the arithmetic rate.
+
+4. The integer polynomial has natDegree <=24n. The endpoint clears a
+   hypothetical rational denominator using precisely b^(24n). The resulting
+   value is an actual integer and is positive by the proved determinant and
+   normalizer positivity. Its extra logarithmic cost is linear in n and
+   hence negligible relative to the actual scale (20n)^2.
+
+5. Endpoint.windowScale n=(20*(n:Real))^2 equals the real cast of (20n)^2.
+   It is positive at every positive stage. The eventual proof uses positive
+   stages, so no division-at-zero convention is responsible for the result.
+
+ANALYTIC HYPOTHESES ARE CLOSED
+
+Analysis.exists_analytic_rate_error has no parameters or analytic hypotheses.
+It proves the existence of E(n) with E(n)/(20n)^2 ->0 and the actual bound
+
+  log(windowValue n) <= -analyticIntegral*(20n)^2 + E(n)
+
+at all sufficiently large stages. The inspected dependency path is
+
+  actual density/moments/Stieltjes
+  -> actual physical norm and weighted Gram interpretation
+  -> actual auxiliary measure, potential, quantile trial and uniform tail
+  -> uniform physical norm bound
+  -> exact factorial basis factors and row cancellation
+  -> finite decreasing-profile row sum
+  -> explicit negligible analytic error
+  -> actual determinant rate.
+
+The constant in exists_uniform_windowSquaredNorm_bound is quantified before
+N, m and k. It is uniform across both stages and rows. At the application,
+m/N=1/20 and r/N=6/5 are proved exact identities. The extra r! from the Gram
+Leibniz bound and all polynomial trial/norm factors occur in analyticError;
+its normalized limit is proved, not assumed. No unattached density, Binet,
+Stieltjes, potential, Gram, trial norm, Stirling or discretization premise
+remains in the actual rate theorem.
+
+FINITE CERTIFICATES AND FINAL GAP
+
+The 2,048 analytic nodes and rounded arithmetic checks are kernel checked,
+and GridIntegral proves their bound for the actual analytic integral:
+
+  analyticIntegral > 5.4133705070.
+
+The 24 extended arithmetic blocks are kernel checked and assembled into the
+actual fitted middle chain; the seven upper and two large-prime rows are
+included by AllPrimePieces. The exact fixed-cutoff total is
+
+  202930490737/37500000000 = 5.411479752986666... .
+
+It includes the low-prime tail 36/(5*512). The actual arithmetic majorant
+therefore yields the eventual upper rate 5.412, strictly below the analytic
+lower bound. The small-prime error, per-prime error and finite endpoint
+penalties are all proved negligible. The signed prime-sum telescope covers
+each right-closed interval exactly; endpoint primes are charged explicitly.
+No finite numerical work remains deferred.
+
+FILES REVIEWED AND REPRODUCIBLE CHECKS
+
+Final declaration:
+  zeta5/Zeta5/Endpoint/Verified.lean
+Final arithmetic assembly:
+  zeta5/Zeta5/Arithmetic/PrimeAssembly.lean
+  zeta5/Zeta5/Arithmetic/NormalizerPrimeTail.lean
+  zeta5/Zeta5/Arithmetic/PrimeRowBound.lean
+  zeta5/Zeta5/Certificate/PrimePiecesTelescope.lean
+Endpoint and actual target:
+  zeta5/Zeta5/Endpoint/ConcreteCriterion.lean
+  zeta5/Zeta5/Endpoint/PrimitiveNormalization.lean
+  zeta5/Zeta5/Endpoint/IntegerPolynomial.lean
+  zeta5/Zeta5/Endpoint/ZetaBridge.lean
+  zeta5/Zeta5/Endpoint/PhysicalCriterion.lean
+  zeta5/Zeta5/Endpoint/AnalyticCriterion.lean
+Actual analytic closing path:
+  zeta5/Zeta5/Analysis/PhysicalMeasureStieltjes.lean
+  zeta5/Zeta5/Analysis/PhysicalNorm.lean
+  zeta5/Zeta5/Analysis/PhysicalNormTrial.lean
+  zeta5/Zeta5/Analysis/WindowGramBound.lean
+  zeta5/Zeta5/Analysis/NormRowRate.lean
+  zeta5/Zeta5/Analysis/ProfileGrid.lean
+  zeta5/Zeta5/Analysis/AnalyticError.lean
+  zeta5/Zeta5/Analysis/DeterminantRate.lean
+  zeta5/Zeta5/Analysis/GridIntegral.lean
+  zeta5/Zeta5/Analysis/ArithmeticRate.lean
+  zeta5/Zeta5/Certificate/AllPrimePieces.lean
+Independent audit inputs and outputs:
+  analytic_notes/EndpointSemanticAudit.lean
+  analytic_notes/endpoint_semantic_axioms.log
+  analytic_notes/FinalEndpointSemanticAudit.lean
+  analytic_notes/final_endpoint_semantic_axioms.log
+
+Run from lean_work/zeta5:
+  source ../env.sh
+  lake env lean ../analytic_notes/FinalEndpointSemanticAudit.lean
+
+The final audit passed without modifying any mathematical source module.

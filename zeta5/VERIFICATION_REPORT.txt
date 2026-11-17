@@ -1,0 +1,228 @@
+ZETA(5) LEAN VERIFICATION — FINAL REPORT
+13 November 2026
+
+RESULT
+
+The independent irrationality endpoint is fully verified in Lean:
+
+  Zeta5.irrational_zeta_five : Irrational (riemannZeta 5).re
+
+The declaration has no parameters, typeclass premises, or remaining mathematical
+hypotheses. A separate check uses fully qualified Mathlib names:
+
+  example : _root_.Irrational ((_root_.riemannZeta (5 : Complex)).re) :=
+    Zeta5.irrational_zeta_five
+
+The result concerns Mathlib's Riemann zeta function and its standard definition
+of irrationality. The actual polynomial, normalizer, measure, local valuations,
+global rates, and numerical certificates are all connected to this endpoint.
+The proof-completion stopping condition was reached before the midnight deadline.
+
+VERIFICATION EVIDENCE
+
+1. The closed endpoint built successfully. Lake reported 4,006 jobs in that
+   build, including cached dependencies and replayed modules.
+2. The final project root built successfully. Lake reported 4,010 jobs.
+3. `lake env lean --trust=0 evidence/FinalAudit.lean` exited successfully.
+   This invokes Lean's mode that type-checks imported modules and does not
+   trust macros. Its log is evidence/final_kernel_audit.log.
+4. The transitive axiom set of the final theorem is exactly:
+
+     [propext, Classical.choice, Quot.sound]
+
+   These are Lean's standard foundational axioms. There is no sorryAx,
+   supplied numerical axiom, native_decide oracle, or added mathematical axiom
+   in the theorem's dependency closure.
+5. An independent constant traversal found 81,789 transitive constants. It
+   confirms the actual analytic rate, restriction determinant theorem,
+   rational product formula, checked analytic grid, all 24 arithmetic block
+   fit proofs and area upper bounds, and the proved prime number theorem.
+6. The two unrelated admitted upstream Fourier lemmas prelim_decay_2 and
+   prelim_decay_3 are absent from that closure. Their existence elsewhere in
+   the imported PNT source does not become an assumption of the final theorem.
+7. Separate semantic reviews checked the target, normalization, degree,
+   uniformity of analytic constants, signed valuations, every prime range,
+   endpoint handling, and N=20n scaling. They found no material issue.
+
+The root import closure contains 178 project modules and 40,736 source lines,
+including generated certificate data. The archive includes the complete source,
+dependency lockfile, verification logs, independent review notes, and a SHA256
+manifest. Reproducibility does not depend on keeping this workspace or its caches.
+
+ACTUAL MATHEMATICAL OBJECTS
+
+At stage n the proof uses N=20n, lower basis index m=n, and dimension r=24n.
+The rational polynomial F_n is the determinant of the specified affine pencil
+with basis indices n through 25n-1. It retains both polynomial quotient moments
+and all Stieltjes residues, with the actual factorial normalization.
+
+The positive rational Q_n is the primitive coefficient normalizer of F_n.
+The scaled polynomial Q_n F_n has integral primitive coefficients, and its
+degree is at most 24n. This is a rational normalizer, which may be less than one;
+the arithmetic proof preserves negative prime charges from common divisibility.
+
+The actual positive physical measure supplies the moments, the Stieltjes
+identity at positive integers, and a Gram interpretation. Consequently the
+evaluation F_n(zeta(5)) is strictly positive, and F_n is nonzero. None of these
+facts remains an interface assumption at the completed endpoint.
+
+The actual analytic determinant estimate is
+
+  log F_n(zeta(5)) <= -B*(20n)^2 + E(n),
+  E(n)/(20n)^2 -> 0,
+
+where B is the actual analytic integral. Its density, potential, auxiliary
+measure, quantile trial polynomials, uniform norm bound, factorial cancellation,
+row sum, and error limit are proved. The uniform norm constant is chosen before
+the stage and row indices; it is not allowed to grow with n.
+
+The arithmetic proof establishes, eventually,
+
+  log Q_n <= 5.412*(20n)^2.
+
+If zeta(5)=a/b with b positive, evaluating the integral polynomial and multiplying
+by b^(24n) produces a positive integer. The combined strict quadratic decay
+forces this positive integer to tend to zero, a contradiction. The additional
+denominator cost 24n*log b is negligible relative to (20n)^2.
+
+ARITHMETIC CHAIN
+
+The local restriction theorem uses the actual central-basis coefficient map,
+whose row dimension is
+
+  (floor((50n-2)/p)+1)*w_p.
+
+The proved kernel-to-radical property and a lifted residue-field basis give the
+determinant valuation gain. After unscaling, the cost is exactly
+
+  (4+epsilon)*24n + min(24n,(floor((50n-2)/p)+1)*w_p).
+
+This theorem requires p>5 and p^2>100n+6. Its comparison with the real middle
+profile has a uniform error at most 641 on p/(20n)>=1/512.
+
+For upper primes, the proof retains the actual factorial charge, reflected-class
+counts, common-root gain, and shared dimension allocation. The seven affine
+rows bound the actual signed charge with error at most 8. Above N, the monomial
+pencil is integral and the factorial contribution gives two further affine
+rows. Above 50n the normalizer valuation is nonpositive, as required for the
+finite signed product-formula bound.
+
+For all primes, a separate coefficient bound has cost
+
+  24n*(9*Nat.log p(100n+4) + v_p(96)).
+
+Summing it up to Y=100*(floor(sqrt(n))+1) gives an explicit error whose quotient
+by (20n)^2 tends to zero. Above Y every prime satisfies the local square
+threshold. Eventually Y<floor(20n/512), so the remaining initial tail is bounded
+by 144n*theta(20n/512).
+
+The actual signed prime charge is telescoped through intervals
+(floor(aN),floor(bN)]. Each shared endpoint appears once. The local affine
+formulas apply on the strict interior; each possible right-endpoint prime is
+charged separately. A fixed multiple of N*log((5/2)N) covers all endpoint
+corrections. The uniform interior errors cost a fixed multiple of theta((5/2)N).
+Both are proved negligible at quadratic scale. Signed affine weights remain
+signed throughout this assembly.
+
+NUMERICAL CERTIFICATES AND STRICT GAP
+
+Analytic side:
+  2,048 analytic grid checks are proved using exact arithmetic.
+  Their connection to the actual integral is proved.
+  B > 54133705070/10^10 = 5.4133705070.
+
+Arithmetic side:
+  The fixed cutoff is 1/512.
+  3,060 certified middle cells cover [1/512,9/20], in 24 blocks.
+  Seven upper rows cover [9/20,1].
+  Two large-prime rows cover [1,5/2].
+  Every cell fit, branch selection, and rounded rational area upper bound is
+  checked in Lean. Each rounded middle-cell area is an upper bound with
+  denominator 10^12; no floating-point computation is assumed by the proof.
+
+The exact component bounds are
+
+  middle area <= 33853132329/12500000000,
+  initial tail = 36/(5*512),
+  upper area = 901/600,
+  large-prime area = 19/16.
+
+Their sum is
+
+  202930490737/37500000000
+    = 5.411479752986666... < 5.412 < 5.4133705070 < B.
+
+The convenient final arithmetic rate leaves a proved gap greater than
+0.0013705070 from the analytic rate.
+
+NO DEFERRED NUMERICAL OBLIGATIONS
+
+All finite numerical work needed by the completed theorem is kernel checked.
+No numerical statement has been left as an external finite-arithmetic
+certificate or as a future Lean task. Additional Lean time needed to close
+required numerical obligations: zero.
+
+FORMALIZATION CHOICES
+
+The formal proof uses a conservative sufficient arithmetic rate of 5.412.
+It replaces the manuscript's infinite-period tail estimate by the fixed-cutoff
+certificate and a uniform tail bound. Recovering the manuscript's sharper
+arithmetic constant is optional and is not required by the verified theorem.
+
+On the analytic side an r! Gram/Leibniz factor is retained and absorbed into
+the proved o(N^2) error. The rational-evaluation endpoint uses the universal
+degree bound 24n. These choices simplify formalization without introducing
+unproved estimates or changing the final mathematical target.
+
+FOUR-VALUE OVERLAP
+
+The detailed ledger distinguishes direct extraction, completed generalization,
+potential future reuse, and new proofs. Important actual uses are:
+
+- Direct: rational p-adic lower-bound and weighted determinant lemmas.
+- Generalized: coefficientwise polynomial valuations and weighted determinants
+  over rational polynomial coefficients.
+- Direct: the rational logarithmic product formula; new specialization to the
+  primitive coefficient normalizer preserves signed charges.
+- Generalized: square-basis triangularity and Gram change of basis, including
+  the exact polynomial-valued window factor.
+- Generalized: rectangular determinant allocation over Q[X], used in shared
+  dimension bounds. The new restriction-kernel/rank and reflected-class
+  arguments are separate proved additions.
+- Direct: uniform Stirling and factorial-row error lemmas.
+- Direct: the bridge from the real zeta series to Mathlib's Riemann zeta value.
+- Direct: the pinned prime number theorem's theta limit; generalized to signed
+  affine prime weights, finite pieces, endpoint corrections, and tail assembly.
+
+The old square basis includes a factor 2 for positive indices; the new one
+does not. The ledger records this normalization difference explicitly, and the
+new proof establishes its own local constants, including at p=2.
+
+The extracted old logarithm/arctangent enclosure tools remain available for
+future reuse but are not needed by the final analytic-grid dependency path.
+The new directed rounded recurrence is used there. The old four-value numerical
+admissions are not carried into the new theorem. No Fauzan result is used.
+
+REPRODUCTION
+
+The pinned environment is:
+  Lean 4.33.1
+  Lean commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6
+  Mathlib 0df444a360eaa60ab8c11dca51a86af692955474
+  PrimeNumberTheoremAnd 650d31264be65f4cd6e70c45d8b25d86d482a761
+  Four-value reference fd23dd59e5d638c9684eb2d7776fb51e8b427b55
+
+All 14 dependency checkouts matched the lockfile when audited. The original
+four-value reference checkout remained unmodified.
+
+From the extracted zeta5 directory, with Elan installed:
+
+  elan toolchain install leanprover/lean4:v4.33.1
+  lake exe cache get
+  lake build
+  lake env lean --trust=0 evidence/FinalAudit.lean
+  lake env lean Zeta5/Reuse/FinalTrustAudit.lean
+
+The numerical generators are supplied for inspection and regeneration, but
+running Python is not a proof dependency. The generated Lean declarations and
+their kernel proofs are the certificates used by the final theorem.

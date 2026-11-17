@@ -1,0 +1,18 @@
+Zeta5.Analysis.exists_analytic_rate_error : ∃ E,
+  Filter.Tendsto (fun n => E n / Zeta5.Endpoint.windowScale n) Filter.atTop (𝓝 0) ∧
+    ∀ᶠ (n : ℕ) in Filter.atTop,
+      Real.log (Zeta5.Endpoint.windowValue n) ≤ -Zeta5.Certificate.analyticIntegral * Zeta5.Endpoint.windowScale n + E n
+Zeta5.Analysis.PhysicalMeasure.windowDeterminant_realZetaFive_pos : ∀ (n : ℕ),
+  0 < Polynomial.eval₂ (Rat.castHom ℝ) (Zeta5.Endpoint.realZeta 5) (Zeta5.Construction.windowDeterminant n)
+Zeta5.Analysis.irrational_zeta5_of_allPrimePieces_majorant : ∀ (K L : ℝ),
+  (∀ᶠ (n : ℕ) in Filter.atTop,
+      Real.log ↑(Zeta5.Endpoint.windowNormalizer n) ≤
+        Zeta5.Analysis.arithmeticMajorant Zeta5.Certificate.allPrimePieces K L n) →
+    Irrational (riemannZeta 5).re
+'Zeta5.Endpoint.realZeta_eq_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Endpoint.windowIntegerPolynomial_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Endpoint.windowIntegerPolynomial_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Endpoint.windowValue_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Analysis.exists_analytic_rate_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.analyticIntegral_gt_displayed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Analysis.irrational_zeta5_of_allPrimePieces_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]

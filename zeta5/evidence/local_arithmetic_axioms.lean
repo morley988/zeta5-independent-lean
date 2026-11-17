@@ -1,0 +1,14 @@
+import Zeta5.Arithmetic.LocalFunctional
+#print axioms Zeta5.Arithmetic.binomialPolynomial_derivative
+#print axioms Zeta5.Arithmetic.integerValuedLower_iterate_derivative_below_square
+#print axioms Zeta5.Arithmetic.polynomialPadicLower_quotient_of_unit_constant
+#print axioms Zeta5.Arithmetic.polynomialPadicLower_quotient_of_monic
+#print axioms Zeta5.Arithmetic.denominator_local_factorization
+#print axioms Zeta5.Arithmetic.physicalLocalMultiplicity_eq_reflectedSize
+#print axioms Zeta5.Arithmetic.physicalLocalMultiplicity_zero
+#print axioms Zeta5.Arithmetic.physicalLocalLevel_unit_differences
+#print axioms Zeta5.Arithmetic.polynomialPadicLower_of_high_coeff_of_eval
+#print axioms Zeta5.Arithmetic.centralExpansion_maximal_local_gain
+#print axioms Zeta5.Arithmetic.centralQuotient_moment_bound_on_kernel
+#print axioms Zeta5.Arithmetic.normalizedCentralFunctional_padicLower
+#print axioms Zeta5.Arithmetic.normalizedCentralFunctional_padicLower_on_kernel

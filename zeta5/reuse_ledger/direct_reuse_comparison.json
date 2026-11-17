@@ -1,0 +1,73 @@
+{
+  "reference_commit": "fd23dd59e5d638c9684eb2d7776fb51e8b427b55",
+  "comparisons": [
+    {
+      "old_file": "FourValuePadicMinors.lean",
+      "new_file": "Zeta5/Reuse/PadicMinors.lean",
+      "bodies_identical_after_comment_import_whitespace_normalization": true,
+      "namespace_change": false,
+      "old_normalized_sha256": "4c4abf96e94736e9f7890c52f9be2a9a1ae74ee894b0dbbd6f0e93889e6a2ec1",
+      "new_normalized_sha256": "4c4abf96e94736e9f7890c52f9be2a9a1ae74ee894b0dbbd6f0e93889e6a2ec1",
+      "old_file_sha256": "27b874de17c909df097e4d43df5995b74bc40aaf2d18ed6349c2dd86b8318562",
+      "new_file_sha256": "c5d64c4c263e764fbaed49b5760350a4ddf4eb8c1af02f4fcdecc75ce64a89e0"
+    },
+    {
+      "old_file": "FourValueTranscendental.lean",
+      "new_file": "Zeta5/Reuse/Transcendental.lean",
+      "bodies_identical_after_comment_import_whitespace_normalization": true,
+      "namespace_change": false,
+      "old_normalized_sha256": "1fd5d9372da2be73b78418e25f70dc73d70f70e594e30186db987e07c54f67bb",
+      "new_normalized_sha256": "1fd5d9372da2be73b78418e25f70dc73d70f70e594e30186db987e07c54f67bb",
+      "old_file_sha256": "858ee7dd17bf3078c0a9b99fe494c50049f7bb8803cfd18af948aa6f0f4fd275",
+      "new_file_sha256": "204dceb42277eb20a10291cba0b37cf8f87a73196a2d881f2fd781dcca50d8f2"
+    },
+    {
+      "old_file": "FourValueUniformStirling.lean",
+      "new_file": "Zeta5/Reuse/Stirling.lean",
+      "bodies_identical_after_comment_import_whitespace_normalization": true,
+      "namespace_change": false,
+      "old_normalized_sha256": "a1f20b1f6a0e78cd9f9b855d9f560daef5083fd81d136f140ef6384d7db3c431",
+      "new_normalized_sha256": "a1f20b1f6a0e78cd9f9b855d9f560daef5083fd81d136f140ef6384d7db3c431",
+      "old_file_sha256": "0643377056993ad59d5740af92c6ce48fb26f4760e0ecf50440041e3d840b97a",
+      "new_file_sha256": "d85a20bb489dd36055ea6c925a05e6e1468fb04ae41917971c9c82693c451d97"
+    },
+    {
+      "old_file": "FourValueFactorialRowError.lean",
+      "new_file": "Zeta5/Reuse/FactorialRow.lean",
+      "bodies_identical_after_comment_import_whitespace_normalization": true,
+      "namespace_change": false,
+      "old_normalized_sha256": "cb63c5b6f7c8c882c7c1dc8f4fd8792aaa9a0102363fbd4570a6fcb96d84e83f",
+      "new_normalized_sha256": "cb63c5b6f7c8c882c7c1dc8f4fd8792aaa9a0102363fbd4570a6fcb96d84e83f",
+      "old_file_sha256": "b4e51afa958f62b02c8cd6a75fcb09595aa8160124e7a296c6f7291ca77a7434",
+      "new_file_sha256": "5dec7b16f6f7d5c7160c9ec6c403c7c91a16493b863bb4564ca63d9f99f76eca"
+    },
+    {
+      "old_file": "FourValueProductFormula.lean",
+      "new_file": "Zeta5/Reuse/ProductFormula.lean",
+      "bodies_identical_after_comment_import_whitespace_normalization": true,
+      "namespace_change": false,
+      "old_normalized_sha256": "d7c428e4c44066395ca5ade1e19e08063840cc6efba2dd11547ff7f208c24544",
+      "new_normalized_sha256": "d7c428e4c44066395ca5ade1e19e08063840cc6efba2dd11547ff7f208c24544",
+      "old_file_sha256": "c88441888b0810795dd4a527a1f902a706eebe64b2437a0f552b7fdc97c1bca4",
+      "new_file_sha256": "070df58c9fbd723785ee2dae73bff4fcbfeae2ecdb94514da31ac27ebb22198c"
+    },
+    {
+      "old_file": "FourValueIndexBounds.lean",
+      "new_file": "Zeta5/Reuse/IndexBounds.lean",
+      "bodies_identical_after_comment_import_whitespace_normalization": false,
+      "namespace_change": true,
+      "old_normalized_sha256": "dac61fa77a90b5b7ca47ecc9764d0ec488aeb1924539c105c6d6bff9100c7ea6",
+      "new_normalized_sha256": "15e4dddf4b842026e3280c3a529114c8abbf7a7d550d3be5e092589289c0d11c",
+      "old_file_sha256": "9f52487db5ceec7445325bc0239d684d4023e3f14868620980d691afdeb0c4e8",
+      "new_file_sha256": "a04ee3701356d2503c30814a629be2e86bbf615e44a94263033440366249ff2e",
+      "extraction_scope": "first three declarations; later old determinant theorem intentionally omitted",
+      "selected_declarations": [
+        "strictMono_fin_nat_lower",
+        "sum_injective_nat_lower",
+        "twice_sum_injective_nat_lower"
+      ],
+      "selected_bodies_identical_after_normalization": true,
+      "selected_old_normalized_sha256": "15e4dddf4b842026e3280c3a529114c8abbf7a7d550d3be5e092589289c0d11c"
+    }
+  ]
+}

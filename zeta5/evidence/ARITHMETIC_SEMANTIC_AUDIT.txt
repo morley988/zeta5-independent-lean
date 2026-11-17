@@ -1,0 +1,126 @@
+ARITHMETIC SEMANTIC AUDIT — ZETA(5) ACTUAL WINDOW
+Recorded 2026-11-13, following completion of the unconditional endpoint.
+
+Scope
+This review checked statements and actual definitions through the arithmetic
+chain. It is separate from kernel compilation: its purpose is to catch a
+wrong target, signed-charge convention, window dimension, or omitted region.
+No material issue was found. No source code change was needed after the final
+endpoint build. The review used the files named below, not idealized interfaces.
+
+1. ACTUAL POLYNOMIAL AND NORMALIZER
+Construction/Determinant defines the Bernoulli moments, finite harmonic sum,
+affine Stieltjes polynomial, quotient-plus-residue entries, and their determinant.
+The window has N=20n, m=n, r=24n, with basis indices n,...,25n-1.
+Endpoint/ConcreteCriterion.windowNormalizer is literally
+primitiveNormalizer(Construction.windowDeterminant n).
+PrimitiveNormalization proves a positive rational scaling whose integer
+polynomial is primitive, its uniqueness/minimality, exact map identity, degree
+identity and evaluation identity. The value is allowed to be below one.
+NormalizerBounds does not silently replace it with a natural denominator.
+Actual F is nonzero by PhysicalMeasureStieltjes.windowDeterminant_ne_zero,
+which comes from the actual positive physical Gram representation.
+
+2. PRIMITIVE COEFFICIENT AND SIGN CONVENTION
+primitiveNormalizer_padicVal_le uses a coefficient of the actual normalized
+integer polynomial not divisible by p. For a coefficientwise lower bound b
+on F it concludes v_p(Q)<=-b. Both b and the resulting charge may be signed.
+Reuse/ProductFormula is directly extracted from the pinned four-value source;
+its declaration body tail is textually identical. Its theorem is the exact
+rational product formula log|q|=sum_p v_p(q)log p.
+finite_prime_upper extends to the union of chosen primes and actual support,
+then discards only outside primes with nonpositive valuation. Finite weights
+may be negative. The direction of inequality is correct throughout.
+
+3. LARGE-PRIME SUPPORT
+LargePrimes proves integrality of the actual monomial pencil for p>N using
+the integral quotient block and actual reflected low-pair cancellation.
+The basis change multiplies its determinant by the actual factorial prefactor.
+For p>50n every floor in factorialCharge is zero, so F has coefficientwise
+valuation >=0 and v_p(Q)<=0. This is the precise outside-support property
+needed by the product formula; literal zero valuation is not asserted.
+Thus log Q is bounded by the actual signed prime charge over 0<p<=50n.
+
+4. RESTRICTION RANK AND LOCAL SCALING
+RestrictionPencil uses actual coefficients of the central basis after local
+substitution (c+pY)^2, for actual maximal reflected classes c and coefficient
+indices 0,...,D. Here D=floor((50n-2)/p), so the restriction row cardinality is
+(D+1)*w_p. No row dimension is replaced by a guessed rank.
+The actual pencil is multiplied by p^(5+epsilon), epsilon=floor(2(N mod p)/p).
+The local functional/radical theorem supplies coefficientwise integrality and
+one additional p-factor for every vector in the restriction kernel.
+RestrictionDeterminant uses a residue-field kernel basis, integral rational
+lifts and a unit determinant to gain r-min(r,(D+1)*w_p).
+Unscaling therefore gives precisely
+  v_p(F)>=-(4+epsilon)*24n-min(24n,(D+1)*w_p).
+The hypotheses are p>5 and p^2>100n+6. These cover all degree bounds in the
+actual quotient/Bernoulli/derivative proof; no abstract radical premise remains.
+The maximal-class formula and epsilon are identified with the actual real
+rank profile. The half-integer class-count difference contributes at most
+(floor(50n/p)+1)/2, hence at most 641 when p/(20n)>=1/512.
+Since epsilon<=1 and the minimum is <=r, the uniform charge is <=6r=144n.
+
+5. UPPER CHARGE AND FACTORIAL SIGNS
+FactorialPrefactor proves the exact determinant basis change and its valuation.
+factorialCharge=2*sum floor(2(m+k)/p)-2r*floor(N/p), with the subtraction intact.
+UpperBandAssembly combines the actual quotient and residue matrices, including
+the integral zero class. SharedAllocation uses the same total dimension for
+both minor prices; its penalty is 7H-2A+min(t,r-H).
+The actual determinant lower bound is
+  -factorialCharge-7H+2A-min(t,r-H).
+NormalizerLocalBounds.upperCharge is exactly its negative. Neither the root
+gain -2A nor a potentially negative factorial charge is discarded.
+The seven affine upper rows follow as upper bounds with additive error 8.
+Interior beta in (9/20,1) implies 9n<p<20n, hence all required p>2n and
+20n<3p hypotheses; the good-prime threshold implies 50n<p^2.
+The large-prime rows use p>20n and give their exact two affine bounds without
+an additional rounding error. Right endpoints are handled separately.
+
+6. ALL PRIMES AND CUTOFFS
+SmallPrimeEntries proves the actual all-prime coefficient bound with cost
+24n*(9*Nat.log p(100n+4)+v_p(96)); no odd-prime restriction is used there.
+SmallPrimeSum sums it using elementary log bounds over primes no larger than
+Y=100*(floor(sqrt(n))+1). This gives the explicitly defined smallPrimeError.
+If p>Y, then p>5 and p^2>100n+6. For n>=100000000, Y<floor(20n/512).
+The exact intervals 0<p<=Y, Y<p<=floor(20n/512), and
+floor(20n/512)<p<=50n partition the retained prime charge without overlap.
+The middle initial interval is bounded by 144n*theta(floor(20n/512)); theta
+at that integer equals theta(20n/512). Negative actual valuations only improve
+this upper bound. SmallPrimeError/(20n)^2 tends to zero.
+
+7. FINITE PROFILE, BOUNDARIES AND SCALE
+AllPrimePieces consists of 3060 middle cells [1/512,9/20], seven upper rows
+[9/20,1], and two large rows [1,5/2]. The actual rational data are cast exactly.
+PrimePiecesTelescope uses intervals (floor(aN),floor(bN)] for every affine
+piece; shared endpoints occur once, not twice. PrimeRowBound distinguishes
+strict interiors from a possible right-endpoint prime. One endpoint cost per
+row is bounded by a constant*N*log((5/2)N), which is negligible at scale N^2.
+Signed affine coefficients are allowed throughout. No positivity assumption
+on individual affine masses or actual charges has been inserted.
+The uniform interior +641 error is bounded by a fixed multiple of theta((5/2)N),
+also negligible. The prefix contribution has limiting rate 36/(5*512).
+ArithmeticRate uses N=20n and windowScale=(20n)^2 consistently. The combined
+rational upper bound is 202930490737/37500000000=5.41147975298666..., strictly
+below the chosen eventual arithmetic rate 5.412. The analytic certified
+threshold 5.4133 is larger. The finite extended certificate and original
+analytic-grid certificate both have kernel proofs; no numerical work is deferred.
+
+8. TRANSITIVE AXIOM CHECK AND REPRODUCIBILITY
+Fresh `#print axioms` for windowNormalizer_upperProfile_bound,
+windowNormalizer_largeProfile_bound and
+windowNormalizer_log_le_tail_and_primeSum_eventually reports exactly
+  propext, Classical.choice, Quot.sound.
+See evidence/normalizer_prime_tail_axioms.log and its Lean source.
+The earlier restriction/local arithmetic audit logs report the same axioms.
+Parent separately built and audited the unconditional endpoint after the final
+glue. No theorem assumption in the audited local-to-tail chain is an admission.
+
+Environment evidence was refreshed after the PNT addition: environment.json
+now contains all 14 manifest dependency pins and each actual checked-out commit;
+all 14 match. Lean is 4.33.1, commit
+819816b2e0a3bf405af45ae5c7af2491d8f5bee6, binary SHA256
+e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550.
+Mathlib pin: 0df444a360eaa60ab8c11dca51a86af692955474.
+PNT pin: 650d31264be65f4cd6e70c45d8b25d86d482a761.
+Four-value reference pin: fd23dd59e5d638c9684eb2d7776fb51e8b427b55;
+the reference working tree remains clean.

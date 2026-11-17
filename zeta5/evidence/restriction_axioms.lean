@@ -1,0 +1,5 @@
+import Zeta5.Arithmetic.LocalDeterminant
+#print axioms Zeta5.Arithmetic.scaledCentralPencil_restriction_radical
+#print axioms Zeta5.Arithmetic.polynomialPadicLower_det_of_restriction_kernel
+#print axioms Zeta5.Arithmetic.unscaledCentralPencil_restriction_bound
+#print axioms Zeta5.Arithmetic.windowDeterminant_local_restriction_bound

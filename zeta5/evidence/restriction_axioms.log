@@ -1,0 +1,6 @@
+'Zeta5.Arithmetic.scaledCentralPencil_restriction_radical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Arithmetic.polynomialPadicLower_det_of_restriction_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Zeta5.Arithmetic.unscaledCentralPencil_restriction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Arithmetic.windowDeterminant_local_restriction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

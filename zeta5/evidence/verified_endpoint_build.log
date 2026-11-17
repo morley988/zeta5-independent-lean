@@ -1,0 +1,1067 @@
+⚠ [2732/3009] Replayed Zeta5.Analysis.PolynomialGram
+warning: Zeta5/Analysis/PolynomialGram.lean:26:0: automatically included section variable(s) unused in theorem `Zeta5.Analysis.polynomialGram_isHermitian`:
+  [Fintype ι]
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Analysis/PolynomialGram.lean:33:0: automatically included section variable(s) unused in theorem `Zeta5.Analysis.polynomialGram_quadratic`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Analysis/PolynomialGram.lean:95:0: automatically included section variable(s) unused in theorem `Zeta5.Analysis.affinePencil_eq`:
+  [Fintype ι]
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2734/3009] Replayed Zeta5.Reuse.PadicMinors
+warning: Zeta5/Reuse/PadicMinors.lean:24:0: automatically included section variable(s) unused in theorem `OddZeta.FourValue.PadicLower.zero`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Reuse/PadicMinors.lean:26:0: automatically included section variable(s) unused in theorem `OddZeta.FourValue.PadicLower.mono`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Reuse/PadicMinors.lean:30:0: automatically included section variable(s) unused in theorem `OddZeta.FourValue.PadicLower.of_ne_zero`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Reuse/PadicMinors.lean:34:0: automatically included section variable(s) unused in theorem `OddZeta.FourValue.PadicLower.neg`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2735/3009] Replayed Zeta5.Arithmetic.Moments
+warning: Zeta5/Arithmetic/Moments.lean:22:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.padicLower_nat`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/Moments.lean:27:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.padicLower_int`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/Moments.lean:46:4: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/Moments.lean:51:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/Moments.lean:128:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.prime_dvd_momentNumerator`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: Zeta5/Arithmetic/Moments.lean:162:0: 'Zeta5.Arithmetic.rationalMoment_padicLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/Moments.lean:163:0: 'Zeta5.Arithmetic.rationalMoment_integral_of_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2736/3009] Replayed Zeta5.Reuse.PolynomialValuations
+warning: Zeta5/Reuse/PolynomialValuations.lean:37:0: automatically included section variable(s) unused in theorem `OddZeta.FourValue.PolynomialPadicLower.constant`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2737/3009] Replayed Zeta5.Arithmetic.LocalDivision
+warning: Zeta5/Arithmetic/LocalDivision.lean:94:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.polynomialPadicLower_reverse_iff`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+ℹ [2746/3009] Replayed Zeta5.Construction.PartialFractions
+info: Zeta5/Construction/PartialFractions.lean:120:0: 'Zeta5.Construction.squareNode_partialFraction_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2747/3009] Replayed Zeta5.Construction.ResidueDerivative
+info: Zeta5/Construction/ResidueDerivative.lean:99:0: 'Zeta5.Construction.denominator_derivative_pole' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2748/3009] Replayed Zeta5.Construction.Functional
+info: Zeta5/Construction/Functional.lean:67:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: Zeta5/Construction/Functional.lean:66:29: This simp argument is unused:
+  Finset.sum_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Finset.mul_sum, mul_add, Finset.sum_add_distrib]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [2749/3009] Replayed Zeta5.Construction.BasisChange
+info: Zeta5/Construction/BasisChange.lean:177:0: 'Zeta5.Construction.concrete_windowDeterminant_change_of_basis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2750/3009] Replayed Zeta5.Arithmetic.QuotientSupport
+info: Zeta5/Arithmetic/QuotientSupport.lean:167:0: 'Zeta5.Arithmetic.quotientMoment_padicLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/QuotientSupport.lean:168:0: 'Zeta5.Arithmetic.quotientMoment_integral_outside_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2751/3009] Replayed Zeta5.Arithmetic.QuotientMinors
+info: Zeta5/Arithmetic/QuotientMinors.lean:73:0: 'Zeta5.Arithmetic.quotientPencil_minor_padicLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2752/3009] Replayed Zeta5.Construction.ResidueDecomposition
+info: Zeta5/Construction/ResidueDecomposition.lean:45:0: 'Zeta5.Construction.monomialPencil_residue_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2753/3009] Replayed Zeta5.Arithmetic.StieltjesValuations
+warning: Zeta5/Arithmetic/StieltjesValuations.lean:17:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.padicValNat_lt_square_le_one`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: Zeta5/Arithmetic/StieltjesValuations.lean:136:0: 'Zeta5.Arithmetic.stieltjes_polynomial_padicLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/StieltjesValuations.lean:137:0: 'Zeta5.Arithmetic.stieltjes_polynomial_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/StieltjesValuations.lean:138:0: 'Zeta5.Arithmetic.stieltjes_polynomial_multiple_p' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2754/3009] Replayed Zeta5.Arithmetic.EvaluationMinors
+warning: Zeta5/Arithmetic/EvaluationMinors.lean:30:31: Variable name `i` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _i
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2755/3009] Replayed Zeta5.Arithmetic.ResidueValuations
+warning: Zeta5/Arithmetic/ResidueValuations.lean:32:41: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [padicValRat.pow, padicValRat.neg, padicValRat.one, mul_zero, zero_add, padicValRat.of_nat, htwoQ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/ResidueValuations.lean:55:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.commonRootInt_eval_dvd`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: Zeta5/Arithmetic/ResidueValuations.lean:84:0: 'Zeta5.Arithmetic.denominator_derivative_valuation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ResidueValuations.lean:85:0: 'Zeta5.Arithmetic.commonFactor_eval_sq_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ResidueValuations.lean:86:0: 'Zeta5.Arithmetic.monomialAtomWeight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2757/3009] Replayed Zeta5.Arithmetic.ReflectedClasses
+info: Zeta5/Arithmetic/ReflectedClasses.lean:176:0: 'Zeta5.Arithmetic.int_reflected_floor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedClasses.lean:177:0: 'Zeta5.Arithmetic.reflected_floor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedClasses.lean:178:0: 'Zeta5.Arithmetic.residueNodes_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedClasses.lean:179:0: 'Zeta5.Arithmetic.reflectedNodes_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedClasses.lean:180:0: 'Zeta5.Arithmetic.highReflectedNodes_card_add_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedClasses.lean:181:0: 'Zeta5.Arithmetic.denominator_derivative_reflected_valuation' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2758/3009] Replayed Zeta5.Arithmetic.LocalDenominator
+warning: Zeta5/Arithmetic/LocalDenominator.lean:40:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.local_linear_product_factorization`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:53:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.localMonicFactor_monic`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:59:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.localMonicFactor_natDegree`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:66:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.localUnitFactor_constant`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:81:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.localMonicFactor_integral`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:95:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.localUnitFactor_integral`:
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:102:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.localUnitFactor_constant_ne_zero`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:121:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.denominator_local_signed_product`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:156:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.physicalLocalMonic_monic`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/LocalDenominator.lean:162:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.physicalLocalMonic_natDegree`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2759/3009] Replayed Zeta5.Arithmetic.LocalInterpolation
+warning: Zeta5/Arithmetic/LocalInterpolation.lean:59:48: This simp argument is unused:
+  coeff_C_mul_X_pow
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [coefficientTruncation, finsetSum_coeff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/LocalInterpolation.lean:112:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.physicalLocalLevel_mul`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2760/3009] Replayed Zeta5.Arithmetic.ReflectedCounts
+warning: Zeta5/Arithmetic/ReflectedCounts.lean:76:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/ReflectedCounts.lean:112:5: Variable name `hc` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hc
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Arithmetic/ReflectedCounts.lean:112:18: Variable name `hcp` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hcp
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: Zeta5/Arithmetic/ReflectedCounts.lean:120:0: 'Zeta5.Arithmetic.total_highReflectedNodes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedCounts.lean:121:0: 'Zeta5.Arithmetic.affected_highReflectedNodes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedCounts.lean:122:0: 'Zeta5.Arithmetic.maximalReflectedClasses_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedCounts.lean:123:0: 'Zeta5.Arithmetic.reflectedSize_le_max' depends on axioms: [propext, Quot.sound]
+⚠ [2761/3009] Replayed Zeta5.Arithmetic.BernoulliFunctional
+warning: Zeta5/Arithmetic/BernoulliFunctional.lean:65:14: This simp argument is unused:
+  Nat.add_sub_cancel
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [zero_pow hn0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/BernoulliFunctional.lean:73:13: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+⚠ [2762/3009] Replayed Zeta5.Arithmetic.NewtonDerivative
+warning: Zeta5/Arithmetic/NewtonDerivative.lean:149:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/NewtonDerivative.lean:149:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2763/3009] Replayed Zeta5.Arithmetic.BernoulliLoss
+warning: Zeta5/Arithmetic/BernoulliLoss.lean:68:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2764/3009] Replayed Zeta5.Arithmetic.BernoulliMoments
+warning: Zeta5/Arithmetic/BernoulliMoments.lean:54:15: This simp argument is unused:
+  derivative_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [map_add, mul_add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/BernoulliMoments.lean:86:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/BernoulliMoments.lean:86:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2765/3009] Replayed Zeta5.Arithmetic.LocalQuotient
+warning: Zeta5/Arithmetic/LocalQuotient.lean:52:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalQuotient.lean:52:35: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalQuotient.lean:61:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalQuotient.lean:209:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalQuotient.lean:224:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2766/3009] Replayed Zeta5.Arithmetic.CentralIntegerValued
+warning: Zeta5/Arithmetic/CentralIntegerValued.lean:32:74: This simp argument is unused:
+  C_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [sub_comp, X_comp, add_comp, mul_comp, natCast_comp, one_comp, Nat.cast_add, Nat.cast_mul,
+    Nat.cast_ofNat, Nat.cast_one, C_add, C_1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/CentralIntegerValued.lean:33:13: This simp argument is unused:
+  natCast_comp
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [one_comp, ofNat_comp]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/CentralIntegerValued.lean:33:27: This simp argument is unused:
+  one_comp
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [natCast_comp, ofNat_comp]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/CentralIntegerValued.lean:253:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2767/3009] Replayed Zeta5.Arithmetic.LocalRestriction
+warning: Zeta5/Arithmetic/LocalRestriction.lean:62:13: This simp argument is unused:
+  eval_sub
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [eval_comp, eval_pow, eval_X, sub_eq_add_neg, eval_add, eval_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [2768/3009] Replayed Zeta5.Reuse.AllocationBlocks
+warning: Zeta5/Reuse/AllocationBlocks.lean:25:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.Allocation.minorLower_reindex`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2770/3009] Replayed Zeta5.Arithmetic.AtomicMinors
+warning: Zeta5/Arithmetic/AtomicMinors.lean:52:53: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [atomicMatrix, Matrix.submatrix_apply, A, B, pow_add, map_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/AtomicMinors.lean:138:17: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: Zeta5/Arithmetic/AtomicMinors.lean:194:0: 'Zeta5.Arithmetic.atomic_minorLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2771/3009] Replayed Zeta5.Arithmetic.FinsetAtomicMinors
+info: Zeta5/Arithmetic/FinsetAtomicMinors.lean:48:0: 'Zeta5.Arithmetic.finset_atomic_minorLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2773/3009] Replayed Zeta5.Arithmetic.AtomicClusterBounds
+info: Zeta5/Arithmetic/AtomicClusterBounds.lean:93:0: 'Zeta5.Arithmetic.ordinary_atomic_minus_one_price' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/AtomicClusterBounds.lean:94:0: 'Zeta5.Arithmetic.affected_atomic_zero_price' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2774/3009] Replayed Zeta5.Arithmetic.ReflectedWeights
+warning: Zeta5/Arithmetic/ReflectedWeights.lean:12:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.reflected_square_congr`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Zeta5/Arithmetic/ReflectedWeights.lean:35:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/ReflectedWeights.lean:35:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/ReflectedWeights.lean:68:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/ReflectedWeights.lean:88:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/ReflectedWeights.lean:90:0: 'Zeta5.Arithmetic.reflected_pole_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedWeights.lean:91:0: 'Zeta5.Arithmetic.reflected_atomWeight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedWeights.lean:92:0: 'Zeta5.Arithmetic.affected_reflected_atomWeight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2775/3009] Replayed Zeta5.Arithmetic.ReflectedMinors
+warning: Zeta5/Arithmetic/ReflectedMinors.lean:21:59: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/ReflectedMinors.lean:79:0: 'Zeta5.Arithmetic.reflected_class_minorLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedMinors.lean:80:0: 'Zeta5.Arithmetic.affected_reflected_class_minorLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedMinors.lean:81:0: 'Zeta5.Arithmetic.reflected_class_minus_one_price' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2776/3009] Replayed Zeta5.Arithmetic.ReflectedPartition
+info: Zeta5/Arithmetic/ReflectedPartition.lean:78:0: 'Zeta5.Arithmetic.sum_reflected_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2777/3009] Replayed Zeta5.Arithmetic.LocalFunctional
+info: Zeta5/Arithmetic/LocalFunctional.lean:85:97: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: Zeta5/Arithmetic/LocalFunctional.lean:85:27: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalFunctional.lean:85:93: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalFunctional.lean:112:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/LocalFunctional.lean:141:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2778/3009] Replayed Zeta5.Arithmetic.RestrictionPencil
+warning: Zeta5/Arithmetic/RestrictionPencil.lean:125:58: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Arithmetic/RestrictionPencil.lean:125:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/RestrictionPencil.lean:125:58: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Arithmetic/RestrictionPencil.lean:188:58: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Arithmetic/RestrictionPencil.lean:188:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/RestrictionPencil.lean:188:58: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [2780/3009] Replayed Zeta5.Arithmetic.RestrictionDeterminant
+warning: Zeta5/Arithmetic/RestrictionDeterminant.lean:32:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [2784/3009] Replayed Zeta5.Certificate.ArithmeticProfile
+warning: Zeta5/Certificate/ArithmeticProfile.lean:96:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2785/3009] Replayed Zeta5.Arithmetic.RankProfileComparison
+warning: Zeta5/Arithmetic/RankProfileComparison.lean:79:0: automatically included section variable(s) unused in theorem `Zeta5.Arithmetic.floor_degree_stage_ratio`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+ℹ [2792/3009] Replayed Zeta5.Endpoint.PrimitiveNormalization
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:153:0: 'Zeta5.Endpoint.integral_scaling_of_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:154:0: 'Zeta5.Endpoint.exists_primitive_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:155:0: 'Zeta5.Endpoint.primitive_normalization_ratio_integer' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:156:0: 'Zeta5.Endpoint.primitive_normalization_minimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:157:0: 'Zeta5.Endpoint.primitive_normalization_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:158:0: 'Zeta5.Endpoint.primitiveNormalizer_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:159:0: 'Zeta5.Endpoint.normalizedPolynomial_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:160:0: 'Zeta5.Endpoint.normalizedPolynomial_natDegree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/PrimitiveNormalization.lean:161:0: 'Zeta5.Endpoint.normalizedPolynomial_eval_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2793/3009] Replayed Zeta5.Reuse.ProductFormula
+info: Zeta5/Reuse/ProductFormula.lean:58:0: 'OddZeta.FourValue.ProductFormula.rational_log_product_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [2794/3009] Replayed Zeta5.Arithmetic.NormalizerBounds
+warning: Zeta5/Arithmetic/NormalizerBounds.lean:89:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/NormalizerBounds.lean:93:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/NormalizerBounds.lean:82:23: Variable name `hp` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hp
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Arithmetic/NormalizerBounds.lean:83:37: Variable name `hp` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hp
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: Zeta5/Arithmetic/NormalizerBounds.lean:97:0: 'Zeta5.Arithmetic.primitiveNormalizer_padicVal_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/NormalizerBounds.lean:98:0: 'Zeta5.Arithmetic.log_primitiveNormalizer_le_prime_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2795/3009] Replayed Zeta5.Arithmetic.PadicCongruences
+warning: Zeta5/Arithmetic/PadicCongruences.lean:56:13: `Polynomial.eval_finset_sum` has been deprecated: Use `Polynomial.eval_finsetSum` instead
+info: Zeta5/Arithmetic/PadicCongruences.lean:62:0: 'Zeta5.Arithmetic.padicLower_inv_sub_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/PadicCongruences.lean:63:0: 'Zeta5.Arithmetic.padicLower_eval_sub_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2796/3009] Replayed Zeta5.Arithmetic.StieltjesReflection
+warning: Zeta5/Arithmetic/StieltjesReflection.lean:22:24: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/StieltjesReflection.lean:89:40: Variable name `hi` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hi
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Arithmetic/StieltjesReflection.lean:100:24: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/StieltjesReflection.lean:138:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/StieltjesReflection.lean:138:55: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/StieltjesReflection.lean:140:0: 'Zeta5.Arithmetic.reciprocalFive_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/StieltjesReflection.lean:141:0: 'Zeta5.Arithmetic.harmonicFive_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/StieltjesReflection.lean:142:0: 'Zeta5.Arithmetic.stieltjes_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2797/3009] Replayed Zeta5.Arithmetic.LowPairs
+warning: Zeta5/Arithmetic/LowPairs.lean:148:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/LowPairs.lean:151:0: 'Zeta5.Arithmetic.derivative_sum_padicLower_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/LowPairs.lean:152:0: 'Zeta5.Arithmetic.polynomial_pair_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/LowPairs.lean:153:0: 'Zeta5.Arithmetic.low_reflected_pair_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2798/3009] Replayed Zeta5.Arithmetic.SharedAllocation
+warning: Zeta5/Arithmetic/SharedAllocation.lean:59:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/SharedAllocation.lean:65:0: 'Zeta5.Arithmetic.shared_dimension_matrix_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2799/3009] Replayed Zeta5.Arithmetic.IntegralMatrices
+warning: Zeta5/Arithmetic/IntegralMatrices.lean:38:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Zeta5/Arithmetic/IntegralMatrices.lean:46:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Zeta5/Arithmetic/IntegralMatrices.lean:50:14: This simp argument is unused:
+  zero_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fin.sum_univ_two, B, Matrix.cons_val_zero, Matrix.cons_val_one, zero_mul, add_zero, sub_zero,
+    neg_one_mul, zero_sub] at hzero hone
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: Zeta5/Arithmetic/IntegralMatrices.lean:58:0: 'Zeta5.Arithmetic.minorLower_add_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2800/3009] Replayed Zeta5.Arithmetic.ReflectedBounds
+info: Zeta5/Arithmetic/ReflectedBounds.lean:79:0: 'Zeta5.Arithmetic.low_reflected_class_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ReflectedBounds.lean:80:0: 'Zeta5.Arithmetic.reflected_class_dual_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2801/3009] Replayed Zeta5.Arithmetic.ZeroClass
+info: Zeta5/Arithmetic/ZeroClass.lean:63:0: 'Zeta5.Arithmetic.commonFactor_zero_class_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/ZeroClass.lean:64:0: 'Zeta5.Arithmetic.zero_class_atom_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2802/3009] Replayed Zeta5.Arithmetic.UpperBandAssembly
+warning: Zeta5/Arithmetic/UpperBandAssembly.lean:103:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/UpperBandAssembly.lean:105:0: 'Zeta5.Arithmetic.monomialPencil_upperBand_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2803/3009] Replayed Zeta5.Arithmetic.FactorialPrefactor
+warning: Zeta5/Arithmetic/FactorialPrefactor.lean:70:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Zeta5/Arithmetic/FactorialPrefactor.lean:72:0: 'Zeta5.Arithmetic.factorialPrefactor_padicLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/FactorialPrefactor.lean:73:0: 'Zeta5.Arithmetic.windowDeterminant_upperBand_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/3009] Replayed Zeta5.Arithmetic.LargePrimes
+info: Zeta5/Arithmetic/LargePrimes.lean:101:0: 'Zeta5.Arithmetic.monomialPencil_integral_above_N' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/LargePrimes.lean:102:0: 'Zeta5.Arithmetic.windowDeterminant_integral_above_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2805/3009] Replayed Zeta5.Arithmetic.SmallPrimeScalars
+warning: Zeta5/Arithmetic/SmallPrimeScalars.lean:110:37: This simp argument is unused:
+  inv_pow
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [one_div, mul_inv_rev]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [2807/3009] Replayed Zeta5.Arithmetic.SmallPrimeProper
+warning: Zeta5/Arithmetic/SmallPrimeProper.lean:46:44: This simp argument is unused:
+  sub_eq_add_neg
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [one_div, mul_inv_rev, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Arithmetic/SmallPrimeProper.lean:45:56: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [2809/3009] Replayed Zeta5.Arithmetic.FactorialFloorSum
+info: Zeta5/Arithmetic/FactorialFloorSum.lean:82:0: 'Zeta5.Arithmetic.factorial_floor_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/FactorialFloorSum.lean:83:0: 'Zeta5.Arithmetic.factorialCharge_real_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2811/3009] Replayed Zeta5.Arithmetic.UpperProfileComparison
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:101:36: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:213:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:213:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:213:44: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:221:36: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:229:36: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:259:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:259:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/UpperProfileComparison.lean:259:44: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: Zeta5/Arithmetic/UpperProfileComparison.lean:261:0: 'Zeta5.Arithmetic.upperCharge_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/UpperProfileComparison.lean:262:0: 'Zeta5.Arithmetic.largeCharge_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2816/3009] Replayed Zeta5.Endpoint.IntegerPolynomial
+info: Zeta5/Endpoint/IntegerPolynomial.lean:86:0: 'Zeta5.Endpoint.scaledEvalInt_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/IntegerPolynomial.lean:87:0: 'Zeta5.Endpoint.positive_integer_values_not_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/IntegerPolynomial.lean:88:0: 'Zeta5.Endpoint.irrational_of_integer_polynomial_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3300/3313] Replayed Zeta5.Endpoint.ZetaBridge
+info: Zeta5/Endpoint/ZetaBridge.lean:40:0: 'Zeta5.Endpoint.realZeta_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/ZetaBridge.lean:41:0: 'Zeta5.Endpoint.realZeta_eq_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/ZetaBridge.lean:42:0: 'Zeta5.Endpoint.irrational_realZeta_five_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3301/3313] Replayed Zeta5.Endpoint.ConcreteCriterion
+info: Zeta5/Endpoint/ConcreteCriterion.lean:134:0: 'Zeta5.Endpoint.irrational_zeta5_of_normalized_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/ConcreteCriterion.lean:135:0: 'Zeta5.Endpoint.linear_over_windowScale_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Endpoint/ConcreteCriterion.lean:136:0: 'Zeta5.Endpoint.irrational_zeta5_of_log_rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3305/3313] Replayed Zeta5.Analysis.PhysicalMeasure
+warning: Zeta5/Analysis/PhysicalMeasure.lean:69:85: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/PhysicalMeasure.lean:120:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3306/3313] Replayed Zeta5.Analysis.PhysicalMeasureBose
+warning: Zeta5/Analysis/PhysicalMeasureBose.lean:37:6: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/PhysicalMeasureBose.lean:37:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3307/3313] Replayed Zeta5.Analysis.PhysicalMeasureLaplace
+warning: Zeta5/Analysis/PhysicalMeasureLaplace.lean:75:27: This simp argument is unused:
+  Pi.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Pi.pow_apply, eval_sub, eval_mul, eval_add, eval_pow, eval_X, eval_C, Nat.add_sub_cancel,
+    Nat.cast_add, Nat.cast_one, show k + 2 = (k + 1) + 1 by omega, pow_succ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureLaplace.lean:78:6: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/PhysicalMeasureLaplace.lean:78:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Analysis/PhysicalMeasureLaplace.lean:112:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/PhysicalMeasureLaplace.lean:113:38: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/PhysicalMeasureLaplace.lean:149:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3308/3313] Replayed Zeta5.Analysis.PhysicalMeasureMoments
+warning: Zeta5/Analysis/PhysicalMeasureMoments.lean:56:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3309/3313] Replayed Zeta5.Analysis.PhysicalMeasureGram
+warning: Zeta5/Analysis/PhysicalMeasureGram.lean:38:22: This simp argument is unused:
+  map_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [map_pow, map_natCast, map_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureGram.lean:38:44: This simp argument is unused:
+  map_one
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [map_pow, map_add, map_natCast]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureGram.lean:120:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [3340/3623] Replayed Zeta5.Analysis.PhysicalMeasureCoth
+warning: Zeta5/Analysis/PhysicalMeasureCoth.lean:43:36: This simp argument is unused:
+  Complex.zero_re
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Complex.div_im, Complex.add_re, Complex.ofReal_re, Complex.one_re, Complex.add_im,
+    Complex.ofReal_im, Complex.one_im, add_zero, Complex.mul_re, Complex.I_re, Complex.sub_re, Complex.mul_im,
+    Complex.I_im, Complex.sub_im, zero_sub, zero_mul, one_mul, sub_zero, zero_add, Complex.normSq_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureCoth.lean:44:22: This simp argument is unused:
+  zero_sub
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Complex.div_im, Complex.add_re, Complex.ofReal_re, Complex.one_re, Complex.add_im,
+    Complex.ofReal_im, Complex.one_im, add_zero, Complex.mul_re, Complex.I_re, Complex.sub_re, Complex.zero_re,
+    Complex.mul_im, Complex.I_im, Complex.sub_im, zero_mul, one_mul, sub_zero, zero_add, Complex.normSq_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureCoth.lean:64:6: This simp argument is unused:
+  zero_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Complex.div_im, Complex.one_im, Complex.one_re, Complex.mul_re, Complex.ofReal_re, Complex.I_re,
+    Complex.ofReal_im, Complex.I_im, Complex.mul_im, mul_zero, one_mul, mul_one, sub_zero, zero_sub, zero_add,
+    Complex.normSq_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureCoth.lean:64:54: This simp argument is unused:
+  zero_sub
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Complex.div_im, Complex.one_im, Complex.one_re, Complex.mul_re, Complex.ofReal_re, Complex.I_re,
+    Complex.ofReal_im, Complex.I_im, Complex.mul_im, zero_mul, mul_zero, one_mul, mul_one, sub_zero, zero_add,
+    Complex.normSq_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/PhysicalMeasureCoth.lean:46:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/PhysicalMeasureCoth.lean:67:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3346/3623] Replayed Zeta5.Analysis.PhysicalMeasurePencil
+warning: Zeta5/Analysis/PhysicalMeasurePencil.lean:132:2: Try `simp at hpos` instead of `simpa using hpos`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3349/3623] Replayed Zeta5.Arithmetic.NormalizerLocalBounds
+warning: Zeta5/Arithmetic/NormalizerLocalBounds.lean:55:20: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/NormalizerLocalBounds.lean:55:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3350/3623] Replayed Zeta5.Arithmetic.SmallPrimeSum
+warning: Zeta5/Arithmetic/SmallPrimeSum.lean:75:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/SmallPrimeSum.lean:103:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/SmallPrimeSum.lean:104:68: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Arithmetic/SmallPrimeSum.lean:139:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [3882/3954] Replayed PrimeNumberTheoremAnd.Wiener
+warning: PrimeNumberTheoremAnd/Wiener.lean:325:8: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/Wiener.lean:344:8: declaration uses `sorry`
+ℹ [3884/3954] Replayed Zeta5.Reuse.ThetaAsymptotic
+info: Zeta5/Reuse/ThetaAsymptotic.lean:64:0: 'Zeta5.Reuse.ThetaAsymptotic.scaled_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/ThetaAsymptotic.lean:65:0: 'Zeta5.Reuse.ThetaAsymptotic.weighted_intervals' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/ThetaAsymptotic.lean:66:0: 'Zeta5.Reuse.ThetaAsymptotic.weighted_intervals_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3885/3954] Replayed Zeta5.Reuse.PrimeAffine
+info: Zeta5/Reuse/PrimeAffine.lean:152:0: 'Zeta5.Reuse.PrimeAffine.theta_scaled_integral_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeAffine.lean:153:0: 'Zeta5.Reuse.PrimeAffine.primeAffineSum_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeAffine.lean:154:0: 'Zeta5.Reuse.PrimeAffine.primeAffineSum_limit_of_theta' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeAffine.lean:155:0: 'Zeta5.Reuse.PrimeAffine.prime_interval_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeAffine.lean:156:0: 'Zeta5.Reuse.PrimeAffine.primeAffineSum_integral_limit_of_theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Zeta5/Reuse/PrimeAffine.lean:157:0: 'Zeta5.Reuse.PrimeAffine.finite_primeAffineSum_limit_of_theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3886/3954] Replayed Zeta5.Reuse.PrimeNumberTheorem
+info: Zeta5/Reuse/PrimeNumberTheorem.lean:39:0: 'chebyshev_asymptotic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeNumberTheorem.lean:40:0: 'Zeta5.Reuse.PrimeNumberTheorem.theta_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeNumberTheorem.lean:41:0: 'Zeta5.Reuse.PrimeNumberTheorem.primeAffineSum_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Reuse/PrimeNumberTheorem.lean:42:0: 'Zeta5.Reuse.PrimeNumberTheorem.primeAffineSum_integral_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Zeta5/Reuse/PrimeNumberTheorem.lean:43:0: 'Zeta5.Reuse.PrimeNumberTheorem.finite_primeAffineSum_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3887/3954] Replayed Zeta5.Reuse.PrimePiecewise
+warning: Zeta5/Reuse/PrimePiecewise.lean:60:11: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3889/3954] Replayed Zeta5.Arithmetic.NormalizerPrimeTail
+warning: Zeta5/Arithmetic/NormalizerPrimeTail.lean:34:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/NormalizerPrimeTail.lean:68:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ℹ [3890/3954] Replayed Zeta5.Arithmetic.PrimeRowBound
+info: Zeta5/Arithmetic/PrimeRowBound.lean:94:0: 'Zeta5.Arithmetic.prime_row_charge_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3917/3954] Replayed Zeta5.Certificate.ExtendedArithmetic
+info: Zeta5/Certificate/ExtendedArithmetic.lean:82:0: 'Zeta5.Certificate.ExtendedArithmetic.extended_profile_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Certificate/ExtendedArithmetic.lean:83:0: 'Zeta5.Certificate.ExtendedArithmetic.totalUpper_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3927/3954] Replayed Zeta5.Analysis.AbelKernel
+warning: Zeta5/Analysis/AbelKernel.lean:25:55: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/AbelKernel.lean:25:55: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Analysis/AbelKernel.lean:64:57: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/AbelKernel.lean:64:57: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3929/3954] Replayed Zeta5.Analysis.ExternalField
+warning: Zeta5/Analysis/ExternalField.lean:77:27: This simp argument is unused:
+  one_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [externalIntegralFormula, zero_pow (by decide : 2 ≠ 0), zero_add, one_pow, Real.log_one, mul_zero,
+    sub_zero, add_zero, Real.log_pow]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/ExternalField.lean:77:46: This simp argument is unused:
+  sub_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [externalIntegralFormula, zero_pow (by decide : 2 ≠ 0), zero_add, one_pow, Real.log_one, one_mul,
+    mul_zero, add_zero, Real.log_pow]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3934/3954] Replayed Zeta5.Analysis.LogQuadrature
+warning: Zeta5/Analysis/LogQuadrature.lean:27:48: Variable name `hδ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hδ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3936/3954] Replayed Zeta5.Analysis.TrialPolynomial
+warning: Zeta5/Analysis/TrialPolynomial.lean:138:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [3937/3954] Replayed Zeta5.Analysis.AuxiliarySmallBall
+warning: Zeta5/Analysis/AuxiliarySmallBall.lean:35:45: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/AuxiliarySmallBall.lean:35:45: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Zeta5/Analysis/AuxiliarySmallBall.lean:35:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/AuxiliarySmallBall.lean:107:58: Variable name `hb` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hb
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3968/4006] Replayed Zeta5.Analysis.ArcsinePotential
+warning: Zeta5/Analysis/ArcsinePotential.lean:33:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/ArcsinePotential.lean:111:38: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3969/4006] Replayed Zeta5.Analysis.AuxiliaryPotential
+info: Zeta5/Analysis/AuxiliaryPotential.lean:108:58: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: Zeta5/Analysis/AuxiliaryPotential.lean:108:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Zeta5/Analysis/AuxiliaryPotential.lean:108:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3974/4006] Replayed Zeta5.Analysis.ArcsineGrowth
+warning: Zeta5/Analysis/ArcsineGrowth.lean:34:55: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/ArcsineGrowth.lean:34:55: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3977/4006] Replayed Zeta5.Analysis.ProfileShape
+warning: Zeta5/Analysis/ProfileShape.lean:82:13: This simp argument is unused:
+  id_eq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.cast_ofNat, Nat.reduceSub, pow_one, mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/ProfileShape.lean:82:20: This simp argument is unused:
+  Nat.cast_ofNat
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [id_eq, Nat.reduceSub, pow_one, mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/ProfileShape.lean:82:36: This simp argument is unused:
+  Nat.reduceSub
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [id_eq, Nat.cast_ofNat, pow_one, mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/ProfileShape.lean:214:35: This simp argument is unused:
+  zero_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [profileEndpoint_zero, zero_pow (by decide : 2 ≠ 0), add_zero, Real.sqrt_sq hs.le, Real.sqrt_one,
+    zero_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/ProfileShape.lean:215:39: This simp argument is unused:
+  zero_sub
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [profileEndpoint_zero, zero_mul, zero_pow (by decide : 2 ≠ 0), add_zero, Real.sqrt_sq hs.le,
+    Real.sqrt_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Zeta5/Analysis/ProfileShape.lean:221:44: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3978/4006] Replayed Zeta5.Analysis.ProfileContinuity
+warning: Zeta5/Analysis/ProfileContinuity.lean:29:44: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Zeta5/Analysis/ProfileContinuity.lean:29:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3979/4006] Replayed Zeta5.Analysis.EquilibriumConstant
+warning: Zeta5/Analysis/EquilibriumConstant.lean:69:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3980/4006] Replayed Zeta5.Analysis.UniformTrial
+warning: Zeta5/Analysis/UniformTrial.lean:67:45: This simp argument is unused:
+  Nat.mul_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.cast_zero, zero_div, profileEndpoint_zero, auxiliaryPotential_zero_support s hs hy, mul_zero,
+    Real.exp_zero, mul_one, Polynomial.eval_one, abs_one, one_pow, zero_add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3985/4006] Replayed Zeta5.Analysis.GramBound
+warning: Zeta5/Analysis/GramBound.lean:51:36: Variable name `hd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Analysis/GramBound.lean:108:19: This simp argument is unused:
+  smul_smul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Matrix.mul_apply, Matrix.transpose_apply, realMonomialGram, realCoefficientMatrix, polynomialGram,
+    Finset.sum_mul, Finset.mul_sum, map_sum, smul_mul_assoc, mul_smul_comm, map_smul, smul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3990/4006] Replayed Zeta5.Reuse.FactorialRow
+warning: Zeta5/Reuse/FactorialRow.lean:29:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3995/4006] Replayed Zeta5.Certificate.DirectedBounds
+warning: Zeta5/Certificate/DirectedBounds.lean:23:5: Variable name `hl` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hl
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Certificate/DirectedBounds.lean:42:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [4000/4006] Replayed Zeta5.Certificate.GridSaving
+warning: Zeta5/Certificate/GridSaving.lean:23:52: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Zeta5/Certificate/GridSaving.lean:36:51: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [4004/4006] Replayed Zeta5.Analysis.ArithmeticRate
+warning: Zeta5/Analysis/ArithmeticRate.lean:125:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [4005/4006] Built Zeta5.Arithmetic.PrimeAssembly (3.6s)
+warning: Zeta5/Arithmetic/PrimeAssembly.lean:36:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: Zeta5/Arithmetic/PrimeAssembly.lean:62:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+info: Zeta5/Arithmetic/PrimeAssembly.lean:91:0: 'Zeta5.Arithmetic.allPrimePieces_charge_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Arithmetic/PrimeAssembly.lean:136:0: 'Zeta5.Arithmetic.windowNormalizer_log_le_arithmeticMajorant_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Zeta5/Arithmetic/PrimeAssembly.lean:137:0: 'Zeta5.Arithmetic.windowNormalizer_arithmetic_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4006/4006] Built Zeta5.Endpoint.Verified (3.1s)
+info: Zeta5/Endpoint/Verified.lean:13:0: Zeta5.irrational_zeta_five : Irrational (riemannZeta 5).re
+info: Zeta5/Endpoint/Verified.lean:14:0: 'Zeta5.irrational_zeta_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4006 jobs).

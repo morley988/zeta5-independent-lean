@@ -1,0 +1,274 @@
+[
+  {
+    "module": "FourValuePadicMinors",
+    "local_import_closure_count": 1,
+    "external_admission_modules": [],
+    "decls": [
+      "PadicLower",
+      "PadicLower.zero",
+      "PadicLower.mono",
+      "PadicLower.of_ne_zero",
+      "PadicLower.neg",
+      "PadicLower.add",
+      "PadicLower.mul",
+      "padicLower_sum",
+      "padicLower_prod",
+      "PadicLower.sign_smul",
+      "padicLower_det_weighted",
+      "padicVal_det_weighted"
+    ]
+  },
+  {
+    "module": "FourValueTranscendental",
+    "local_import_closure_count": 1,
+    "external_admission_modules": [],
+    "decls": [
+      "atanPoly",
+      "atan_remainder_deriv",
+      "atan_remainder_bound",
+      "log_enclosure",
+      "atanRat",
+      "logRat",
+      "atanRat_cast",
+      "logRat_enclosure",
+      "atanRat_enclosure",
+      "atan_reduce_quarter",
+      "atan_reduce_inverse",
+      "pi_enclosure",
+      "log_rat_check",
+      "atan_rat_check",
+      "log_range_reduction",
+      "log_inverse_enclosure"
+    ]
+  },
+  {
+    "module": "FourValueTranscendentalInterval",
+    "local_import_closure_count": 2,
+    "external_admission_modules": [],
+    "decls": [
+      "QInterval",
+      "Contains",
+      "point",
+      "add",
+      "neg",
+      "sub",
+      "scale",
+      "mul",
+      "round",
+      "point_contains",
+      "add_contains",
+      "neg_contains",
+      "sub_contains",
+      "scale_contains",
+      "round_contains",
+      "scalar_bounds",
+      "mul_contains",
+      "seriesState",
+      "seriesState_contains",
+      "series",
+      "series_contains"
+    ]
+  },
+  {
+    "module": "FourValueFastInterval",
+    "local_import_closure_count": 3,
+    "external_admission_modules": [],
+    "decls": [
+      "Interval",
+      "Contains",
+      "zero",
+      "add",
+      "neg",
+      "divNat",
+      "mul",
+      "ofRat",
+      "quotient_bounds",
+      "zero_contains",
+      "add_contains",
+      "neg_contains",
+      "divNat_contains",
+      "ofRat_contains",
+      "mul_contains",
+      "mulFast",
+      "mulFast_contains",
+      "toQ",
+      "toQ_contains",
+      "seriesState",
+      "series",
+      "signedTerm",
+      "seriesState_contains",
+      "series_contains",
+      "log_series_contains",
+      "atan_series_contains",
+      "horner",
+      "hornerSeries",
+      "signedCoeff",
+      "hornerPoly",
+      "horner_contains",
+      "hornerPoly_sum",
+      "hornerSeries_contains",
+      "log_horner_contains",
+      "atan_horner_contains"
+    ]
+  },
+  {
+    "module": "FourValueSquareBasis",
+    "local_import_closure_count": 20,
+    "external_admission_modules": [],
+    "decls": [
+      "squareRootProduct",
+      "squareRootProduct_monic",
+      "squareRootProduct_degree",
+      "squareBasisPolynomial",
+      "squareBasisPolynomial_degree",
+      "squareBasisPolynomial_leadingCoeff",
+      "squareBasisPolynomial_leadingCoeff_ne_zero",
+      "squareBasisMatrix",
+      "squareBasisMatrix_det_ne_zero",
+      "polynomial_finite_expansion",
+      "polynomialCoefficientMatrix",
+      "momentGram_change_of_basis",
+      "squareBasisGram",
+      "squareBasisGram_rank",
+      "squareBasis_nonzero_minor_of_finite_exclusion"
+    ]
+  },
+  {
+    "module": "FourValueArithmeticDenominators",
+    "local_import_closure_count": 85,
+    "external_admission_modules": [],
+    "decls": [
+      "rationalPencilDenominator",
+      "rationalPencilDenominator_pos",
+      "rationalPencilDenominator_dvd",
+      "rationalPencil_integral_at_prime",
+      "PolynomialPadicLower",
+      "PolynomialPadicLower.mul",
+      "PolynomialPadicLower.constant",
+      "integerLinearFactor_polynomialPadicLower",
+      "integerRootProduct_polynomialPadicLower",
+      "squareRootProduct_polynomialPadicLower",
+      "squareBasisPolynomial_coefficient_padicLower",
+      "squareBasisPolynomial_coefficient_padicLower_large",
+      "target_selected_factorial_lt_square",
+      "target_squareBasis_coefficient_padicLower"
+    ]
+  },
+  {
+    "module": "FourValueRationalLattice",
+    "local_import_closure_count": 2,
+    "external_admission_modules": [],
+    "decls": [
+      "integer_interval_count",
+      "scaled_integer_interval_count",
+      "weighted_count_upper"
+    ]
+  },
+  {
+    "module": "FourValueArithmeticLattice",
+    "local_import_closure_count": 2,
+    "external_admission_modules": [],
+    "decls": [
+      "integer_interval_count",
+      "scaled_integer_interval_count",
+      "weighted_count_upper"
+    ]
+  },
+  {
+    "module": "FourValueUniformStirling",
+    "local_import_closure_count": 166,
+    "external_admission_modules": [],
+    "decls": [
+      "factorialLogRemainder",
+      "factorialLogRemainder_stirlingSeq",
+      "factorialLogRemainder_bounds",
+      "log_factorial_explicit_bounds",
+      "log_factorial_main_error"
+    ]
+  },
+  {
+    "module": "FourValueFactorialRowError",
+    "local_import_closure_count": 167,
+    "external_admission_modules": [],
+    "decls": [
+      "factorialRowRate",
+      "log_factorial_main_lower",
+      "factorial_row_scaled_identity",
+      "factorial_row_uniform_error",
+      "factorial_row_main_upper"
+    ]
+  },
+  {
+    "module": "FourValuePrimeIntervals",
+    "local_import_closure_count": 2,
+    "external_admission_modules": [],
+    "decls": [
+      "theta_filter",
+      "theta_interval_sum"
+    ]
+  },
+  {
+    "module": "FourValueGlobalPrimeSum",
+    "local_import_closure_count": 236,
+    "external_admission_modules": [],
+    "decls": [
+      "Grid.primeSum",
+      "Grid.logBound",
+      "Grid.step_prime_sum",
+      "small_prime_log_sum",
+      "nat_valuation_prime_sum",
+      "Grid.log_bound"
+    ]
+  },
+  {
+    "module": "FourValueFinalContradiction",
+    "local_import_closure_count": 243,
+    "external_admission_modules": [],
+    "decls": [
+      "final_rate_gap",
+      "not_all_rational_of_certificates",
+      "realZeta",
+      "realZeta_cast",
+      "realZeta_eq_re",
+      "irrational_one_of_four_of_certificates"
+    ]
+  },
+  {
+    "module": "FourValueFinal",
+    "local_import_closure_count": 271,
+    "external_admission_modules": [
+      "FourValueExternalArithmetic",
+      "FourValueExternalGlobalArithmetic",
+      "FourValueExternalTranscendental"
+    ],
+    "decls": [
+      "not_all_four_zeta_rational",
+      "irrational_one_of_four",
+      "irrational_zeta7_or_zeta9_or_zeta11_or_zeta13"
+    ]
+  },
+  {
+    "module": "FourValueAllocationBlocks",
+    "local_import_closure_count": 3,
+    "external_admission_modules": [],
+    "decls": [
+      "MinorLower",
+      "minorLower_reindex",
+      "blockMatrix",
+      "blockMinor_lower",
+      "rectangular_expansion",
+      "right_integral",
+      "left_integral",
+      "sum_matrix_dual_lower"
+    ]
+  },
+  {
+    "module": "FourValueAnnihilatorRank",
+    "local_import_closure_count": 94,
+    "external_admission_modules": [],
+    "decls": [
+      "polynomialGram_rank_le_annihilator",
+      "polynomialGram_det_zero_of_capacity"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "cutoff": 512,
+  "cells": 3060,
+  "blocks": 24,
+  "area_upper": "33853132329/12500000000",
+  "total_upper": "202930490737/37500000000",
+  "strict_target": "5412/1000",
+  "rounding_scale": 1000000000000,
+  "note": "Exact rational generation; Lean compilation is a separate verification step."
+}

@@ -1,0 +1,104 @@
+name: Lean build and audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lean-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Check out the exact source commit
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: Verify the original archive payload
+        run: python3 ci/verify_archive.py
+      - name: Install pinned Elan and Lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error --retry 3 \
+            https://github.com/leanprover/elan/releases/download/v4.2.4/elan-x86_64-unknown-linux-gnu.tar.gz \
+            -o "$RUNNER_TEMP/elan.tar.gz"
+          echo "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63  $RUNNER_TEMP/elan.tar.gz" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/elan-installer"
+          tar -xzf "$RUNNER_TEMP/elan.tar.gz" -C "$RUNNER_TEMP/elan-installer"
+          "$RUNNER_TEMP/elan-installer/elan-init" -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(cat zeta5/lean-toolchain)"
+      - name: Fetch pinned dependency cache
+        working-directory: zeta5
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ../verification/latest
+          lake exe cache get 2>&1 | tee ../verification/latest/cache-fetch.log
+      - name: Build and audit the closed theorem
+        run: bash ci/verify.sh
+      - name: Upload fresh evidence, including failure logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: lean-verification-${{ github.sha }}
+          path: verification/latest/
+          if-no-files-found: warn
+          retention-days: 90
+
+  release:
+    needs: verify
+    if: >-
+      github.repository == 'morley988/zeta5-independent-lean' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Check out the verified commit
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: Publish v1.0.0 only after verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERIFIED_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # API listing errors are fatal; they must not be mistaken for absence.
+          gh api --paginate "repos/$GH_REPO/releases" --jq '.[].tag_name' > "$RUNNER_TEMP/release-tags"
+          gh api "repos/$GH_REPO/git/matching-refs/tags/v1.0.0" --jq '.[].ref' > "$RUNNER_TEMP/git-tags"
+          if grep -Fxq 'v1.0.0' "$RUNNER_TEMP/release-tags" || grep -Fxq 'refs/tags/v1.0.0' "$RUNNER_TEMP/git-tags"; then
+            echo 'v1.0.0 already exists; leaving it unchanged.'
+            exit 0
+          fi
+          gh run download "$RUN_ID" --name "lean-verification-$VERIFIED_SHA" --dir verification/latest
+          test -f verification/latest/PASSED
+          test "$(cat verification/latest/commit.txt)" = "$VERIFIED_SHA"
+          python3 ci/verify_archive.py
+          mkdir -p release-assets
+          git archive --format=zip --prefix=zeta5-independent-lean-v1.0.0/ \
+            -o release-assets/zeta5-independent-lean-v1.0.0.zip "$VERIFIED_SHA"
+          tar -czf release-assets/verification-v1.0.0.tar.gz -C verification/latest .
+          (cd release-assets && sha256sum zeta5-independent-lean-v1.0.0.zip verification-v1.0.0.tar.gz > SHA256SUMS)
+          cp RELEASE_NOTES.md "$RUNNER_TEMP/release-notes.md"
+          printf '\nVerified commit: `%s`\n\n[Fresh build and audit run](https://github.com/%s/actions/runs/%s).\n' \
+            "$VERIFIED_SHA" "$GH_REPO" "$RUN_ID" >> "$RUNNER_TEMP/release-notes.md"
+          gh release create v1.0.0 release-assets/* --target "$VERIFIED_SHA" \
+            --title 'v1.0.0 — Independent Lean verification of ζ(5) irrationality' \
+            --notes-file "$RUNNER_TEMP/release-notes.md"

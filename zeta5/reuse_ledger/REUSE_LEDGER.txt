@@ -1,0 +1,505 @@
+FOUR-VALUE / ZETA(5) LEAN OVERLAP LEDGER
+Initial source audit: 13 November 2026
+Latest checked additions: 13 November 2026, 23:33 UTC
+
+SOURCE PIN AND TRUST BOUNDARY
+
+Repository: https://github.com/morley988/four-odd-zeta
+Inspected commit: fd23dd59e5d638c9684eb2d7776fb51e8b427b55
+Old toolchain: leanprover/lean4:v4.33.1
+Pinned Mathlib: 0df444a360eaa60ab8c11dca51a86af692955474
+The checkout was freshly obtained for this task. Original sources are unchanged.
+
+The old final supplied-certificate theorem is
+OddZeta.FourValue.irrational_zeta7_or_zeta9_or_zeta11_or_zeta13.
+Its source imports the explicitly supplied certificate interfaces and inherits
+eight numerical admissions. The separate _of_certificates endpoints take these
+finite statements as hypotheses. This source audit does not constitute a fresh
+verification of the old theorem's complete dependency chain.
+
+Freshly compiled status for the new copies and abstractions is recorded in the
+new project's build and axiom logs. An entry below marked extracted does not by
+itself claim a completed build or instantiate the zeta(5) hypotheses.
+
+A. DIRECT EXTRACTIONS PRESENT IN THE NEW PROJECT
+
+1. Rational p-adic lower bounds and weighted determinants
+   Old: proof/lean/FourValuePadicMinors.lean
+   New: Zeta5/Reuse/PadicMinors.lean
+   Declarations: PadicLower; PadicLower.zero, mono, of_ne_zero, neg, add,
+   mul, sign_smul; padicLower_sum; padicLower_prod;
+   padicLower_det_weighted; padicVal_det_weighted.
+   Reuse: declaration bodies unchanged. The unnecessary Mathlib.Tactic
+   aggregate import is removed. Original namespace is retained.
+   Mathematical scope: rational matrices with a uniform additive valuation
+   decomposition into row, column, and scalar weights. Handles zero entries
+   explicitly, since padicValRat p 0 is defined as zero in Mathlib.
+   The new entry, residue, coefficientwise polynomial and rank applications
+   are now proved in the arithmetic modules described below.
+   Old local-module dependency closure: one module, no external admissions.
+
+2. Exact rational series bounds for logarithms and arctangents
+   Old: proof/lean/FourValueTranscendental.lean
+   New: Zeta5/Reuse/Transcendental.lean
+   Declarations include atanPoly, atan_remainder_deriv, atan_remainder_bound,
+   log_enclosure, atanRat, logRat, atanRat_cast, logRat_enclosure,
+   atanRat_enclosure, atan_reduce_quarter, atan_reduce_inverse, pi_enclosure,
+   log_rat_check, atan_rat_check, log_range_reduction,
+   log_inverse_enclosure.
+   Reuse: declaration bodies unchanged. Mathlib.Tactic is replaced by the
+   narrow tactic imports used by those proofs. Original namespace retained.
+   Reuse status: compiled and available, but NOT used by the current finite
+   grid theorem dependency closure. The implemented certificate instead uses
+   the new Certificate/DirectedBounds.lean rounded fixed-point recurrence and
+   Mathlib Real.sum_range_le_log_div. No current arctangent/Machin pi bound is
+   needed. Keep this distinction between available reuse and actual use.
+   Old local-module dependency closure: one module, no external admissions.
+
+3. Identification of the actual Riemann zeta value
+   Old: realZeta, realZeta_cast, realZeta_eq_re in
+        proof/lean/FourValueFinalContradiction.lean
+   New: Zeta5/Endpoint/ZetaBridge.lean
+   Reuse: same definitions/proofs under namespace Zeta5.Endpoint, with minimal
+   Mathlib imports instead of the old final module's 243-module local closure.
+   New wrapper: irrational_realZeta_five_iff.
+   Scope: proves equality with Mathlib's riemannZeta for every integer k > 1.
+   It does not prove irrationality of any new zeta value.
+
+B. GENERALIZED REUSE, COMPLETED AND STILL AVAILABLE
+
+4. Coefficientwise polynomial valuations
+   Old: PolynomialPadicLower, PolynomialPadicLower.mul and .constant,
+   integerLinearFactor_polynomialPadicLower,
+   integerRootProduct_polynomialPadicLower, squareRootProduct_polynomialPadicLower
+   in proof/lean/FourValueArithmeticDenominators.lean.
+   Scope: products and constants of rational polynomials and integer roots.
+   New completed implementation: Zeta5/Reuse/PolynomialValuations.lean.
+   It adapts the definition and mul/constant/neg/add/sum/prod/pow, integral
+   composition/evaluation, integer-map, and sign arguments also found in
+   FourValueTaylorDenominators and FourValueUniformLaurent. New theorem:
+   polynomialPadicLower_det_weighted handles a polynomial-valued determinant.
+   These generic assertions and the actual local valuation/rank applications
+   now compile. The old 85-module closure is not imported.
+
+5. Factorial-normalized central products
+   Old: squareRootProduct, squareRootProduct_monic, squareRootProduct_degree,
+   squareBasisPolynomial_degree, squareBasisPolynomial_leadingCoeff,
+   squareBasisMatrix_det_ne_zero in proof/lean/FourValueSquareBasis.lean.
+   IMPORTANT DIFFERENCE: old squareBasisPolynomial(j) is
+       2 * product_{0 <= h < j}(X - h^2) / (2j)!   for j > 0,
+   and 1 at j=0. The new manuscript uses the same product divided by (2j)!,
+   without the factor 2, and then substitutes X=-t. Old valuation constants
+   therefore cannot be copied unchanged, particularly at p=2.
+   The triangularity/degree method adapts, and the new window starts at m.
+
+6. Gram-matrix change of basis
+   Old: polynomial_finite_expansion, polynomialCoefficientMatrix,
+   momentGram_change_of_basis in proof/lean/FourValueSquareBasis.lean.
+   Reuse: general field-valued linear functionals on polynomials. Restrict or
+   reindex to the current principal window and include the common factor C_m.
+   New completed implementation: Construction/BasisChange.lean generalizes
+   the scalar-valued congruence to a map ℚ[t] →ₗ[ℚ] ℚ[X].
+   Declarations: polynomialValuedGram_change_of_basis, unscaledWindow_congruence,
+   windowTailMatrix_isUpperTriangular, windowTailMatrix_det,
+   windowTailMatrix_det_sq, windowDeterminant_change_of_basis,
+   concrete_windowDeterminant_change_of_basis. The last gives the exact factor
+   (20n)!^(48n) * product_{k<24n} ((2(n+k))!)^(-2). All compile.
+   The determinant multiplier is new work beyond the old rank statement;
+   positivity is supplied separately by the actual positive measure below.
+
+7. Elementary integer interval counts
+   Old: integer_interval_count, scaled_integer_interval_count,
+   weighted_count_upper in proof/lean/FourValueRationalLattice.lean and
+   proof/lean/FourValueArithmeticLattice.lean.
+   Reuse: direct, apart from choosing rational or real endpoints and namespaces.
+   Potential use: residue-class counts, floor profiles and breakpoint errors.
+   Each old local-module closure contains two modules.
+
+8. Fixed-point rational interval arithmetic
+   Old: QInterval, point_contains, add_contains, neg_contains, sub_contains,
+   scale_contains, round_contains, mul_contains, seriesState_contains,
+   series_contains in proof/lean/FourValueTranscendentalInterval.lean;
+   quotient_bounds, mulFast_contains, hornerSeries_contains,
+   log_horner_contains in proof/lean/FourValueFastInterval.lean.
+   Reuse: direct interval semantics, with imports changed to new extraction.
+   Potential use: executing the new rounded integer log certificate efficiently.
+   Old local-module closures: two and three modules respectively.
+   The semantics are reusable; millions of old table entries and their supplied
+   admissions are not relevant to the new 2,048-panel calculation.
+
+9. Stirling estimates
+   Old: factorialLogRemainder_bounds, log_factorial_explicit_bounds,
+   log_factorial_main_error in proof/lean/FourValueUniformStirling.lean;
+   log_factorial_main_lower and factorial_row_uniform_error in
+   proof/lean/FourValueFactorialRowError.lean.
+   Reuse: general estimates have no target-specific mathematical assumptions.
+   New completed direct extractions: Zeta5/Reuse/Stirling.lean and
+   Zeta5/Reuse/FactorialRow.lean. Declaration bodies are unchanged; the
+   old contour-specific import chains (166 and 167 local modules) are removed.
+   factorial_row_main_upper and log_factorial_main_error are ACTUALLY USED by
+   Analysis/NormRowRate.log_rowNormUpper_le_profile and hence by the final
+   actual analytic determinant bound. The exact new scaling/cancellation is
+   proved in rowNormUpper_cancel and log_rowNormUpper, not assumed.
+
+10. Prime-interval sums and Chebyshev theta
+   Old: theta_filter and theta_interval_sum in
+   proof/lean/FourValuePrimeIntervals.lean.
+   Reuse: exact conversion of finite prime sums to theta differences.
+   New completed: Reuse/ThetaAsymptotic.lean abstracts theta_ratio_limit as
+   an explicit hypothesis and proves scaled_limit, interval_limit,
+   weighted_intervals, weighted_intervals_nat. New Reuse/PrimeAffine.lean
+   proves exact primeAffineSum_identity by Abel summation and
+   theta_scaled_integral_limit by dominated convergence, then
+   primeAffineSum_limit_of_theta, primeAffineSum_integral_limit_of_theta and
+   finite_primeAffineSum_limit_of_theta for arbitrary signed affine weights
+   on fixed positive intervals. The exact sum uses aN < p <= bN.
+   This is a genuine analytic generalization beyond old step weights.
+   Reuse/PrimeNumberTheorem.lean now imports the exact pinned old PNT
+   package and directly reuses theta_ratio_limit from old
+   FourValuePrimeAsymptotic.lean. The resulting primeAffineSum_limit,
+   primeAffineSum_integral_limit and finite_primeAffineSum_limit have no
+   theta hypothesis. Axiom audits of chebyshev_asymptotic and these wrappers
+   report only propext, Classical.choice, Quot.sound. Two unrelated upstream
+   Wiener prelim_decay lemmas contain sorry, but neither flows into the
+   theorem used here; they are not admissions in this dependency closure.
+   The former remaining arithmetic bridges are now discharged by the
+   fixed-cutoff finite-cell, endpoint and tail machinery in sections 23-25.
+   The infinite accumulating tail was replaced by a proved uniform bound
+   below beta=1/512, retaining a strict final comparison gap.
+   Old PNT package pin: AlexKontorovich/PrimeNumberTheoremAnd at
+   650d31264be65f4cd6e70c45d8b25d86d482a761.
+
+11. Rectangular determinant allocation
+   Old: rectangular_expansion, right_integral, left_integral in
+   proof/lean/FourValueAllocationBlocks.lean.
+   Reuse: general determinant expansion and valuation bookkeeping, after
+   checking dimensions and the new polynomial coefficient ring.
+   New completed implementation: Reuse/AllocationBlocks.lean generalizes the
+   old rational rectangular expansion to polynomial-valued matrices over
+   Q[X]; it is used by
+   Arithmetic/SharedAllocation.lean. Actual restriction-kernel rank bounds,
+   reflected residue counts, common-root gain and atomic two-price minor
+   envelopes are new proofs in the current arithmetic modules.
+   Old local closure: three modules.
+
+C. NEW MATHEMATICS / DIFFERENT ENDPOINT: NO DIRECT REUSE CLAIM
+
+12. Primitive positive normalizer
+   The four-value development uses rational minors and denominators under
+   simultaneous rationality. It does not directly provide the present
+   primitive coefficient normalizer Q_N of a polynomial in one zeta value.
+   New: Zeta5/Endpoint/PrimitiveNormalization.lean uses Mathlib's Gauss lemma
+   to prove existence for EVERY nonzero rational polynomial via integral
+   normalization and primitive part, integer ratios, minimality, uniqueness,
+   and an actual chosen positive primitiveNormalizer/normalizedPolynomial.
+   It proves the exact map, degree and real evaluation identities. These all
+   compile. NormalizerBounds and NormalizerLocalBounds now connect the
+   actual coefficient valuations to this same positive rational normalizer;
+   NormalizerPrimeTail supplies its signed product-formula aggregation.
+
+13. Polynomial evaluation at a rational argument
+   New: Zeta5/Endpoint/IntegerPolynomial.lean defines scaledEvalInt and proves
+   its casting identity. It proves the positive-integer obstruction and a
+   generic irrationality criterion with all positivity, degree and decay
+   hypotheses explicit. The old final comparison supplies the proof pattern,
+   but has no directly reusable polynomial-degree clearing statement.
+   New ConcreteCriterion.lean specializes to the actual windowDeterminant,
+   primitiveNormalizer and standard realZeta(5), using degree <=24n.
+   irrational_zeta5_of_normalized_decay and irrational_zeta5_of_log_rate_bounds
+   compile with explicit positivity and two o(N²) rate hypotheses. These are
+   conditional reductions, not unconditional irrationality statements.
+
+14. Positive measure and Stieltjes identities
+   The new measure, moment formulas and single-zeta Stieltjes decomposition
+   differ from the old complex-contour linear-functional construction.
+   Old contour residues, Laurent observations and Pearson relations do not
+   supply these new identities or justify silently removing quotient terms.
+   New completed modules PhysicalMeasure, PhysicalMeasureMoments and
+   PhysicalMeasurePushforward prove pointwise series summability, positivity,
+   measurability, all-moment integrability, exact gamma term integrals, exact
+   Bernoulli rational moments, actual pushforward measure under x->x², finite
+   mass 5/12, and integrable Stieltjes kernels. No Binet identity is assumed.
+   PhysicalMeasurePencil proves exact correspondence of the actual numerator
+   functional and entries conditional on one explicitly named proposition
+   StieltjesAtPositiveIntegers z. The hypothesis is NOW DISCHARGED by
+   PhysicalMeasureStieltjes.lean: stieltjesTransform_hurwitz proves the exact
+   transform y^4*HurwitzZeta(5,y)-1/(2y)-1/4; stieltjesTransform_nat and
+   stieltjesAtPositiveIntegers_realZetaFive identify the affine polynomial
+   at every positive integer. The proof uses genuine Bose exponential sums,
+   four Laplace integrations by parts, Mathlib cotangent partial fractions,
+   dominated absolute interchanges, and explicit rational antiderivatives.
+   It does not rely on a Binet identity or any added mathematical axiom.
+   Supporting new modules: PhysicalMeasureBose/Coth/Laplace,
+   PhysicalMeasureStieltjesLaplace/StieltjesCoth/ZetaTail, and environment
+   agent PhysicalMeasureCauchy/CauchyFourth/CauchyFourthIntegrals. All compile.
+
+15. Uniform positivity/nonvanishing
+   Old Pearson finite-rank and minor-selection machinery obtains a nonzero
+   minor under simultaneous rationality. The new route uses strict positivity
+   of a full Gram determinant. These are different hypotheses and outcomes.
+   Generic rank utilities may assist a degree argument, but the main old
+   nonvanishing theorem is not a proof of the new positivity statement.
+   New completed PhysicalMeasureGram proves D_N(t)>=1 for t>=0, weighted
+   polynomial integrability, the genuine momentFunctional, strict positivity
+   on every nonzero polynomial square (finite roots have measure zero),
+   actual factorial-window basis independence, and physical scaled Gram
+   determinant positivity. PhysicalMeasurePencil reduces actual F_N positivity
+   and nonzero status solely to the explicit Stieltjes identity above.
+   PhysicalMeasureStieltjes now proves windowDeterminant_realZetaFive_pos
+   and windowDeterminant_ne_zero UNCONDITIONALLY for every n.
+   Endpoint/PhysicalCriterion.lean supplies windowValue_pos and closes
+   irrationality conditional only on normalized decay or the two precise
+   asymptotic rate estimates. Positivity is no longer an open hypothesis.
+
+16. Logarithmic potential and quantile discretization
+   The present real positive measure, potential equilibrium construction and
+   polynomial norm estimates differ from the old complex contour majorant.
+   Only generic continuity/integration/Stirling tools overlap. The new
+   construction is now fully proved: actual auxiliary mixture, its Abel
+   potential identity and equilibrium, quantile trial polynomials including
+   degree zero, uniform exponential tails, and Gram product bound. The
+   physical density is bounded by C(1+x^5)exp(-2pi*x); monotone grid estimates
+   bound the actual finite products, and the trial envelope is integrated.
+   Analysis/PhysicalNormTrial.exists_uniform_windowSquaredNorm_bound gives
+   all actual row norms uniformly. NormRowRate applies the directly reused
+   Stirling statements; ProfileGrid controls the complete finite row sum.
+   Analysis/DeterminantRate.exists_analytic_rate_error now proves
+       log(windowValue n) <= -analyticIntegral*windowScale n + E(n),
+       E(n)/windowScale n -> 0.
+   This is an unconditional analytic rate for the actual determinant.
+   No positivity, density, potential, trial-norm or Gram hypothesis remains.
+   The separate arithmetic normalizer rate is now proved by PrimeAssembly
+   and Analysis/ArithmeticRate, and supplied to the final endpoint.
+
+17. Current arithmetic profile and its global integral
+   The old target normalization, residue capacities, full grids and rate
+   constant -11.52 belong to the four-value construction. None certifies the
+   new claimed rate <5.4101. Only general valuation/prime-sum tools transfer.
+
+18. Numerical facts versus bridges
+   The 2,048-panel exact rational lower bound and the 235-piece rational
+   arithmetic profile calculation can be isolated as finite predicates.
+   Kernel-checking these values is not equivalent to proving that the
+   analytic/arithmetic objects satisfy the bounds represented by those tables.
+   Every such bridge must remain a theorem obligation; it cannot be classified
+   as a numerical admission merely because a finite checker computes a value.
+   Current finite-check status: all 2,048 analytic node checks were checked by
+   the Lean kernel in about 110 seconds; there is no numerical deferral for
+   that table. The new code uses no supplied old numerical admissions.
+   See current certificate and analytic-agent logs for profile/integral bridge
+   statuses, kept distinct from the finite table check itself.
+
+19. Factorial valuation below the square threshold
+   Old: OddZeta.Coefficients.factorial_valuation_below_square in
+   proof/lean/ReusedCoefficients.lean, line 87 at the pinned revision.
+   New: Arithmetic/LocalNewton.factorial_padicVal_of_lt_sq.
+   Same generic theorem: v_p(n!)=floor(n/p) when n<p^2. The new proof uses
+   Mathlib factorial multiplication/division identities and is shorter; its
+   proof body was independently written, so this is theorem-level overlap,
+   not a direct extraction. Newton/LocalNewton, EvaluationMinors,
+   CentralIntegerValued, actual StieltjesValuations and AtomicClusterBounds
+   are new mathematics built on the extracted PadicLower calculus.
+
+20. Bernoulli functional, distribution and Newton losses
+   New Arithmetic/BernoulliFunctional proves B(P(X+1)-P)=P'(0), uniqueness,
+   and B(binomialPolynomial n)=(-1)^n/(n+1) by an exact finite-difference
+   recurrence. BernoulliDistribution proves distribution over every positive
+   modulus for every polynomial. BernoulliLoss combines weighted Newton
+   coefficient bounds and actual repeated derivatives; BernoulliMoments
+   proves the exact rationalMoment adapter through the third derivative of
+   X^5*P(-X^2), with local p-adic bounds. All compile and are axiom-audited.
+   These are new proofs. Old Bernoulli/Laurent denominator machinery supplies
+   context, but its contour functional is not identified with this one.
+
+21. Restriction-kernel rank and determinant valuation
+   New Arithmetic/PadicResidue defines the rational p-integral local ring's
+   ideal of elements of valuation >=1 and proves that its quotient is a field.
+   Arithmetic/RestrictionDeterminant extends an actual kernel basis over that
+   residue field, lifts it to integral rational rows with unit determinant,
+   and proves polynomialPadicLower_det_of_restriction_kernel. Its bound is
+   card(columns)-min(card(columns),card(restriction rows)); the kernel premise
+   improves every polynomial coefficient, so no constancy-in-X premise is
+   imposed. The final determinant calculation uses the extracted/generalized
+   weighted determinant lemma. The residue-field and rank argument is new;
+   no corresponding generic statement was located in the pinned four-value
+   sources. Actual LocalDivision/LocalDenominator/LocalInterpolation/
+   LocalQuotient/LocalRestriction/LocalFunctional/RestrictionPencil modules
+   are likewise new, built on reused PadicLower/PolynomialPadicLower calculus.
+
+22. Completed actual local determinant and profile comparison
+   Arithmetic/LocalDeterminant now instantiates the generic restriction
+   determinant theorem with the concrete factorial window and its actual
+   coefficient restriction matrix. The result is the exact lower bound
+       v_p(F_{20n}) >= -(4+epsilon)*24n
+         - min(24n, (floor((50n-2)/p)+1)*w_p),
+   for p>5 and p^2>100n+6. There is no remaining abstract quotient,
+   interpolation, radical, residue-field, rank or nonvanishing premise.
+   The ordinary and kernel quotient bounds use the proved Bernoulli adapter;
+   the proper residue bounds use actual denominator derivative valuations.
+   The retained truncation is treated by a slightly weaker integral
+   coefficient bound that still gives the required radical improvement.
+   Arithmetic/RankProfileComparison proves the exact discrete cost is at
+   most (20n)*middleRankProfile(p/(20n))+641 for p/(20n)>=1/512.
+   The more precise error is (floor(50n/p)+1)/2. This is new arithmetic,
+   not an application of an old four-value profile certificate.
+   Fresh audit logs local_arithmetic_axioms.log and restriction_axioms.log
+   contain only propext, Classical.choice and Quot.sound for these results.
+
+23. Direct rational product formula and signed primitive-normalizer bounds
+   Old: proof/lean/FourValueProductFormula.lean, namespace
+   OddZeta.FourValue.ProductFormula, at the source pin above.
+   New: Reuse/ProductFormula.lean is a direct extraction. A text comparison
+   from `open scoped BigOperators` to the end confirms unchanged declaration
+   bodies; only the import/header boundary changes. In particular,
+   rational_log_product_formula uses actual Rat numerator/denominator
+   factorization and padicValRat, and includes negative valuations.
+   New Arithmetic/NormalizerBounds proves primitiveNormalizer_padicVal_le
+   from a primitive integer coefficient not divisible by p. It then proves
+   finite_prime_upper for arbitrary real signed majorants, allowing omitted
+   outside primes only when their valuations are nonpositive. No positive-
+   part replacement is made. NormalizerPrimeTail instantiates this for the
+   actual windowNormalizer and actual determinant nonvanishing, with support
+   bounded above by 50n. This is a new normalizer specialization of directly
+   reused rational product-formula mathematics.
+
+24. Quotient support, factorial floors and shared dimension allocation
+   Old: FourValueFactorialStaircase.floor_staircase and
+   factorial_staircase_upper turn factorial valuation floors into finite
+   counts; ReusedCoefficients.factorial_valuation_below_square gives the
+   factorial valuation identity. The new FactorialFloorSum is theorem-level
+   overlap: an independently written exact double-counting proof for the
+   present window, with no old targetHankelDegree or coefficient 361.
+   New FactorialPrefactor keeps the signed charge
+     2 sum_{k<r} floor(2(m+k)/p) - 2r floor(N/p).
+   This is the exact determinant change-of-basis normalization, not an
+   unsigned denominator estimate.
+   QuotientSupport and QuotientMinors are new proofs for the actual Bernoulli
+   moment functional. Monic division takes place over Z[X]; fractional
+   quotient moments can occur only in the proved terminal block, yielding
+   every-minor cost min(a,t). The old FourValueFiniteQuotient module concerns
+   annihilator/Cayley-Hamilton test propagation and does not directly prove
+   this terminal support statement.
+   SharedAllocation reuses/generalizes the old AllocationBlocks rectangular
+   determinant mechanism to Q[X]. It combines two exact affine minor prices
+   (0 and -1), preserving the single total matrix dimension. Actual residue
+   class bounds supply 7H-2A and 6H-2A, producing the new shared penalty
+     7H-2A + min(t,r-H).
+   The quotient block, reflected-class counts, root gains and all-low pair
+   cancellation are proved for the current matrix; old numerical local
+   allocation certificates are not imported as evidence for those facts.
+
+25. Signed finite prime pieces, endpoint exceptions and fixed tail
+   New Reuse/PrimePiecewise builds arbitrary signed affine prime masses on
+   the proved PNT/Abel-summation results in section 10. PrimeIntervals adds
+   exact signed `primeWeightedSum` and adjacent half-open interval
+   telescoping. Arithmetic/PrimeRowBound handles each possible right endpoint
+   with one uniform O(N log N) exception; its regular interior charge is
+   allowed to be negative. The finite sum carries a uniform O(theta(CN))
+   error for the +641 local rounding margin. Both errors are proved
+   negligible after division by N^2.
+   Certificate/AllPrimePieces and PrimePiecesTelescope concatenate the new
+   3,060 middle cells on [1/512,9/20], the seven upper rows on [9/20,1], and
+   the two large-prime rows on [1,5/2]. Rational row data are cast exactly;
+   the covered signed charge is precisely floor(N/512)<p<=5N/2.
+   Arithmetic/NormalizerPrimeTail treats the remaining primes using the
+   actual all-prime small-entry bound up to 100*(floor(sqrt(n))+1), and the
+   actual good-prime bound v_p(Q)<=144n above that cutoff. For n>=100000000
+   the cutoff lies below floor(20n/512). The tail is bounded by
+     144n*theta(20n/512),
+   whose contribution on the (20n)^2 scale is exactly 36/(5*512).
+   The certified full arithmetic upper constant is
+     202930490737/37500000000 < 5.412 < 5.4133.
+   This fixed-tail design replaces an infinite-period tail argument and is
+   wholly kernel proved. No isolated numerical check remains deferred.
+   Fresh normalizer_prime_tail_axioms.log reports only propext,
+   Classical.choice and Quot.sound for the actual tail and upper/large
+   normalizer wrappers. The final transitive audit is recorded below.
+
+
+26. Complete all-prime logarithmic bounds and actual arithmetic asymptotics
+   New Arithmetic/SmallPrimeScalars proves Kummer-based logarithmic bounds
+   for binomial denominators, exact factorial ratios, and the central
+   quotient scalar 1/[l^2*choose(2l,l)*choose(l-1,N)^2]. SmallPrimeQuotient,
+   SmallPrimeProper and SmallPrimeEntries combine the actual Newton/Bernoulli
+   adapter with the exact quotient/proper-fraction identities and central
+   product expansion. They prove, for every prime p, the actual entry bound
+       v_p(entry N j k) >= -9*log_p(4R+4)-v_p(96)
+   whenever N<=R and j,k<R, with coefficientwise zero-aware semantics.
+   The resulting actual determinant bound has the factor 24n.
+   This is new target-specific work extending the old valuation calculus;
+   it is not copied from an old four-value local table.
+   SmallPrimeSum chooses y(n)=100*(Nat.sqrt n+1), proves all good-prime
+   thresholds above y and eventually y<20n/512, and bounds the actual
+   small-prime logarithmic normalizer sum by
+       24n*y(n)*(9*log(100n+4)+log96).
+   Analysis/SmallPrimeError proves that error/(20n)^2 tends to zero.
+
+27. Fixed-cutoff certificate and all numeric work completed
+   The implementation uses the fixed profile cutoff 1/512. All 24 blocks
+   of the extended rational arithmetic certificate are checked by the Lean
+   kernel. ExtendedArithmetic/AllCells assembles their actual fitted chain,
+   endpoint, and area bound. Certificate/AllPrimePieces appends the seven
+   upper and two large-prime rows and proves validity, classification,
+   endpoint bounds and the actual sum of their affine integrals.
+   The certified arithmetic constant, including the crude low-prime tail,
+   is exactly 202930490737/37500000000 = 5.411479752986666... .
+   The convenient eventual upper rate is 5.412, still strictly below the
+   certified analytic lower rate 5.4133705070.
+   Analysis/ArithmeticRate proves the actual tail and finite-profile
+   asymptotics using the audited prime number theorem, and supplies a
+   concrete final endpoint adapter. The formerly remaining actual global
+   normalizer prime-sum majorization is now proved in Arithmetic/PrimeAssembly,
+   using the exact telescope module. The final audit is recorded below.
+   The complete 2,048-node analytic certificate, real-integral bridge and
+   all extended arithmetic numerical blocks are kernel checked. No isolated
+   numerical work remains deferred. An additional numerical Lean-time
+   estimate is therefore not required for the current proof.
+
+28. Direct index-sum subset extraction
+   Old: proof/lean/FourValueIndexBounds.lean, namespace OddZeta.FourValue.
+   New: Reuse/IndexBounds.lean, namespace Zeta5.Arithmetic.
+   The three declaration bodies strictMono_fin_nat_lower,
+   sum_injective_nat_lower and twice_sum_injective_nat_lower are copied
+   unchanged; namespace/imports are adjusted. The old file's later rational
+   determinant lemma is not copied into this extraction. These index-sum
+   bounds are actually used by the new polynomial atomic minor estimates.
+   Direct-reuse comparisons also confirm unchanged declaration bodies for
+   PadicMinors, Transcendental, Stirling, FactorialRow and ProductFormula,
+   after removing comments/import lines and normalizing whitespace. The
+   normalized and raw file hashes are in direct_reuse_comparison.json.
+   The complete old reference checkout remains unmodified at its pinned
+   commit. This provenance check is separate from kernel verification.
+
+29. Final unconditional verification and transitive dependency audit
+   CLOSED TARGET:
+       Zeta5.irrational_zeta_five : Irrational (riemannZeta 5).re
+   Source: Zeta5/Endpoint/Verified.lean. The theorem has no hypotheses or
+   certificate parameters. An independent example checks the fully qualified
+   Mathlib target, including Complex.re and riemannZeta at (5 : Complex).
+   Independent audit source: Zeta5/Reuse/FinalTrustAudit.lean.
+   The final theorem's complete axiom set is exactly
+       propext, Classical.choice, Quot.sound.
+   The explicit dependency traversal records 81,789 transitive constants,
+   including 4,269 names beginning Zeta5. All 24 extended arithmetic block
+   fits and upper theorems, the checked 2,048-node analytic certificate,
+   chebyshev_asymptotic, the actual physical analytic rate, the restriction
+   determinant theorem and the rational product formula occur in this
+   closure. sorryAx and upstream prelim_decay_2/prelim_decay_3 do not occur.
+   The extracted Transcendental.log_enclosure is available but does not occur
+   in the final theorem's dependency closure; the active directed certificate
+   is the independently written Mathlib-derived implementation.
+   Evidence in the Lean package: evidence/final_trust_audit.log and
+   evidence/final_constant_closure.json. Separate
+   endpoint semantics and explicit-kernel rechecks are maintained by the
+   other agents. No finite numerical work is deferred.
+
+MACHINE-READABLE COMPANION
+
+source_inventory.json records declaration names, old local import-closure
+sizes and modules containing textual admission markers. These are source
+inspection facts, not a transitive kernel axiom audit. Actual fresh audits use
+#print axioms for the new checked declarations and final endpoints.
+
+final_constant_closure.json records the actual final constant dependency
+closure, rather than merely the source-import closure. direct_reuse_comparison.json
+records exact source-body comparisons and hashes for the direct extractions.

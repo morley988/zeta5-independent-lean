@@ -1,0 +1,5 @@
+'Zeta5.Arithmetic.windowNormalizer_upperProfile_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Arithmetic.windowNormalizer_largeProfile_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Arithmetic.windowNormalizer_log_le_tail_and_primeSum_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

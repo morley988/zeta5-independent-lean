@@ -1,0 +1,11 @@
+Zeta5.irrational_zeta_five : Irrational (riemannZeta 5).re
+theorem Zeta5.irrational_zeta_five : Irrational (riemannZeta 5).re :=
+Zeta5.Analysis.irrational_zeta5_of_allPrimePieces_majorant Zeta5.Arithmetic.primeErrorCoefficient
+  Zeta5.Arithmetic.endpointErrorCoefficient Zeta5.Arithmetic.windowNormalizer_log_le_arithmeticMajorant_eventually
+'Zeta5.irrational_zeta_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Analysis.exists_analytic_rate_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Arithmetic.windowNormalizer_log_le_arithmeticMajorant_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Zeta5.Certificate.allPrimePieces_area_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Zeta5.Certificate.analyticIntegral_gt_displayed' depends on axioms: [propext, Classical.choice, Quot.sound]

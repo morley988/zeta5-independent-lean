@@ -1,0 +1,98 @@
+{
+  "lean_version": "Lean (version 4.33.1, x86_64-unknown-linux-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+  "lean_binary_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+  "reference_repository": "https://github.com/morley988/four-odd-zeta",
+  "reference_commit": "fd23dd59e5d638c9684eb2d7776fb51e8b427b55",
+  "reference_worktree_status": "",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "dependencies": [
+    {
+      "name": "mathlib",
+      "url": "https://github.com/leanprover-community/mathlib4.git",
+      "rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "actual_revision": "0df444a360eaa60ab8c11dca51a86af692955474"
+    },
+    {
+      "name": "plausible",
+      "url": "https://github.com/leanprover-community/plausible",
+      "rev": "b7eb3304aeae834b12dda98993a37f6a41f6f0bb",
+      "actual_revision": "b7eb3304aeae834b12dda98993a37f6a41f6f0bb"
+    },
+    {
+      "name": "LeanSearchClient",
+      "url": "https://github.com/leanprover-community/LeanSearchClient",
+      "rev": "5f4d51b81cbd3f6b32b156bfad9056621a040404",
+      "actual_revision": "5f4d51b81cbd3f6b32b156bfad9056621a040404"
+    },
+    {
+      "name": "importGraph",
+      "url": "https://github.com/leanprover-community/import-graph",
+      "rev": "16f02aa7642864af59f1ff0e384a015994db9118",
+      "actual_revision": "16f02aa7642864af59f1ff0e384a015994db9118"
+    },
+    {
+      "name": "proofwidgets",
+      "url": "https://github.com/leanprover-community/ProofWidgets4",
+      "rev": "4be2e3d5087eeb272cf5a8853b8f9dd025ef5957",
+      "actual_revision": "4be2e3d5087eeb272cf5a8853b8f9dd025ef5957"
+    },
+    {
+      "name": "aesop",
+      "url": "https://github.com/leanprover-community/aesop",
+      "rev": "3448c0bcc5ce01b2d1546e483ec3620e32df3d0e",
+      "actual_revision": "3448c0bcc5ce01b2d1546e483ec3620e32df3d0e"
+    },
+    {
+      "name": "Qq",
+      "url": "https://github.com/leanprover-community/quote4",
+      "rev": "92c15be17b7caf78c2ad767ec40f89052d908d81",
+      "actual_revision": "92c15be17b7caf78c2ad767ec40f89052d908d81"
+    },
+    {
+      "name": "batteries",
+      "url": "https://github.com/leanprover-community/batteries",
+      "rev": "4488d40d070b9700d4d5a6aa342f0d40c31b2a2d",
+      "actual_revision": "4488d40d070b9700d4d5a6aa342f0d40c31b2a2d"
+    },
+    {
+      "name": "Cli",
+      "url": "https://github.com/leanprover/lean4-cli",
+      "rev": "6130a47896ce867c6a4a55373441e59e565bad0f",
+      "actual_revision": "6130a47896ce867c6a4a55373441e59e565bad0f"
+    },
+    {
+      "name": "PrimeNumberTheoremAnd",
+      "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd.git",
+      "rev": "650d31264be65f4cd6e70c45d8b25d86d482a761",
+      "actual_revision": "650d31264be65f4cd6e70c45d8b25d86d482a761"
+    },
+    {
+      "name": "PrimeCert",
+      "url": "https://github.com/b-mehta/PrimeCert",
+      "rev": "916ee9c35a57af128d5089a69172415051e700ca",
+      "actual_revision": "916ee9c35a57af128d5089a69172415051e700ca"
+    },
+    {
+      "name": "leancert",
+      "url": "https://github.com/alerad/leancert.git",
+      "rev": "621a43d7cf21f87872392a01e874f2f1dbddc926",
+      "actual_revision": "621a43d7cf21f87872392a01e874f2f1dbddc926"
+    },
+    {
+      "name": "checkdecls",
+      "url": "https://github.com/PatrickMassot/checkdecls.git",
+      "rev": "3d425859e73fcfbef85b9638c2a91708ef4a22d4",
+      "actual_revision": "3d425859e73fcfbef85b9638c2a91708ef4a22d4"
+    },
+    {
+      "name": "LeanArchitect",
+      "url": "https://github.com/hanwenzhu/LeanArchitect.git",
+      "rev": "0f5bc0209ae02a7fb0cfe7d113d4094542cee221",
+      "actual_revision": "0f5bc0209ae02a7fb0cfe7d113d4094542cee221"
+    }
+  ],
+  "mathlib_cache": "official pinned source cache, selective import closures; initial broad request hit HTTP429, subsequently reduced concurrency3/rate2 per sec",
+  "recorded_at_utc": "2026-11-13T23:29:05.160574+00:00",
+  "lean_toolchain_file": "leanprover/lean4:v4.33.1"
+}

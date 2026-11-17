@@ -1,0 +1,10 @@
+import Zeta5.Analysis.ArithmeticRate
+#print axioms Zeta5.Arithmetic.smallPrime_normalizer_sum_le
+#print axioms Zeta5.Analysis.smallPrimeError_over_windowScale_limit
+#print axioms Zeta5.Analysis.arithmeticTailMajorant_limit
+#print axioms Zeta5.Analysis.arithmeticMajorant_limit
+#print axioms Zeta5.Analysis.irrational_zeta5_of_certified_prime_majorant
+#print axioms Zeta5.Certificate.allPrimePieces_valid
+#print axioms Zeta5.Certificate.allPrimePieces_bounds
+#print axioms Zeta5.Certificate.allPrimePieces_area_le
+#print axioms Zeta5.Analysis.irrational_zeta5_of_allPrimePieces_majorant

@@ -1,0 +1,8 @@
+⚠ [896/1119] Replayed Zeta5.Certificate.ArithmeticProfile
+warning: Zeta5/Certificate/ArithmeticProfile.lean:96:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [2745/2745] Built Zeta5.Certificate.ExtendedArithmetic (2.4s)
+info: Zeta5/Certificate/ExtendedArithmetic.lean:82:0: 'Zeta5.Certificate.ExtendedArithmetic.extended_profile_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Zeta5/Certificate/ExtendedArithmetic.lean:83:0: 'Zeta5.Certificate.ExtendedArithmetic.totalUpper_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2745 jobs).
