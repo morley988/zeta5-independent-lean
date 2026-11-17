@@ -1,0 +1,5 @@
+zeta5/.lake/
+.elan/
+verification/latest/
+__pycache__/
+*.pyc
