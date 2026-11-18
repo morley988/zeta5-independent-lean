@@ -4,7 +4,7 @@
 \usepackage{lmodern}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{aliascnt}
+\usepackage{aliascnt,needspace}
 \usepackage{array,booktabs,longtable}
 \usepackage{enumitem,microtype,xcolor}
 \usepackage{xurl}
@@ -107,7 +107,7 @@
 \title{\textbf{A new proof that $\zeta(5)$ is irrational,\\ via positive factorial-window determinants}}
 \author{Morley Davidson}
 \date{13 November 2026}
-\hypersetup{pdftitle={A new proof that zeta(5) is irrational, via positive factorial-window determinants}}
+\hypersetup{pdfauthor={Morley Davidson},pdftitle={A new proof that zeta(5) is irrational, via positive factorial-window determinants}}
 \begin{document}
 \maketitle
 \begin{center}
@@ -274,7 +274,7 @@ Nov. 2026 & Simplified proof of the Oct. 2026 four-value result, Lean-checked wi
 The shifted-window numbers in the 2001 row refer to Zudilin's published
 \emph{Mathematical Notes} paper.  Its bounds $35$ and $51$ improve the
 $37$ and $53$ in the earlier arXiv note \cite{zudilin2001note}.
- A separate September 2026 preprint claims the irrationality of $\zeta(7);$ a public issue identifies a
+ A separate September 2026 preprint claims the irrationality of $\zeta(7)$; a public issue identifies a
 specific arithmetic objection to its argument; see \cite{anand2026,anandobjection}.  The table is a sourced account of major
 results and the located recent records; it is of course possible that other announcements were missed.
 
@@ -414,7 +414,7 @@ certificate hypotheses \cite{davidson2026}.
 
 \subsection{Methodological precedents}
 
-Determinants have long played an important role in irrationality research. Zudilin's determinantal criterion extends the classical argument based on small nonzero integer linear forms by exploiting additional structure \cite{zudilin2017}. A **Hankel matrix** is a matrix whose \((i,j)\)-entry depends only on \(i+j\), so its entries are constant along each anti-diagonal. Haynes and Zudilin studied Hankel determinants formed from zeta values along arithmetic progressions, obtaining asymptotic bounds with Diophantine consequences \cite{hayneszudilin2015}. More recently, Fauzan's proof of the irrationality of \(\zeta(5)\) also employed Hankel determinants \cite{fauzan2026}. Although these approaches share determinantal features, their constructions and arithmetic estimates differ. The purpose of the present paper is to develop a distinct positive Gram-determinant construction and establish the quantitative estimates required for its irrationality argument.
+Determinants have long played an important role in irrationality research. Zudilin's determinantal criterion extends the classical argument based on small nonzero integer linear forms by exploiting additional structure \cite{zudilin2017}. A \textbf{Hankel matrix} is a matrix whose \((i,j)\)-entry depends only on \(i+j\), so its entries are constant along each anti-diagonal. Haynes and Zudilin studied Hankel determinants formed from zeta values along arithmetic progressions, obtaining asymptotic bounds with Diophantine consequences \cite{hayneszudilin2015}. More recently, Fauzan's proof of the irrationality of \(\zeta(5)\) also employed Hankel determinants \cite{fauzan2026}. Although these approaches share determinantal features, their constructions and arithmetic estimates differ. The purpose of the present paper is to develop a distinct positive Gram-determinant construction and establish the quantitative estimates required for its irrationality argument.
 
 The determinants we consider are Gram determinants expressed
 in a factorial-polynomial basis; after a triangular change to the
@@ -472,7 +472,7 @@ of the form
 \]
 With $x=i\sqrt t$, this becomes $(-1)^kD_k(t)/(k!)^2$, where $D_k$
 is defined below. A particular subfamily, denoted
-$RPA(m,2m-1,2m)$ in the arXiv version of \cite[Section~5.2]{prevost2019},
+$\mathrm{RPA}(m,2m-1,2m)$ in the arXiv version of \cite[Section~5.2]{prevost2019},
 recovers Ap\'ery's numbers. That identification applies to the stated
 indices and of course does not identify every determinant built from this moment
 functional with the classical linear forms.
@@ -1123,6 +1123,7 @@ which is the first identity. The second is Euler's even-zeta identity
 the partial fractions of $\coth\pi x$.
 \end{proof}
 
+\Needspace{3\baselineskip}
 \begin{lemma}\label{lem:stieltjes}
 For $y>0$, define the Hurwitz zeta value by the convergent series
 $\zeta(5,y)=\sum_{n=0}^{\infty}(n+y)^{-5}$. Then
@@ -2689,7 +2690,7 @@ The companion Lean development formalizes the finite partition and
 its connection to the actual normalizer, with all 3060 middle-cell
 checks discharged. The older infinite-period estimate
 \eqref{eq:small-profile-tail}, and the optional sharper comparison
-in \cref{app:certificate-code}, are not used here.
+in \Cref{app:certificate-code}, are not used here.
 \end{proof}
 
 % END SHARED CORE 11_arithmetic
@@ -2816,7 +2817,7 @@ $1/512$ cutoff, 3060 rational middle cells in 24 blocks, seven upper
 rows, and two large-prime rows, with the four rational bounds
 of \eqref{eq:arithmetic-exact}. Every cell-fit, branch selection,
 area bound, and final addition used by this proof has a Lean proof term.
-The standalone Python program in \cref{app:certificate-code} remains
+The standalone Python program in \Cref{app:certificate-code} remains
 available as an optional, somewhat sharper comparison based on the
 original $1/40$ split, but its stronger constant is not needed here.
 \end{proof}
@@ -2867,11 +2868,11 @@ claim of best constants is needed.
 
 The independent Lean~4.33.1 development \cite{zeta5lean2026}
 proves the unconditional endpoint
-\texttt{Zeta5.irrational\_zeta\_five} with only the standard
+\texttt{Zeta5.\allowbreak irrational\_\allowbreak zeta\_\allowbreak five} with only the standard
 foundational axioms \texttt{propext}, \texttt{Classical.choice}, and
 \texttt{Quot.sound} in its transitive dependency closure. Its numerical
 certificates are checked by the Lean kernel, rather than supplied as
-extra mathematical assumptions. The \texttt{--trust=0} check, project
+extra mathematical assumptions. The \verb|--trust=0| check, project
 build, and transitive dependency audit are recorded in the companion
 archive.
 The historical implementations in \cref{sec:history} concern other
@@ -3059,6 +3060,7 @@ These decimal evaluations have no certificate role. The following
 elementary upper bound proves that the displayed rates fail the
 required comparison, independently of numerical quadrature.
 
+\Needspace{3\baselineskip}
 \begin{proposition}\label{prop:higher-window-failure}
 For this window, $C_{\an}<6<C_{\arith}^{(h)}$ for every $h\ge3$.
 \end{proposition}
@@ -3187,14 +3189,15 @@ originality, references, and final contents of this article.
 
 
 \appendix
-\section{Exact comparison programs and the Lean-certified numerical data}\label{app:certificate-code}
+\section{Exact comparison programs and the Lean-certified numerical data}\label[appendix]{app:certificate-code}
 \subsection{Primary certificate and reproducing the formal check}
 The finite computations used by \cref{prop:arithmetic-rate,prop:exact-gap}
 are contained in the companion archive \cite{zeta5lean2026}. The key
 files include \path{Zeta5/Certificate/ExtendedArithmetic.lean},
 \path{Zeta5/Certificate/AllPrimePieces.lean},
 \path{Zeta5/Analysis/ArithmeticRate.lean}, and the analytic-grid modules.
-From the archive's \path{zeta5/} directory, using the pinned
+\par\Needspace{8\baselineskip}
+\noindent From the archive's \path{zeta5/} directory, using the pinned
 Lean~4.33.1 toolchain, run
 \begin{verbatim}
 lake exe cache get
@@ -3394,6 +3397,7 @@ if __name__ == "__main__":
 \begingroup
 \raggedright
 \begin{thebibliography}{99}
+\addcontentsline{toc}{section}{\refname}
 % Research cutoff: 13 November 2026..
 \setlength{\itemsep}{0pt}
 
