@@ -25,6 +25,13 @@ restriction-determinant theorem, rational product formula, and prime number
 theorem to occur in the dependency closure. It rejects `sorryAx`,
 `prelim_decay_2`, and `prelim_decay_3`.
 
+## Journal manuscript
+
+The [publication manuscript](manuscript/zeta5_journal_publication.tex) is
+Morley Davidson’s current article. Use this file for future manuscript edits.
+The [archived manuscript](zeta5/inputs/zeta5_journal.tex) preserves the exact
+source distributed with the [verified v1.0.0 release](https://github.com/morley988/zeta5-independent-lean/releases/tag/v1.0.0).
+
 ## Preservation and provenance
 
 All **234 files** extracted from the original archive remain byte-for-byte

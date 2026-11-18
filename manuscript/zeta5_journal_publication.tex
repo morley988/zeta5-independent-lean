@@ -1,0 +1,3732 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{aliascnt}
+\usepackage{array,booktabs,longtable}
+\usepackage{enumitem,microtype,xcolor}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small A new proof that $\zeta(5)$ is irrational}
+
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}
+\setlength{\parskip}{.35em}
+\setlength{\parindent}{1.1em}
+\setlength{\emergencystretch}{3em}
+\setlist{topsep=4pt,itemsep=3pt,parsep=1pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\newtheorem*{example}{Example}
+
+
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{Lemma}{Lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+
+\crefname{corollary}{Corollary}{Corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+
+\crefname{definition}{Definition}{Definitions}
+\Crefname{definition}{Definition}{Definitions}
+
+\crefname{remark}{Remark}{Remarks}
+\Crefname{remark}{Remark}{Remarks}
+
+%\crefname{equation}{Equation}{Equations}
+%\Crefname{equation}{Equation}{Equations}
+
+\crefname{equation}{equation}{equations}
+\Crefname{equation}{Equation}{Equations}
+
+\crefname{section}{Section}{Sections}
+\Crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+\Crefname{subsection}{Section}{Sections}
+
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Fp}{\mathbb F_p}
+\newcommand{\Zp}{\mathbb Z_p}
+\newcommand{\Qp}{\mathbb Q_p}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\vp}{v_p}
+\newcommand{\J}{\mathcal J}
+\newcommand{\Bfun}{\mathcal B}
+\newcommand{\arith}{\mathrm{arith}}
+\newcommand{\an}{\mathrm{an}}
+\newcommand{\pos}[1]{\left(#1\right)_{+}}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\spanQ}{span}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\supp}{supp}
+\lstset{language=Python,basicstyle=\ttfamily\scriptsize,columns=fullflexible,
+  keepspaces=true,breaklines=true,breakatwhitespace=false,showstringspaces=false,
+  frame=single,framerule=.3pt,rulecolor=\color{black!25},
+  numbers=left,numberstyle=\tiny\color{black!50},numbersep=6pt,
+  xleftmargin=1.5em,framexleftmargin=1.3em,tabsize=4}
+
+\title{\textbf{A new proof that $\zeta(5)$ is irrational,\\ via positive factorial-window determinants}}
+\author{Morley Davidson}
+\date{13 November 2026}
+\hypersetup{pdftitle={A new proof that zeta(5) is irrational, via positive factorial-window determinants}}
+\begin{document}
+\maketitle
+\begin{center}
+
+\end{center}
+\begin{abstract}
+We present a new proof of the irrationality of \(\zeta(5)\), independent of the recent proof by Fauzan and its subsequent formalizations, based on positive Gram determinants indexed by consecutive windows of factorial-normalized polynomials. Our argument has also been independently verified in Lean. Rational moments and an affine Stieltjes formula yield a polynomial in \(\zeta(5)\) of degree at most \(N\). A local polynomial-restriction argument, strengthened by common-root divisibility, bounds its primitive coefficient normalizer, while an explicit positive logarithmic potential and quantified polynomial discretization control the determinant itself. For the window \(m=N/20\), \(R=5N/4\), the arithmetic logarithmic rate is below \(5.412\), whereas the analytic decay rate exceeds \(5.413\), on the scale \(N^2\). A fixed-cutoff certificate comprising a few thousand rational middle cells and an elementary uniform small-ratio tail establishes the strict inequality, with all required numerical inequalities checked within Lean.
+
+The proof is preceded by a \(\zeta(3)\) specialization, closely related to Prévost's Padé-approximation proof of Apéry's theorem, which provides an unshifted-window illustration with the exact positive gap \((9/2)\log 2-3\). A concluding section extends the underlying functional to higher odd zeta values, quantifies the insufficiency of the present estimates for \(\zeta(7)\), and identifies possible improvements. The historical introduction surveys classical and recent irrationality results through 13 November 2026, including preprints and formal-verification developments, with attention to their respective verification status and assumptions.
+
+\end{abstract}
+\clearpage
+\begingroup
+\footnotesize
+\setlength{\parskip}{0pt}
+\setlength{\baselineskip}{10.5pt}
+\tableofcontents
+\endgroup
+\clearpage
+
+% BEGIN SHARED CORE 01_history
+\section{Introduction}\label{sec:history}
+
+For a real number $s>1$, the Riemann zeta function is
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}.
+\]
+This article concerns its values at ordinary positive integers, and we do not deal with the distinct objects called $p$-adic zeta values.
+A real number is \emph{irrational} if it does not belong to $\Q$, and
+\emph{transcendental} if it is not a root of a nonzero polynomial with rational
+coefficients.  Euler's evaluation of $\zeta(2)$, and more generally of the
+positive even values as nonzero rational multiples of powers of $\pi$, gave
+the subject its first decisive examples.  Euler's paper E41 was written in
+1735 and published in 1740; Lindemann's 1882 transcendence theorem for $\pi$
+subsequently made every positive even zeta value transcendental
+\cite{euler1740,lindemann1882,dlmf}.
+
+The odd values required a different approach.  Ap\'ery announced the
+irrationality of $\zeta(3)$ in 1978 and published his proof in 1979.
+Beukers' integral proof appeared in the same year
+\cite{apery1979,beukers1979}.  Later advances developed in two directions:
+proving that many odd zeta values are irrational, without specifying which
+ones, and shrinking explicit finite lists that cannot consist entirely of
+rational numbers.  Of course, neither kind of statement automatically identifies an
+individual irrational value.
+
+We use the following notation to make these distinctions precise: for odd integers
+$3\leq a\leq b$, put
+\[
+ W(a,b)=\{\zeta(a),\zeta(a+2),\ldots,\zeta(b)\}.
+\]
+Saying that $W(a,b)$ contains an irrational number means only that at least one
+of these numbers is established to be irrational.
+For an integer $s\geq3$, define
+\begin{align*}
+ N(s)&=\#\{k:3\leq k\leq s,\ k\text{ odd},\ \zeta(k)\notin\Q\},\\
+ D(s)&=\dim_{\Q}\operatorname{span}_{\Q}
+       \bigl(\{1\}\cup\{\zeta(k):3\leq k\leq s,\ k\text{ odd}\}\bigr).
+\end{align*}
+The symbol $\#$ denotes the number of elements of a finite set.  A family
+$x_1,\ldots,x_m$ is \emph{linearly independent over $\Q$} when
+$\sum_i q_i x_i=0$ with $q_i\in\Q$ forces every $q_i=0$; its rational span
+is the set of its rational linear combinations.  Its dimension counts a
+maximal independent subfamily.  In particular,
+\[
+                    D(s)\leq N(s)+1.
+\]
+Thus a dimension lower bound implies a counting lower bound after
+subtracting one, whereas many irrational values can still have a small
+rational span.  All logarithms below are natural logarithms.  Bounds
+containing $\varepsilon$ hold for every fixed positive $\varepsilon$ and
+all sufficiently large admissible $s$.
+
+\subsection{Mathematical milestones through 13 November 2026}
+
+\Cref{tab:history-results} records the principal milestones relevant to
+these two directions, together with recent public developments that have
+not yet acquired the same publication status as the classical results.
+Dates distinguish a preprint's appearance from its journal publication
+where this matters.  A repository is cited as such and may not have undergone journal peer review.  The formal status
+of the recent developments is specified separately in
+\cref{tab:history-formal}.
+
+\begingroup
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\setlength{\LTpre}{6pt}
+\setlength{\LTpost}{6pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.14\textwidth}>{\raggedright\arraybackslash}p{.57\textwidth}>{\raggedright\arraybackslash}p{.21\textwidth}@{}}
+\caption{Selected mathematical milestones.  ``One in $W$'' means at least
+one irrational member; ``two in $W$'' means at least two.  Recent source
+claims and conditional developments are explicitly identified.}
+\label{tab:history-results}\\
+\toprule
+Date & Mathematical statement & Source and status\\
+\midrule
+\endfirsthead
+\toprule
+Date & Mathematical statement & Source and status\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\emph{Continued on the next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1735/1740; 1882 & Euler evaluates the positive even values; Lindemann's
+theorem makes every $\zeta(2m)$, $m\geq1$, transcendental. &
+\cite{euler1740,lindemann1882,dlmf}.\\
+1978/1979 & $\zeta(3)$ is irrational.  Beukers supplies a proof using
+multiple integrals. & Ap\'ery and Beukers; published
+\cite{apery1979,beukers1979}.\\
+2000/2001 & Infinitely many odd values are irrational; in particular
+$D(s)\geq (1-\varepsilon)\log s/(1+\log2)$ for large odd $s$. &
+Rivoal; Ball--Rivoal; published \cite{rivoal2000,ballrivoal2001}.\\
+2001/2002 & One in $W(5,21)$ (nine values). & Rivoal's 2001 preprint,
+2002 journal article \cite{rivoal2002}.\\
+2001 & One in $W(5,11)$ (four values).  A separate paper gives one in
+$W(7,35)$ and one in $W(9,51)$. & Zudilin; published
+\cite{zudilin2001,zudilin2001windows}.\\
+2018/2019 & $N(s)\geq 2^{(1-\varepsilon)\log s/\log\log s}$. &
+Fischler--Sprang--Zudilin; published \cite{fsz2019}.\\
+2018/2020 & Two in $W(5,69)$ (33 values). & Rivoal--Zudilin;
+published \cite{rivoalzudilin2020}.\\
+2019/2020 & $N(s)\geq(1.192507\ldots-\varepsilon)\sqrt{s/\log s}$. &
+Lai--Yu; published \cite{laiyu2020}.\\
+2021/2022 & Two in $W(5,35)$ (16 values). & Lai--Zhou;
+published \cite{laizhou2022}.\\
+20 Apr. 2026 & $D(s)\geq0.21\sqrt{s/\log s}$ for sufficiently large odd
+$s$. & Fischler;
+published \cite{fischler2026}.\\
+16 Sept. 2026 & $N(s-1)\geq1.284\sqrt{s/\log s}$ for sufficiently large
+even $s$. & Li Lai; 2025 preprint, 2026 journal publication
+\cite{lai2026count}.\\
+17 Sept. 2026 & $\zeta(5)$ is irrational; the preprint also states an
+irrationality-measure estimate.  The implementations below certify the
+irrationality endpoint, and not that additional estimate. & Aabir Fauzan;
+Zenodo v1 \cite{fauzan2026}.\\
+Sept.--Oct. 2026 & One in $W(7,21)$ (eight values), in separate public
+developments. & Devincenzis, Lin, and Krisman; repositories/preprint
+\cite{devincenzis2026,lin2026,krisman2026}.\\
+29 Sept. 2026 & One in $W(9,33)$ (13 values).  Also, for every odd
+$r\geq3$, some odd-indexed $\zeta(k)$ with $r+2\leq k\leq6r-1$ is
+irrational. & Yongxi Lin; repository \cite{lin2026}.\\
+29--30 Sept. 2026 & $1,\zeta(2),\zeta(3)$ are linearly independent over
+$\Q$. & Qian Tang; repository \cite{tang2026}.\\
+6 Oct. 2026 & One in $W(7,19)$ (seven values). & Jingwei Liu;
+Zenodo/repository v1.0.0 \cite{jingweiliu2026}.\\
+8 Oct. 2026 & $D(s-1)\geq1.119\log s/(1+\log2)$ for sufficiently large
+even $s$.  The paper also proves a distinct $p$-adic analogue. & Li Lai;
+published; real bound superseded by Fischler's growth rate
+\cite{lai2026small}.\\
+5/15 Oct. 2026 & $1,\zeta(3),\zeta(4)$ are linearly independent over
+$\Q$; hence $\zeta(3)/\pi^4$ is irrational. & Li Lai;
+arXiv v2, no formal verification identified \cite{lai2026linear}.\\
+15--16 Oct. 2026 & Proposed four-value conclusion: one in $W(7,13)$.
+The public Lean endpoint depends on eight numerical admissions; the
+certificate-conditional theorem is separately proved. & Morley Davidson;
+public project snapshot \cite{davidson2026}.\\
+Nov. 2026 & Simplified proof of the Oct. 2026 four-value result, Lean-checked without dependency on external numerics. Source not yet available. & Zaz Brown; private development.\\
+\end{longtable}
+\endgroup
+
+The shifted-window numbers in the 2001 row refer to Zudilin's published
+\emph{Mathematical Notes} paper.  Its bounds $35$ and $51$ improve the
+$37$ and $53$ in the earlier arXiv note \cite{zudilin2001note}.
+ A separate September 2026 preprint claims the irrationality of $\zeta(7);$ a public issue identifies a
+specific arithmetic objection to its argument; see \cite{anand2026,anandobjection}.  The table is a sourced account of major
+results and the located recent records; it is of course possible that other announcements were missed.
+
+\subsection{Formal verification: statements, versions, and assumptions}
+
+A formal proof is an expression checked against explicit inference rules
+by a proof assistant's \emph{kernel}.  The \emph{endpoint} is the precise
+proposition that the development ultimately proves.  Inspecting it is
+essential: a proof of an implication from numerical hypotheses has a
+different scope from a proof that also establishes those hypotheses.
+An \emph{axiom audit} lists the assumptions on which that endpoint depends.
+In Lean, \texttt{sorryAx} is the assumption introduced by an admitted proof
+step; the presence of an unused admission elsewhere in a repository does
+not by itself put that admission in the endpoint's dependency chain.
+
+In \cref{tab:history-formal}, ``standard Lean axioms'' abbreviates
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}:
+propositional extensionality, classical choice, and quotient soundness.
+It does not mean an absence of foundational assumptions;  an additional
+prime-number-theorem axiom is a mathematical assumption beyond this
+standard foundation.  An \emph{oracle} is a trusted procedure allowed to
+introduce a theorem without an ordinary proof term for each computation.
+An independent checker can provide useful additional assurance, but its
+acceptance still concerns the submitted endpoint and assumptions.
+
+The inventory below is based on primary papers, source files, declared
+toolchains, and the build or audit records explicitly identified in the
+references.  \emph{Except for the independent development reported as the present
+work, no historical development was rebuilt or replayed for this
+survey.}  ``Reports'' therefore attributes a verification
+claim to its published record.  A commit identifier fixes a source
+snapshot; a software version fixes the named implementation release.
+Unknown versions are marked unknown instead of being reconstructed from
+an unrelated current website header.
+
+\begingroup
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.24\textwidth}>{\raggedright\arraybackslash}p{.22\textwidth}>{\raggedright\arraybackslash}p{.46\textwidth}@{}}
+\caption{Located formal implementations and their documented scope.
+Source snapshots and dependency pins are supplied in the references.
+This table distinguishes completed author-reported checks, explicit
+assumptions, admissions, and unavailable evidence.}
+\label{tab:history-formal}\\
+\toprule
+Development & Proof software/version & Endpoint and documented qualification\\
+\midrule
+\endfirsthead
+\toprule
+Development & Proof software/version & Endpoint and documented qualification\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\emph{Continued on the next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Chyzak--Mahboubi--Sibut-Pinote--Tassi (2014); Mahboubi--Sibut-Pinote (2021)
+\cite{chyzak2014,mahboubi2021,aperysource} & Coq; completed paper cites
+8.11.0.  Current source requires Coq 8.20+; CI also configures Rocq 9.0/9.1.
+& $\zeta(3)$ irrational.  The 2014 account left a weak prime-number-theorem
+consequence open; the 2021 account reports the complete constructive
+proof.  Computer-algebra guesses are subsequently checked in Coq.\\
+Manuel Eberl, AFP, 27 Dec. 2019 \cite{eberl2019} & Isabelle/HOL;
+original release unverified here.  Inspected development build:
+Isabelle revision \texttt{559e5864efb7}. & $\zeta(3)$ irrational, following
+Beukers.  The inspected successful AFP build is dated 13 Nov. 2026, with
+AFP revision \texttt{62317ad25318}; these are not claimed as the 2019
+versions.\\
+Junqi Liu--Jujian Zhang--Lihong Zhi \cite{liuzhangzhi2025} & Lean 4.18.0;
+Mathlib v4.18.0. & Authors report a complete proof of $\zeta(3)$
+irrational.  Endpoint source and dependency pins were inspected;
+no new transitive axiom audit was run.\\
+C\'esar Del Solar \cite{delsolar2026} & Lean 4.35.0-rc2. & Fauzan's
+$\zeta(5)$ irrationality.  Reports only standard Lean axioms for
+\texttt{zeta5\_is\_irrational}; four unused admissions lie outside its
+dependency chain.  The prime number theorem is imported as a proof.\\
+Moritz Firsching \cite{firsching2026} & Lean 4.34.0-rc1. & Fauzan's
+$\zeta(5)$ irrationality.  Reports only standard Lean axioms for
+\texttt{irrational\_five}; unrelated imported admissions do not occur in
+that dependency chain.  A successful build for the pinned snapshot is
+recorded by Reservoir.\\
+Dan Romik \cite{romik2026} & Lean 4.34.0; Mathlib v4.34.0. & Fauzan's
+$\zeta(5)$ irrationality \emph{assuming an explicit prime-number-theorem
+axiom}.  Reports no admissions, but the mathematical axiom
+\texttt{chebyshev\_theta\_asymptotic} remains.\\
+Alex Raymond Hyman, AFP, 26 Oct. 2026 \cite{hyman2026} & Isabelle/HOL;
+exact release not established from the inspected entry. & Port of
+Del Solar's proof of $\zeta(5)$ irrationality.  Prime number theorem from
+AFP; the \texttt{holds} oracle is used for 72 numerical inequalities.
+This is a port rather than an independent mathematical proof.\\
+Gennaro Marco Devincenzis \cite{devincenzis2026} & Lean 4.35.0-rc2. &
+One in $W(7,21)$.  Reports standard Lean axioms and kernel-checked finite
+calculations.  The repository reports Lean, NanoDa, and \texttt{con-ron}
+checks using the tools bundled with that Lean release.\\
+Yongxi Lin \cite{lin2026} & Lean 4.35.0-rc3. & Eight-value, 13-value,
+and uniform-window endpoints in the preceding table.  Reports standard
+Lean axioms.  Lean, NanoDa, and \texttt{con-ron} are the versions bundled
+with this release; no separate checker version is declared.\\
+Qian Tang \cite{tang2026} & Lean 4.35.0-rc3. & Rational linear
+independence of $1,\zeta(2),\zeta(3)$.  Reports standard Lean axioms and
+checks with Lean, NanoDa, and \texttt{con-ron}; independent release
+identifiers for the latter checkers were not established.\\
+Jingwei Liu \cite{jingweiliu2026} & Lean 4.34.0-rc2. & One in
+$W(7,19)$.  Reports a fresh project rebuild, standard Lean axioms, and
+kernel verification of the finite numerical work.  Jingwei Liu is not
+the Junqi Liu of the earlier Ap\'ery formalization.\\
+Shawn Krisman \cite{krisman2026} & Lean 4.35.0; Mathlib v4.35.0. &
+One in $W(7,21)$.  Reports standard Lean axioms and kernel-checked
+numerical certificates; completed 22 Oct. 2026. \\
+Zeta Irrationality Project (this work) \cite{zeta5lean2026}
+& Lean 4.33.1; Mathlib \texttt{0df444a360ea\ldots}.
+& Independent factorial-window proof of $\zeta(5)$ irrationality.
+The transitive axiom audit of \texttt{Zeta5.irrational\_zeta\_five}
+returns only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. Both 2048-point analytic and 3060-cell arithmetic
+certificates are kernel checked; there are no numerical admissions.\\
+Morley Davidson \cite{davidson2026} & Lean 4.33.1.  External numerical
+checks: python-flint 0.9.0, Arb at 256-bit precision. & Four-value
+certificate-conditional theorem reports standard Lean axioms.  Its
+supplied-certificate wrapper still depends on eight numerical
+admissions and hence on \texttt{sorryAx}; these external interval checks
+are not Lean proof terms.\\
+Zaz Brown (private communication, Nov 9, 2026) & Lean; version, source commit,
+and dependency versions currently private & Simplified proof with full Lean verification of the above (latest) four-value result.
+\end{longtable}
+\endgroup
+
+There are therefore three located Lean implementations of Fauzan's
+argument, with different documented assumptions, and an additional
+Isabelle/HOL port.  Romik's explicit prime-number-theorem assumption
+must remain visible when counting these implementations as
+certifications.  Likewise, the public four-value endpoint
+\path{OddZeta.FourValue.irrational_zeta7_or_zeta9_or_zeta11_or_zeta13}
+must be distinguished from its fully proved implication from
+certificate hypotheses \cite{davidson2026}.
+
+\subsection{Methodological precedents}
+
+Determinants have long played an important role in irrationality research. Zudilin's determinantal criterion extends the classical argument based on small nonzero integer linear forms by exploiting additional structure \cite{zudilin2017}. A **Hankel matrix** is a matrix whose \((i,j)\)-entry depends only on \(i+j\), so its entries are constant along each anti-diagonal. Haynes and Zudilin studied Hankel determinants formed from zeta values along arithmetic progressions, obtaining asymptotic bounds with Diophantine consequences \cite{hayneszudilin2015}. More recently, Fauzan's proof of the irrationality of \(\zeta(5)\) also employed Hankel determinants \cite{fauzan2026}. Although these approaches share determinantal features, their constructions and arithmetic estimates differ. The purpose of the present paper is to develop a distinct positive Gram-determinant construction and establish the quantitative estimates required for its irrationality argument.
+
+The determinants we consider are Gram determinants expressed
+in a factorial-polynomial basis; after a triangular change to the
+monomial basis, they become Hankel determinants. The factorial basis
+is particularly advantageous for the local arithmetic estimates,
+while the monomial basis makes the connection with classical Hankel
+determinants explicit (see \cref{lem:basis-change}).
+
+% END SHARED CORE 01_history
+
+% BEGIN JOURNAL ADDITION zeta3
+\section{A determinantal warm-up: the irrationality of \texorpdfstring{$\zeta(3)$}{zeta(3)}}
+\label{sec:zeta3-warmup}
+
+The construction used below for $\zeta(5)$ has a simpler specialization to
+$\zeta(3)$. We give it first to expose the common mechanism: a positive
+Gram determinant is a rational polynomial in the target number; an
+arithmetic estimate clears its coefficients; and an analytic estimate
+forces its value, after clearing, to approach zero. In this specialization
+the comparison of the two estimates reduces to $\log2>2/3$. No finite
+numerical certificate is needed.
+
+\subsection{Relation to the classical proofs}
+
+Ap\'ery's proof constructs rational linear forms in $\zeta(3)$ and combines
+their arithmetic properties with sufficiently rapid decay
+\cite{apery1979}. Beukers supplies a positive integral realization of
+suitable forms, making their nonvanishing and their smallness accessible
+through the integrand \cite{beukers1979}. The argument here retains this
+arithmetic--analytic division of labor. Its positive object is a Gram
+determinant, and its polynomial degree grows with the matrix size. Both
+its denominator cost and its analytic saving are estimated on the scale
+$N^2$; substituting a hypothetical rational value with denominator $b$
+costs only $N\log b$.
+
+There are substantial precedents for this formulation. Pr\'evost gives
+Pad\'e-based proofs for $\zeta(2)$ and $\zeta(3)$
+\cite{prevost1996}; his later positive Stieltjes representation and the
+subsequent work with Rivoal develop the associated rational approximation
+framework \cite{prevost2019,prevostrivoal2021}. Zudilin's determinantal
+criterion explains how positive moment determinants can strengthen an
+irrationality argument \cite{zudilin2017}. The positive-functional setting
+also appears in Calegari's exposition, which explicitly treats determinants
+with several simple poles and includes the present rational-weight family
+\cite{calegari2026}. Accordingly,
+this section is an explicit specialization and comparison, with no claim
+of novelty for the general method or of a new formal verification.
+
+The connection to Pr\'evost is more specific than the use of positivity.
+His construction uses rational Bernoulli moments and square-node products
+of the form
+\[
+ \binom{x-1}{k}\binom{x+k}{k}
+ =\frac{\prod_{a=1}^{k}(x^2-a^2)}{(k!)^2}.
+\]
+With $x=i\sqrt t$, this becomes $(-1)^kD_k(t)/(k!)^2$, where $D_k$
+is defined below. A particular subfamily, denoted
+$RPA(m,2m-1,2m)$ in the arXiv version of \cite[Section~5.2]{prevost2019},
+recovers Ap\'ery's numbers. That identification applies to the stated
+indices and of course does not identify every determinant built from this moment
+functional with the classical linear forms.
+
+\begin{theorem}\label{thm:z3-warmup}
+The number $\zeta(3)=\sum_{n\ge1}n^{-3}$ is irrational.
+\end{theorem}
+
+All integers $N\ge1$ are admissible in this section. Our choice of window
+is $m=0$, $R=N$, so there is no omitted initial block and no common-root
+improvement to estimate. The subscript $3$ in $\mu_3$ and
+$\mathcal J_{3,X}$ denotes the target zeta argument and distinguishes
+these objects from the subsequent $\zeta(5)$ construction. The elementary
+interpolation and potential calculations used here are proved in detail
+in Sections~\ref{sec:integer-valued}--\ref{sec:local-kernel} and
+\ref{sec:potential}--\ref{sec:discretization}; we record explicitly the
+changes needed at the present parameters.
+
+\subsection{A positive functional containing only \texorpdfstring{$\zeta(3)$}{zeta(3)}}
+
+Put $f(x)=(e^{2\pi x}-1)^{-1}$ for $x>0$. Define a measure $\mu_3$ in
+the variable $t=x^2$ by
+\begin{equation}\label{eq:z3-measure}
+ \int g(t)\,\dd\mu_3(t)
+ =\int_0^\infty g(x^2)x^3 f''(x)\,\dd x
+\end{equation}
+for nonnegative measurable $g$. The density is strictly positive, since
+$f''(x)=(2\pi)^2\sum_{n\ge1}n^2e^{-2\pi nx}$. Its value at zero,
+defined by continuity, is $1/\pi$, and
+\begin{equation}\label{eq:z3-density-bound}
+ 0<x^3f''(x)\le C(1+x^3)e^{-2\pi x}\qquad(x>0).
+\end{equation}
+The Laurent expansion of $f$ proves the assertions at zero; the positive
+exponential series proves the bound for $x\ge1$.
+
+Use the Bernoulli convention
+$z/(e^z-1)=\sum_{n\ge0}\mathrm B_nz^n/n!$. Integration of the positive
+exponential series and Euler's even-zeta formula give
+\begin{equation}\label{eq:z3-moments}
+ \int t^j\,\dd\mu_3(t)
+ =\frac{(2j+3)!}{(2\pi)^{2j+2}}\zeta(2j+2)
+ =\frac{(-1)^j(2j+3)}2\mathrm B_{2j+2}\in\Q.
+\end{equation}
+In particular, $\int\dd\mu_3=1/4$.
+For $y>0$ the corresponding Stieltjes transform is
+\begin{equation}\label{eq:z3-stieltjes}
+ \int\frac{\dd\mu_3(t)}{t+y^2}
+ =y^2\zeta(3,y)-\frac1{2y}-\frac12,
+ \qquad \zeta(3,y)=\sum_{n\ge0}(n+y)^{-3}.
+\end{equation}
+Here is a direct derivation. If
+$K(y)=\int_0^\infty xf(x)/(x^2+y^2)\,\dd x$, Binet's identity
+\eqref{eq:binet-digamma} reads
+$2K(y)=\log y-(2y)^{-1}-\psi(y)$.
+Two integrations by parts in the left side of
+\eqref{eq:z3-stieltjes}, using
+$x^3/(x^2+y^2)=x-y^2x/(x^2+y^2)$ and the harmonicity of
+$x/(x^2+y^2)$, give $y^2K''(y)$. Differentiation of Binet's identity
+gives $K''(y)=\zeta(3,y)-(2y^3)^{-1}-(2y^2)^{-1}$.
+The integrations by parts have vanishing boundary terms: at zero each
+boundary product is $O(x)$, and at infinity the derivatives of $f$
+decay exponentially. This proves \eqref{eq:z3-stieltjes}.
+
+Write $H_n^{(3)}=\sum_{i=1}^n i^{-3}$, with $H_0^{(3)}=0$. On rational
+functions having only simple poles among $-1,-4,-9,\ldots$, define the
+$\Q$-linear functional $\mathcal J_{3,X}$ by
+\begin{align}
+ \mathcal J_{3,X}(t^j)
+   &=\frac{(-1)^j(2j+3)}2\mathrm B_{2j+2},\notag\\
+ \mathcal J_{3,X}\left(\frac1{t+i^2}\right)
+   &=k_i^{(3)}(X)
+     :=i^2X-i^2H_{i-1}^{(3)}-\frac1{2i}-\frac12.
+       \label{eq:z3-functional}
+\end{align}
+Polynomial division and partial fractions make this definition
+unambiguous. Its values are affine in $X$, and evaluation at $X=\zeta(3)$
+is integration against $\mu_3$. In particular, no other odd zeta value
+enters this functional.
+
+\subsection{The Gram determinant}
+
+For $j\ge0$ put
+\[
+ P_j(z)=\frac{\prod_{a=0}^{j-1}(z-a^2)}{(2j)!},\qquad
+ B_j(t)=P_j(-t),\qquad D_N(t)=\prod_{i=1}^N(t+i^2),
+\]
+where an empty product is $1$. Define
+\begin{equation}\label{eq:z3-pencil}
+ A_N^{(3)}(X)
+ =(N!)^2\left[
+ \mathcal J_{3,X}\left(\frac{B_jB_k}{D_N}\right)
+ \right]_{0\le j,k<N},\qquad
+ F_N^{(3)}(X)=\det A_N^{(3)}(X).
+\end{equation}
+Every entry belongs to $\Q[X]$ and has degree at most one, so
+$\deg F_N^{(3)}\le N$. In fact the degree is exactly $N$.
+Set $V_{ji}=B_j(-i^2)$ for $0\le j<N$, $1\le i\le N$.
+Partial fractions show that the coefficient matrix of $X$ is
+\[
+ (N!)^2 V\,\operatorname{diag}\left(
+       \frac{i^2}{D_N'(-i^2)}\right)_{i=1}^N V^{\mathsf T}.
+\]
+Evaluation at $N$ distinct nodes is an isomorphism on the polynomials
+of degree below $N$, so $V$ is invertible. Every diagonal factor is
+nonzero, proving the degree assertion. At $X=\zeta(3)$ this is a Gram matrix for
+the linearly independent polynomials $B_0,\ldots,B_{N-1}$ against the
+positive measure $(N!)^2\dd\mu_3/D_N$. A nonzero polynomial has only
+finitely many zeros, whereas this measure has positive density on
+$(0,\infty)$. Thus
+\begin{equation}\label{eq:z3-positive}
+ F_N^{(3)}(\zeta(3))>0.
+\end{equation}
+
+For comparison with the classical linear forms, the first determinant is
+$F_1^{(3)}(X)=X-1$, and the second pencil and determinant are
+\begin{equation}\label{eq:z3-small-example}
+ A_2^{(3)}(X)=
+ \begin{pmatrix}
+ 5-4X&12-10X\\
+ 12-10X&101/4-21X
+ \end{pmatrix},\qquad
+ 4F_2^{(3)}(X)=-64X^2+136X-71.
+\end{equation}
+The off-diagonal entry is $-2(5X-6)$, containing the familiar first
+Ap\'ery linear form. The determinant itself is already quadratic.
+This distinguishes the displayed sequence from the usual sequence of
+linear forms without asserting that the underlying approximation
+constructions are unrelated.
+
+\subsection{An integer coefficient-clearing factor}
+
+For a prime $p$, let $v_p$ on a rational polynomial mean the minimum
+valuation of its coefficients. Write
+$\mathcal O_p=\{a/b\in\Q:p\nmid b\}$.
+We shall construct positive integers $M_N$ such that
+\begin{equation}\label{eq:z3-clearing-goal}
+ M_NF_N^{(3)}\in\Z[X],\qquad
+ \limsup_{N\to\infty}\frac{\log M_N}{N^2}
+ \le2+2\log2.
+\end{equation}
+Primitivity is unnecessary for this conclusion.
+
+\begin{lemma}\label{lem:z3-local-rank}
+Suppose $p>3$ and $p^2>4N+20$. Write
+\[
+ N=qp+\sigma,\quad 0\le\sigma<p,\quad
+ \epsilon=\floor{2\sigma/p},\quad
+ D_p=\floor{(2N-2)/p},\quad
+ w_p=\begin{cases}
+ \sigma,&\epsilon=0,\\
+ \sigma-(p-1)/2,&\epsilon=1.
+ \end{cases}
+\]
+Then
+\begin{equation}\label{eq:z3-local-rank-bound}
+ v_p(F_N^{(3)})\ge
+ -(2+\epsilon)N-\min\{N,(D_p+1)w_p\}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The proof of \cref{prop:local-kernel} applies with the following explicit
+changes. Let $V$ be the $\mathcal O_p$-span of $P_j(x^2)$, $0\le j<N$.
+By \cref{lem:newton-tools}, its elements are integer-valued at $p$, and
+the reduction of $f(c+pY)$ has degree at most $D_p$.
+A reflected nonzero residue class contains the indices
+$i\equiv\pm c\pmod p$, where $1\le c\le(p-1)/2$.
+Its largest possible size is $2q+1+\epsilon$, attained by exactly $w_p$
+classes, with an empty collection allowed. Restriction to these classes
+defines a map into $w_p$ copies of $\Fp[Y]_{\le D_p}$.
+
+Let $\Bfun$ be the Bernoulli evaluation map
+$\Bfun(x^j)=\mathrm B_j$. In place of three derivatives in
+\eqref{eq:bernoulli-moments}, the present polynomial moments satisfy
+\begin{equation}\label{eq:z3-bernoulli-functional}
+ \mathcal J_{3,X}(q(t))
+ =\frac12\Bfun\left[\frac{\mathrm d}{\mathrm d x}
+       \{x^3q(-x^2)\}\right].
+\end{equation}
+Expand a product $fg$ in the central-factorial basis and truncate at
+index $N$, as in \eqref{eq:normalized-local-quotient}. On each residue
+class, monic division shows that the normalized polynomial quotient is
+integer-valued after multiplication by $p^{1+\epsilon}$. Its degree,
+after multiplication by $x^3$, plus one is less than $p^2$.
+One derivative and Bernoulli evaluation each lose at most one power
+of $p$, by \eqref{eq:bernoulli-newton}--\eqref{eq:newton-derivative}.
+Thus its contribution has valuation at least $-(3+\epsilon)$.
+If one argument is in the restriction kernel, the numerator gains one
+power of $p$ on every maximal class, exactly as in the proof of
+\cref{prop:local-kernel}; the resulting bound is $-(2+\epsilon)$.
+The constant quotient of the retained $P_N$ term costs at most
+$\epsilon$, since the zeroth moment is $1/4$.
+
+For the proper fractions, $k_i^{(3)}(X)$ has valuation at least $-3$
+when $p\nmid i$. The normalized residue factor
+$(N!)^2/D_N'(-i^2)$ has valuation $2q-h_c+1$, where $h_c$ is the
+size of its reflected class. Only maximal classes can reach
+$-(3+\epsilon)$, and a restriction-kernel argument again gains one
+power. If $p\mid i$, the normalized residue factor has valuation $2$
+and $k_i^{(3)}$ has valuation at least $-1$, so these contributions
+are integral. Finally, the coefficient of $X$ has valuation at least
+$-\epsilon$.
+
+It follows that $p^{3+\epsilon}A_N^{(3)}$ is integral, its reduction is
+constant in $X$, and its reduced rank is at most $(D_p+1)w_p$.
+If that rank is $k$, row reduction supplies a factor $p$ in each of
+$N-k$ rows. Removing the scale $p^{3+\epsilon}$ proves
+\eqref{eq:z3-local-rank-bound}.
+\end{proof}
+
+Small primes can be cleared uniformly. Put
+$L_p=\floor{\log_p(4N+4)}$. The proof of
+\cref{prop:small-primes}, with cubic harmonic sums and the single
+derivative in \eqref{eq:z3-bernoulli-functional}, gives the conservative
+entry bound
+\[
+ v_p(A_N^{(3)}(X)_{jk})\ge-9L_p-v_p(96).
+\]
+Indeed, the proper-fraction estimate loses at most $3L_p$ in the
+harmonic sum instead of $5L_p$, and the polynomial-quotient estimate
+uses one derivative instead of three. All other factorial and
+product-basis bounds in that proof remain valid. With $Y=N^{9/10}$,
+the integer
+\[
+ E_N=96\prod_{p\le Y}p^{9L_p}
+\]
+clears these primes entrywise, and
+$\log(E_N^N)=O(N^{19/10}\log N)=o(N^2)$.
+
+For $p>N$, pass to the monomial matrix
+$[\mathcal J_{3,X}(t^{j+k}/D_N)]_{j,k<N}$. It is integral at $p$.
+To check this assertion, its polynomial quotients have degree at most
+$N-2$. In \eqref{eq:z3-moments}, the first possible Bernoulli pole,
+$2j+2=p-1$, is canceled by $2j+3=p$; the next possible pole has
+$j=p-2>N-2$. All required moments are therefore integral.
+Every residue node is below $p$. The reflected-pair cancellation in
+\cref{lem:large-prime-integrality} still holds, now using
+$\sum_{a=1}^{p-1}a^{-3}\equiv0\pmod p$, which yields
+$k_{p-i}^{(3)}\equiv k_i^{(3)}\pmod p$. Singletons have unit
+derivative denominators. The change of basis is exact:
+\[
+ F_N^{(3)}(X)=
+ \frac{(N!)^{2N}}{\prod_{j=0}^{N-1}((2j)!)^2}
+ \det\left[\mathcal J_{3,X}\left(\frac{t^{j+k}}{D_N}\right)\right]_{j,k<N}.
+\]
+Thus, for $N<p\le2N$, a clearing exponent is
+$2\sum_{j=0}^{N-1}\floor{2j/p}$, and no prime beyond $2N$ is needed.
+For sufficiently large $N$, we have $Y>3$ and $Y^2>4N+20$.
+With $\epsilon_p,D_p,w_p$ as in \cref{lem:z3-local-rank}, set
+\[
+ M_N=E_N^N
+ \prod_{Y<p\le N}
+ p^{(2+\epsilon_p)N+\min\{N,(D_p+1)w_p\}}
+ \prod_{N<p\le2N}p^{\,2\sum_{j=0}^{N-1}\floor{2j/p}}.
+\]
+All exponents are nonnegative integers, and the preceding estimates
+prove $M_NF_N^{(3)}\in\Z[X]$. For the finitely many remaining $N$,
+take any positive integer clearing the coefficients of $F_N^{(3)}$.
+
+We evaluate its rate. Away from the floor boundaries put $\beta=p/N$,
+$q=\floor{1/\beta}$, and
+$\epsilon=\floor{2\{1/\beta\}}$. On $0<\beta<1$, the limiting
+clearing profile is
+\[
+ e_3(\beta)=2+\epsilon+
+ \min\left\{1,
+ (2q+\epsilon+1)\left(1-(q+\epsilon/2)\beta\right)\right\}.
+\]
+The expression inside the minimum ranges from $0$ to $1$ on each
+half-period, so explicitly
+\begin{equation}\label{eq:z3-arithmetic-profile}
+ e_3(\beta)=
+ \begin{cases}
+ 2q+5-(q+1)(2q+1)\beta,
+   &\dfrac1{q+1}<\beta<\dfrac2{2q+1},\\[2mm]
+ 2q+3-q(2q+1)\beta,
+   &\dfrac2{2q+1}<\beta<\dfrac1q.
+ \end{cases}
+\end{equation}
+Its integral over the $q$th full period is
+\[
+ \int_{1/(q+1)}^{1/q}e_3(\beta)\,\dd\beta
+ =\frac{12q+5}{2q(q+1)(2q+1)}
+ =\frac5{2q}-\frac7{2(q+1)}+\frac2{2q+1}.
+\]
+Summing to $Q$ gives
+$2(H_{2Q+1}-H_Q)+3/2-7/(2Q+2)$, where
+$H_j=\sum_{i=1}^j i^{-1}$. Consequently
+\[
+ \int_0^1e_3(\beta)\,\dd\beta=\frac32+2\log2.
+\]
+Above $1$, the factorial charge has profile $2-\beta$ on $(1,2)$,
+whose integral is $1/2$. The prime-number-theorem passage in
+\cref{sec:arithmetic} therefore proves \eqref{eq:z3-clearing-goal}.
+For precision, $e_3\le4$ controls the interval near zero; after fixing
+a positive lower cutoff there are finitely many floor boundaries, each
+with only $O(1)$ exceptional integer primes and total cost
+$O(N\log N)$. Small primes have already cost $o(N^2)$. Thus no
+prime-number theorem for shrinking intervals is required.
+
+\subsection{The analytic saving at the unshifted window}
+
+Let $\widehat h_{k,N}$ be the least squared norm of a real monic
+polynomial of degree $k$ for $\dd\mu_3/D_N$. Positive definiteness
+gives the minimizer, and the triangular change to monic orthogonal
+polynomials gives
+\begin{equation}\label{eq:z3-norm-product}
+ F_N^{(3)}(\zeta(3))
+ =\prod_{k=0}^{N-1}\frac{(N!)^2}{((2k)!)^2}\widehat h_{k,N}.
+\end{equation}
+This is the $m=0$ version of \cref{lem:norm-product}.
+
+We specify the potential used to bound these norms. Put
+\[
+ I_1(y)=\int_0^1\log(y^2+t^2)\,\dd t,\qquad
+ V_0(y)=2\pi y+I_1(y).
+\]
+For $b,t>0$, let $\lambda_b$ and $\nu_{b,t}$ be the symmetric measures
+on $[-b,b]$ with respective densities
+\[
+ \frac1\pi\arcosh\frac b{|x|},\qquad
+ \frac{t\sqrt{b^2-x^2}}
+ {2\pi\sqrt{t^2+b^2}(x^2+t^2)}.
+\]
+Here $\arcosh z=\log(z+\sqrt{z^2-1})$ for $z\ge1$.
+The positive measure
+$\eta_b=\lambda_b+\int_0^1\nu_{b,t}\,\dd t$ has mass
+\begin{equation}\label{eq:z3-mass}
+ u(b)=\frac{3b+1-\sqrt{1+b^2}}2,
+ \qquad
+ b(u)=\frac{6u-3+\sqrt{4u^2-4u+9}}8.
+\end{equation}
+In particular $b(1)=3/4$. Write
+$U_b(y)=\int_{-b}^b\log|y-x|\,\dd\eta_b(x)$.
+The Cauchy-transform computation \eqref{eq:cauchy-nu} and its
+integration in \cref{prop:potential-inequality} give
+\begin{align}
+ 4U_b(y)-V_0(y)&=\ell(u) &&(0\le y\le b),\notag\\
+ 4U_b(y)-V_0(y)&\le\ell(u) &&(y\ge0),\notag\\
+ \ell(u)&=2+4u\left(\log\frac b2-1\right)
+              -2\log\frac{1+\sqrt{1+b^2}}2,\quad b=b(u).
+ \label{eq:z3-potential}
+\end{align}
+These formulas follow directly with the term $\int_0^s\nu_{b,t}\,\dd t$
+absent. In particular, $\eta_b\le(3/2)\lambda_b$,
+$u(b)\sim3b/2$ at zero, and $\ell(0)=2=-V_0(0)$.
+They do not use the different small-$b$ expansion valid at fixed $s>0$.
+
+\begin{proposition}\label{prop:z3-analytic}
+Define $g(0)=0$ and, for $0<u\le1$,
+\begin{equation}\label{eq:z3-g}
+ g(u)=4u\log\frac{4u}{b(u)}
+       +2\log\frac{1+\sqrt{1+b(u)^2}}2.
+\end{equation}
+Then
+\begin{equation}\label{eq:z3-analytic-bound}
+ \limsup_{N\to\infty}\frac{\log F_N^{(3)}(\zeta(3))}{N^2}
+ \le-\int_0^1g(u)\,\dd u<-5\log2.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Fix $\varepsilon>0$. The quantile construction of
+\cref{lem:quantile-bound} applies uniformly for $\varepsilon\le u\le1$:
+$b(u)$ stays in a compact positive interval and
+$\eta_b\le(3/2)\lambda_b$ gives the same folded-density bound
+$Cv^{-1/2}(1+|\log v|)$. It supplies monic trial polynomials of degree
+$k$ whose squared values at $N^2y^2$ are at most
+$N^{4k+C_\varepsilon}e^{4NU_b(y)}$, with $u=k/N$.
+Also $D_N(N^2y^2)\ge N^{2N}e^{NI_1(y)}$.
+Together with \eqref{eq:z3-density-bound} and
+\eqref{eq:z3-potential}, this gives
+\[
+ \log\widehat h_{k,N}
+ \le(4k-2N)\log N+N\ell(k/N)+O_\varepsilon(\log N)
+ \quad(\varepsilon N\le k<N).
+\]
+The tail of $4U_b-V_0$ decreases at a uniform linear rate outside a
+fixed compact interval, as in \eqref{eq:tail-derivative}, so the
+pointwise estimate may be integrated. Replacing the old density's
+polynomial power $5$ by $3$ only changes the logarithmic error.
+Stirling's formula in \eqref{eq:z3-norm-product} then bounds the
+logarithm of its $k$th factor by $-Ng(k/N)+O_\varepsilon(\log N)$.
+
+For $0\le k<\varepsilon N$, use $B_k$ itself as a trial polynomial.
+The corresponding factor is at most
+\[
+ (N!)^2\int\frac{B_k(t)^2}{D_N(t)}\,\dd\mu_3(t)
+ \le\int B_k(t)^2\,\dd\mu_3(t)
+ \le Ce^{Ck}(1+k)^3.
+\]
+The last inequality follows from
+$|B_k(x^2)|\le(x+k)^{2k}/(2k)!$ and the gamma integral in
+\eqref{eq:z3-density-bound}; at $k=0$ the integral is $1/4$.
+These initial rows contribute $O(\varepsilon^2N^2)+O(N\log N)$.
+Letting $N\to\infty$ and then $\varepsilon\downarrow0$ proves the
+first inequality in \eqref{eq:z3-analytic-bound}. Continuity at zero
+follows from $g(u)=4u\log6+O(u^2)$.
+
+Finally, differentiation gives $g'(u)=4\log(4u/b)$. Since
+\[
+ u-bu'(b)=\frac{1-1/\sqrt{1+b^2}}2>0\qquad(b>0),
+\]
+$g$ is strictly concave. Its endpoint values are
+$g(0)=0$ and $g(1)=10\log2$, so its graph lies strictly above the
+endpoint chord on $(0,1)$. Integrating proves
+$\int_0^1g(u)\,\dd u>5\log2$.
+\end{proof}
+
+The exact value is also elementary:
+\begin{equation}\label{eq:z3-exact-analytic}
+ \int_0^1g(u)\,\dd u=\frac{13}{2}\log2-1.
+\end{equation}
+For verification, set $z=\sqrt{1+b^2}+b$, so $1\le z\le2$ and
+$u=(z+1-2/z)/2$. Put
+$L(z)=\log(4(z+2)/(z+1))$ and
+$M(z)=\log((z+1)^2/(4z))$. Then $g=4uL+2M$ and $dg/du=4L$.
+Integration by parts gives
+\[
+ \int_0^1g\,\dd u
+ =2L(2)+2M(2)
+ -2\int_1^2\frac{u(z)^2}{(z+1)(z+2)}\,\dd z.
+\]
+Here $L(2)+M(2)=\log6$, and
+\[
+ \frac{u(z)^2}{(z+1)(z+2)}
+ =\frac14\left(1-\frac5z+\frac2{z^2}+\frac4{z+1}\right).
+\]
+The last integral is $1/2+\log3-(9/4)\log2$, proving
+\eqref{eq:z3-exact-analytic}. The endpoint term at $u=0$ vanishes
+because $L(z)\to\log6$ there.
+
+\subsection{The contradiction and the role of the warm-up}
+
+\begin{proof}[Proof of \cref{thm:z3-warmup}]
+Suppose $\zeta(3)=a/b$ with $a,b\in\Z$ and $b>0$.
+By \eqref{eq:z3-clearing-goal}, the degree bound, and
+\eqref{eq:z3-positive},
+\[
+ Z_N=b^NM_NF_N^{(3)}(a/b)\in\Z_{>0}.
+\]
+But \eqref{eq:z3-clearing-goal} and \eqref{eq:z3-analytic-bound} give
+\[
+ \limsup_{N\to\infty}\frac{\log Z_N}{N^2}
+ \le2-3\log2<0.
+\]
+Indeed,
+$\log2=2\int_0^{1/3}(1-t^2)^{-1}\,\dd t>2/3$.
+Thus $Z_N\to0$, contradicting $Z_N\ge1$.
+\end{proof}
+
+Using the exact integral instead of the chord bound gives the stronger
+explicit margin
+\[
+ \left(\frac{13}{2}\log2-1\right)-(2+2\log2)
+ =\frac92\log2-3>0.
+\]
+This is a comparison of proven sufficient estimates, and not a claim that
+the coefficient denominator or the determinant has a matching
+asymptotic lower bound. The subsequent $\zeta(5)$ argument keeps the
+same positive-functional and Gram-determinant structure, but its larger
+harmonic-denominator cost is overcome by a shifted window,
+additional local divisibility, and a more delicate final comparison. The present
+case therefore exhibits the mechanism before those refinements are
+introduced.
+
+% END JOURNAL ADDITION zeta3
+
+\medskip\noindent\textbf{The $\zeta(5)$ proof.} The parameter conventions in the following sections apply through Section~\ref{sec:contradiction}; Section~\ref{sec:higher-odd} subsequently reintroduces the general odd target.
+
+% BEGIN SHARED CORE 02_plan
+\section{Plan of the proof and notation}\label{sec:plan}
+
+We give a proof of the following statement, independently of the
+arguments cited in the historical discussion for the same conclusion.
+Here independence specifies the logical dependencies: no theorem or lemma
+from Fauzan's proof or its subsequent adaptations is used below.
+
+\begin{theorem}\label{thm:main}
+The real number
+\[
+  \zeta(5)=\sum_{n=1}^{\infty}\frac1{n^5}
+\]
+is irrational.
+\end{theorem}
+
+The proof has two parts. A positive measure produces a determinant
+$F_N(X)\in\Q[X]$ that is strictly positive at $X=\zeta(5)$. Its entries are
+affine functions of $X$, and $\deg F_N\le r=6N/5$ simply because
+$F_N$ is an $r\times r$ determinant. (The sharper bound $\deg F_N\le N$
+proved below is optional for the final contradiction.) We estimate both
+the denominators of its coefficients and its value at $\zeta(5)$ on the
+scale $N^2$. The Lean-verified arithmetic estimate costs less than
+$5.412N^2$ in the logarithm, while the analytic estimate saves more than
+$5.4133705070N^2$. If $\zeta(5)$ were rational, clearing its denominator
+would cost only $O(N),$ so the resulting hypothetical positive integer would tend to zero, a contradiction.
+
+\subsection{Parameters and conventions}
+Throughout, $N$ tends to infinity through positive multiples of $20$, and
+\begin{equation}\label{eq:fixed-parameters}
+ s=\frac1{20},\qquad \rho=\frac54,\qquad
+ \delta=\rho-s=\frac65,\qquad
+ m=sN,\qquad R=\rho N,\qquad r=R-m=\delta N.
+\end{equation}
+The letter $r$ denotes an integer matrix size; $\delta$ denotes its ratio to
+$N$. For an integer $j\ge0$, empty products being $1$, put
+\begin{equation}\label{eq:basic-polynomials}
+ P_j(z)=\frac{\prod_{a=0}^{j-1}(z-a^2)}{(2j)!},\qquad
+ B_j(t)=P_j(-t),\qquad
+ D_N(t)=\prod_{i=1}^{N}(t+i^2).
+\end{equation}
+The \emph{principal factorial window} is simply the consecutive collection
+$B_m,\ldots,B_{R-1}$. This phrase describes an index range and its factorial
+normalization; it introduces no additional mathematical structure.
+
+All logarithms are natural. We write $x_+=\max(x,0)$ and use the usual floor
+and ceiling functions. The notation $O(\cdot)$ and $o(\cdot)$ refers to the
+limit just specified; a claimed uniformity in other variables is stated
+explicitly. Constants in intermediate estimates may depend on the fixed
+parameters in \eqref{eq:fixed-parameters}. An integral against a measure means
+a Lebesgue integral, or its improper version when its convergence has been
+established.
+
+For a prime $p$, $v_p(a/b)$ is the exponent of $p$ in a nonzero rational
+number $a/b$, and $v_p(0)=+\infty$. For a rational polynomial, vector, or
+matrix, $v_p$ means the minimum of the valuations of its coefficients or
+entries. Thus a polynomial inequality $v_p(G)\ge -e$ is
+\emph{coefficientwise}: it concerns every coefficient, rather than merely the value
+of $G$ at one point. We use the localization
+\[
+ \mathcal O_p=\Z_{(p)}
+ =\{a/b:a,b\in\Z,\ b\ne0,\ p\nmid b\},
+\]
+whose reduction modulo $p$ is the field $\Fp=\Z/p\Z$. A \emph{unit} of
+$\mathcal O_p$ is an element with valuation zero. These definitions suffice;
+no completion of $\Q$ is required.
+
+The Bernoulli numbers $\mathrm B_n$ are defined by the convergent power
+series near zero, equivalently by its identity of formal series,
+\[
+ \frac{z}{e^z-1}=\sum_{n=0}^{\infty}\mathrm B_n\frac{z^n}{n!}.
+\]
+The upright symbol $\mathrm B_n$ distinguishes these numbers from the
+polynomials $B_j(t)$. We write
+$H_n^{(5)}=\sum_{i=1}^{n}i^{-5}$, with $H_0^{(5)}=0$.
+The linear functional $\J_X$ and the positive measure underlying it are
+defined in \cref{sec:functional}.
+
+\subsection{The two estimates to be proved}
+For a nonzero polynomial $G(X)=\sum_jg_jX^j\in\Q[X]$, its
+\emph{primitive positive normalizer} is the unique positive rational number
+$Q(G)$ such that $Q(G)G$ has integer coefficients with greatest common divisor
+$1$. Explicitly,
+\[
+ Q(G)=\prod_p p^{-\min_j v_p(g_j)}.
+\]
+Only finitely many factors differ from $1$. The number $Q(G)$ can be less
+than $1$ when all coefficients of $G$ share integer factors. Keeping these
+factors is essential to the estimate. Write $Q_N=Q(F_N)$.
+
+The two quantitative conclusions are
+\begin{align}
+ \limsup_{N\to\infty}\frac{\log Q_N}{N^2}
+    &\le C_{\arith}<\frac{5412}{1000},\label{eq:plan-arith}\\
+ \limsup_{N\to\infty}\frac{\log F_N(\zeta(5))}{N^2}
+    &\le -C_{\an},\qquad
+       C_{\an}>\frac{54133705070}{10^{10}}.
+       \label{eq:plan-analytic}
+\end{align}
+The exact rational certificates in \cref{sec:certificate} prove the
+strict comparisons without floating-point arithmetic, and the companion
+Lean development \cite{zeta5lean2026} checks their mathematical
+connections to the coefficient valuations and the analytic integral. Note however that the certificates, by themselves, cannot substitute for those connections.
+
+The organization of the proof is as follows. Sections~\ref{sec:functional}--\ref{sec:determinant}
+construct the positive determinant.
+Sections~\ref{sec:integer-valued}--\ref{sec:root-gain} establish local
+arithmetic estimates, including the improvement from the common initial
+roots of the window.
+Sections~\ref{sec:potential}--\ref{sec:discretization} give an explicit
+logarithmic-potential construction and convert it into polynomial norm
+bounds.
+Section~\ref{sec:arithmetic} sums the local estimates over primes.
+Sections~\ref{sec:certificate}--\ref{sec:contradiction} certify the numerical
+gap and finish the argument.
+
+For clarity, the terms \emph{local restriction kernel}, \emph{high atom},
+\emph{quotient support}, and \emph{arithmetic profile} are descriptive names
+defined at their first use below. The historical formalizations in
+\cref{sec:history} concern their own stated arguments; the independent
+formalization of this particular argument is identified separately in
+\cite{zeta5lean2026}.
+
+% END SHARED CORE 02_plan
+
+% BEGIN SHARED CORE 03_functional
+\section{A positive measure with rational moments and affine Stieltjes values}\label{sec:functional}
+
+We construct one positive measure that will serve both the arithmetic and
+the analytic parts of the argument. Its polynomial moments are rational,
+whereas its values on the simple fractions $(t+i^2)^{-1}$ contain exactly
+one common undetermined number, namely $\zeta(5)$.
+
+\begin{definition}\label{def:physical-measure}
+For $x>0$, put $f(x)=(e^{2\pi x}-1)^{-1}$ and
+\[
+ w(x)=\frac{x^5}{12}f^{(4)}(x).
+\]
+The base measure $\mu$ on $[0,\infty)$ is the pushforward of
+$w(x)\,\dd x$ under $x\mapsto x^2$. Explicitly, for every nonnegative
+measurable function $g$, this means
+\begin{equation}\label{eq:physical-measure}
+ \int_{[0,\infty)}g(t)\,\dd\mu(t)
+ =\frac1{12}\int_0^\infty g(x^2)x^5f^{(4)}(x)\,\dd x.
+\end{equation}
+Thus an integral written in the variable $t$ uses $\mu$, and the same
+integral written in the variable $x$ uses the displayed density $w$.
+\end{definition}
+
+\begin{lemma}\label{lem:positive-measure}
+The density $w$ is strictly positive on $(0,\infty)$, extends continuously
+to $w(0)=1/\pi$, and satisfies
+$w(x)\le C(1+x)^5e^{-2\pi x}$ for $x\ge0$, with an absolute constant $C$.
+Every moment is finite and rational. More precisely, for every integer
+$k\ge0$,
+\begin{equation}\label{eq:rational-moments}
+ \mu_k:=\int t^k\,\dd\mu(t)
+ =\frac{(2k+5)!}{12(2\pi)^{2k+2}}\zeta(2k+2)
+ =\frac{(-1)^k}{24}(2k+3)(2k+4)(2k+5)\mathrm B_{2k+2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+On each interval $x\ge a>0$, termwise differentiation of the locally
+uniformly convergent exponential series gives
+\[
+ f^{(4)}(x)=(2\pi)^4\sum_{n=1}^{\infty}n^4e^{-2\pi nx}>0.
+\]
+The Laurent expansion $f(x)=(2\pi x)^{-1}-1/2+O(x)$ at zero, with its
+convergent power series remainder, gives $w(0)=1/\pi$. For $x\ge1$, the
+exponential series bounds $f^{(4)}(x)$ by a constant times $e^{-2\pi x}$;
+continuity supplies the asserted bound on the remaining compact interval.
+Tonelli's theorem and the elementary gamma integral now give
+\[
+ \mu_k=\frac{(2\pi)^4}{12}
+ \sum_{n\ge1}n^4\frac{(2k+5)!}{(2\pi n)^{2k+6}},
+\]
+which is the first identity. The second is Euler's even-zeta identity
+\cite[\S25.6.2]{dlmf}, with the Bernoulli convention of
+\cref{sec:plan}. It also follows by comparing the Taylor expansion with
+the partial fractions of $\coth\pi x$.
+\end{proof}
+
+\begin{lemma}\label{lem:stieltjes}
+For $y>0$, define the Hurwitz zeta value by the convergent series
+$\zeta(5,y)=\sum_{n=0}^{\infty}(n+y)^{-5}$. Then
+\begin{equation}\label{eq:stieltjes-hurwitz}
+ \int\frac{\dd\mu(t)}{t+y^2}
+ =y^4\zeta(5,y)-\frac1{2y}-\frac14.
+\end{equation}
+In particular, for every positive integer $i$,
+\begin{equation}\label{eq:stieltjes-integer}
+ \int\frac{\dd\mu(t)}{t+i^2}
+ =i^4\zeta(5)-i^4H_{i-1}^{(5)}-\frac1{2i}-\frac14.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $K(y)=\int_0^\infty xf(x)/(x^2+y^2)\,\dd x$. The elementary Binet
+integral for the digamma function is
+\begin{equation}\label{eq:binet-digamma}
+ 2K(y)=\log y-\frac1{2y}-\psi(y),
+ \qquad
+ \psi(y)=-\gamma+\sum_{n=0}^{\infty}
+ \left(\frac1{n+1}-\frac1{n+y}\right).
+\end{equation}
+Here $\gamma=\lim_{M\to\infty}(\sum_{n=1}^M n^{-1}-\log M)$.
+For completeness, the partial fraction identity
+$\coth\pi x=(\pi x)^{-1}+(2x/\pi)\sum_{n\ge1}(x^2+n^2)^{-1}$
+and the Laplace sine transform give
+\[
+ 2K(y)=\int_0^\infty e^{-yt}
+ \left(\frac1{e^t-1}-\frac1t+\frac12\right)\dd t.
+\]
+Differentiation of this last integral gives
+$-\sum_{n\ge1}(n+y)^{-2}+y^{-1}-(2y^2)^{-1}$.
+This equals the derivative of the right side of
+\eqref{eq:binet-digamma}, by differentiating the defining series for
+$\psi$. Both sides tend to zero as $y\to\infty$; for $\psi$ this follows
+by comparing its defining sum with the integral of $1/(y+t)$.
+This proves the identity, also recorded in \cite[\S5.9.15]{dlmf}.
+The integrals and their derivatives converge uniformly when $y$ stays in
+a compact subinterval of $(0,\infty)$.
+
+Let $w_y(x)=x^5/(x^2+y^2)$. In four integrations by parts, all the boundary
+products vanish: at zero each product
+$w_y^{(a)}(x)f^{(3-a)}(x)$, $0\le a\le3$, is $O(x)$, and at infinity
+the derivatives of $f$ decay exponentially. Therefore
+\[
+ \int\frac{\dd\mu(t)}{t+y^2}
+ =\frac1{12}\int_0^\infty w_y^{(4)}(x)f(x)\,\dd x.
+\]
+The decomposition
+$w_y=x^3-y^2x+y^4x/(x^2+y^2)$ and harmonicity of
+$x/(x^2+y^2)$ imply
+$w_y^{(4)}=y^4\partial_y^4[x/(x^2+y^2)]$.
+Consequently the last integral is $y^4K^{(4)}(y)/12$.
+Differentiating \eqref{eq:binet-digamma} four times gives
+\[
+ K^{(4)}(y)=-\frac3{y^4}-\frac6{y^5}+12\zeta(5,y),
+\]
+which proves \eqref{eq:stieltjes-hurwitz}. Splitting the defining zeta
+series at $i$ proves \eqref{eq:stieltjes-integer}.
+\end{proof}
+
+\begin{definition}\label{def:formal-functional}
+Let $\mathcal R$ be the $\Q$-vector space of rational functions with poles
+only at finitely many points $-i^2$, $i\ge1$, all of order at most one.
+Every element has a unique expression
+$q(t)+\sum_i a_i/(t+i^2)$, with $q\in\Q[t]$ and $a_i\in\Q$.
+Define the $\Q$-linear functional $\J_X:\mathcal R\to\Q[X]$ by
+\begin{equation}\label{eq:formal-functional}
+ \J_X(t^k)=\mu_k,\qquad
+ \J_X\left(\frac1{t+i^2}\right)=k_i(X)
+ :=i^4X-i^4H_{i-1}^{(5)}-\frac1{2i}-\frac14.
+\end{equation}
+\end{definition}
+
+Polynomial division and the uniqueness of partial fractions make this
+definition unambiguous. Its values have degree at most one in $X$.
+The functional is linear, not multiplicative. By the preceding lemmas,
+$\J_{\zeta(5)}(g)=\int g\,\dd\mu$ for every $g\in\mathcal R$; the integral
+converges because all poles lie on the negative real axis and $\mu$ has
+all moments.
+
+% END SHARED CORE 03_functional
+
+% BEGIN SHARED CORE 04_determinant
+\section{The determinant and its primitive coefficient normalizer}\label{sec:determinant}
+
+Retain the parameters and polynomials in
+\eqref{eq:fixed-parameters}--\eqref{eq:basic-polynomials}. It is useful
+to distinguish the full matrix from its principal window. Define
+\begin{equation}\label{eq:full-pencil}
+ A_{N,R}(X)=(N!)^2
+ \left[\J_X\left(\frac{B_j(t)B_k(t)}{D_N(t)}\right)\right]_{0\le j,k<R},
+\end{equation}
+and let
+\begin{equation}\label{eq:window-pencil}
+ A_N(X)=\bigl[A_{N,R}(X)_{jk}\bigr]_{m\le j,k<R},
+ \qquad F_N(X)=\det A_N(X).
+\end{equation}
+An affine matrix in the variable $X$, such as this one, is sometimes
+called a matrix pencil. Every rational function in these definitions
+belongs to $\mathcal R$, including when the numerator degree exceeds
+the denominator degree. Its polynomial quotient is part of the
+definition of $\J_X$ and will be retained in every arithmetic estimate.
+
+\begin{proposition}\label{prop:gram-pencil}
+The polynomial $F_N$ is nonzero, belongs to $\Q[X]$, and has degree at
+most $N-m+1$, hence at most $N$; the simpler universal bound
+$\deg F_N\le r$ also follows immediately from the matrix size. Moreover,
+$F_N(\zeta(5))>0$.
+\end{proposition}
+\begin{proof}
+At $X=\zeta(5)$ the matrix is the Gram matrix, multiplied by $(N!)^2$,
+of $B_m,\ldots,B_{R-1}$ for the positive measure $\dd\mu/D_N$.
+These polynomials have distinct degrees and are linearly independent.
+For a nonzero real vector $(a_j)$, their linear combination is a
+nonzero polynomial, so its square has strictly positive integral against
+this measure: its zero set is finite and the measure has a positive
+density on $(0,\infty)$. Thus the matrix is positive definite and its
+determinant is positive.
+
+The coefficient of $X$ in an entry is obtained from the residues alone.
+Writing $t_i=-i^2$, it is
+\[
+ (N!)^2\sum_{i=1}^N
+ \frac{i^4}{D_N'(t_i)}B_j(t_i)B_k(t_i).
+\]
+Each summand is a matrix of rank at most one. If $i<m$, then
+$B_j(t_i)=P_j(i^2)=0$ for every $j\ge m$. Hence the coefficient matrix
+has rank at most $N-m+1$. In the column expansion of
+$\det(A_0+XA_1)$, a term with more than $\rank A_1$ columns taken
+from $A_1$ is zero. This proves the degree bound. Rationality follows
+from \cref{def:formal-functional}.
+\end{proof}
+
+\begin{lemma}\label{lem:primitive-normalizer}
+Write $F_N(X)=\sum_j c_{N,j}X^j$ and put
+\begin{equation}\label{eq:primitive-normalizer}
+ \nu_{N,p}=\min_{c_{N,j}\ne0}v_p(c_{N,j}),\qquad
+ Q_N=\prod_p p^{-\nu_{N,p}}.
+\end{equation}
+Then $Q_NF_N\in\Z[X]$ has relatively prime coefficients. If
+$\widetilde Q_N>0$ is rational and
+$\widetilde Q_NF_N\in\Z[X]$, then
+\begin{equation}\label{eq:minimal-normalizer}
+ \widetilde Q_N/Q_N\in\Z_{>0},\qquad Q_N\le\widetilde Q_N.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Only finitely many primes divide a numerator or denominator of the
+nonzero coefficients. At each prime, the minimum coefficient valuation
+of $Q_NF_N$ is zero, proving both integrality and primitivity.
+The integrality of $\widetilde Q_NF_N$ says
+$v_p(\widetilde Q_N)+\nu_{N,p}\ge0$ for every prime. These are exactly
+the assertions that the rational number $\widetilde Q_N/Q_N$ has
+nonnegative valuation at every prime, and hence is an integer.
+\end{proof}
+
+The normalizer can contain negative prime powers, because common
+coefficient factors are retained. Accordingly, a local clearing exponent
+below is allowed to be negative; it then asserts common divisibility
+rather than a denominator.
+
+\begin{corollary}\label{cor:closing-criterion}
+If $\zeta(5)=a/b$ for integers $a,b$ with $b>0$, then
+\begin{equation}\label{eq:positive-integer}
+ b^rQ_NF_N(a/b)\in\Z_{>0}.
+\end{equation}
+The use of $r$, rather than the sharper exponent $N$, is sufficient:
+$r=6N/5$ is linear in $N$. Thus any estimates
+$\log Q_N\le (c+o(1))N^2$ and
+$\log F_N(\zeta(5))\le-(c+\eta+o(1))N^2$, with $\eta>0$,
+give a contradiction.
+\end{corollary}
+\begin{proof}
+The matrix-size degree bound makes $b^r(Q_NF_N)(a/b)$ an integer,
+and positivity makes it a positive one. Under the two estimates its
+logarithm is at most $r\log b-\eta N^2+o(N^2)$, which tends
+to $-\infty$.
+\end{proof}
+
+\subsection{A second basis for the arithmetic estimates}
+Define the common root polynomial and an $r\times r$ matrix by
+\[
+ C_m(t)=\prod_{a=0}^{m-1}(-t-a^2)=(2m)!B_m(t),\qquad
+ H_{kl}(X)=\J_X\left(\frac{C_m(t)^2t^{k+l}}{D_N(t)}\right),
+ \quad 0\le k,l<r.
+\]
+The phrase \emph{common roots} refers to the fact that $C_m$ divides
+every polynomial in the chosen window.
+
+\begin{lemma}\label{lem:basis-change}
+There is an exact identity in $\Q[X]$:
+\begin{equation}\label{eq:monomial-change}
+ F_N(X)=\frac{(N!)^{2r}}{\prod_{j=m}^{R-1}((2j)!)^2}\det H(X).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The polynomial $B_{m+k}/C_m$ has degree $k$ and leading coefficient
+$(-1)^k/(2m+2k)!$. The change from the polynomials
+$C_m,C_mt,\ldots,C_mt^{r-1}$ to $B_m,\ldots,B_{R-1}$ is therefore
+triangular, with these diagonal entries. Applying the same change to
+the two arguments of the bilinear form multiplies its Gram determinant
+by the square of the change-of-basis determinant. The additional
+factor $(N!)^2$ in every row yields \eqref{eq:monomial-change}.
+\end{proof}
+
+We will use the factorial basis for the restriction argument and the
+monomial basis for the residue argument. Equation
+\eqref{eq:monomial-change} accounts exactly for the cost of switching
+between them. The separate factorization into monic orthogonal norms
+is given in \cref{lem:norm-product}.
+
+% END SHARED CORE 04_determinant
+
+% BEGIN SHARED CORE 05_integer_valued
+\section{Integer-valued polynomials and the small-prime estimate}\label{sec:integer-valued}
+
+We first record elementary local algebra that will also be used for the
+large primes. Throughout this section $p$ is any prime and
+$\mathcal O_p=\Z_{(p)}$, as defined in \cref{sec:plan}. Reduction sends
+$a/b\in\mathcal O_p$ to $\overline a\,\overline b^{-1}\in\Fp$.
+A rational polynomial is \emph{integer-valued at $p$} if its value at
+every integer belongs to $\mathcal O_p$. This is weaker than belonging
+to $\mathcal O_p[x]$; for example, $\binom{x}{p}$ is integer-valued at
+$p$ although its leading coefficient is not in $\mathcal O_p$.
+
+For a rational polynomial $G$ in any finite number of indeterminates,
+its Gauss valuation is the least valuation of its nonzero coefficients.
+It satisfies
+\begin{equation}\label{eq:gauss-laws}
+ v_p(GH)=v_p(G)+v_p(H),\qquad
+ v_p(G+H)\ge\min\{v_p(G),v_p(H)\}.
+\end{equation}
+For the first identity, multiply each factor by a power of $p$ to give
+Gauss valuation zero. Its reduction is then a nonzero polynomial over
+$\Fp$, and the product of two such polynomials is nonzero. This argument
+also proves that, if an actual polynomial quotient $G/U$ exists and
+$v_p(U)=0$, division by $U$ preserves the Gauss valuation.
+
+\begin{lemma}\label{lem:newton-tools}
+The following assertions hold.
+\begin{enumerate}[label=(\roman*)]
+\item A polynomial $g\in\Q[x]$ of degree at most $L$ is integer-valued
+at $p$ if and only if it has an expansion
+$g(x)=\sum_{a=0}^L d_a\binom{x}{a}$ with $d_a\in\mathcal O_p$.
+\item Put $C_0^*(x)=1$ and $C_l^*(x)=2P_l(x^2)$ for $l\ge1$.
+These polynomials form an $\mathcal O_p$-basis of the even
+integer-valued polynomials. In particular, when $p$ is odd,
+the coefficients of every product $P_j(x^2)P_k(x^2)$ in the
+$P_l(x^2)$ basis belong to $\mathcal O_p$. For $p=2$, their valuations
+are at least $-2$.
+\item If $g$ is integer-valued at $p$ and $\deg g=L<p^2$, then for
+every integer $c$,
+\begin{equation}\label{eq:local-newton}
+ g(c+pY)\in\mathcal O_p[Y],\qquad
+ \deg\bigl(\overline{g(c+pY)}\bigr)\le\floor{L/p}.
+\end{equation}
+The degree of the zero polynomial is understood as $-\infty$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For (i), Newton interpolation gives
+$d_a=\Delta^ag(0)$, where $\Delta g(x)=g(x+1)-g(x)$.
+Thus integer-valuedness implies $d_a\in\mathcal O_p$.
+Conversely, $\binom{x}{a}=x(x-1)\cdots(x-a+1)/a!$ is an integer at
+every integer $x$, including negative $x$, proving the reverse implication.
+
+For (ii), direct multiplication gives, for $l\ge1$,
+\begin{equation}\label{eq:central-binomial}
+ 2P_l(x^2)=\binom{x+l}{2l}+\binom{x+l-1}{2l}.
+\end{equation}
+Hence $C_l^*$ is integer-valued, vanishes at $0,\ldots,l-1$, and equals
+$1$ at $l$. Successively subtracting multiples of $C_0^*,C_1^*,\ldots$
+therefore expands any even integer-valued polynomial with coefficients
+in $\mathcal O_p$. Once a polynomial of degree at most $2L$ vanishes at
+$0,1,\ldots,L$, evenness makes it identically zero, proving existence
+and uniqueness of the expansion. Since $P_l=C_l^*/2$ for $l>0$,
+products of two $P$'s lose at most two powers of $2$ and no odd-prime
+factor.
+
+For (iii), it suffices to treat $\binom{x}{a}$ with $a<p^2$.
+The denominator $a!$ has valuation $\floor{a/p}$. Among the numerator
+factors $c+pY-j$, $0\le j<a$, at least that many have constant term
+divisible by $p$; extract a factor $p$ from each of them. The remaining
+coefficients are in $\mathcal O_p$. If more than $\floor{a/p}$ factors
+were extracted, the reduction is zero. Otherwise only those
+$\floor{a/p}$ factors can contribute $Y$ to the reduction, all other
+factors reducing to nonzero constants. This proves the degree bound.
+\end{proof}
+
+\begin{definition}\label{def:bernoulli-functional}
+The Bernoulli evaluation functional is the $\Q$-linear map
+$\Bfun:\Q[x]\to\Q$ determined by $\Bfun(x^a)=\mathrm B_a$.
+It is an algebraic functional and is not asserted to be integration
+against a positive measure. A subscript, as in $\Bfun_Y$, specifies its
+polynomial variable.
+\end{definition}
+
+Applying this functional to $(1+z)^x$, as a formal power series in $z$,
+and using the Bernoulli generating function gives
+\begin{equation}\label{eq:bernoulli-newton}
+ \Bfun\binom{x}{a}=\frac{(-1)^a}{a+1}.
+\end{equation}
+Differentiating the same binomial generating function gives
+\begin{equation}\label{eq:newton-derivative}
+ \frac{\dd}{\dd x}\binom{x}{a}
+ =\sum_{b=1}^{a}\frac{(-1)^{b-1}}b\binom{x}{a-b}.
+\end{equation}
+Consequently, on integer-valued polynomials of degree at most $L$,
+one derivative loses at most $\floor{\log_p L}$ powers of $p$, and
+Bernoulli evaluation loses at most $\floor{\log_p(L+1)}$ powers.
+This assertion means that multiplying by the stated power of $p$
+makes the result integer-valued, or in $\mathcal O_p$, respectively.
+For constants the derivative is zero and no loss is needed.
+
+We will also use two exact identities:
+\begin{align}
+ \J_X(q(t))
+ &=\frac1{24}\Bfun\left[
+       \frac{\dd^3}{\dd x^3}\{x^5q(-x^2)\}\right],
+       &&q\in\Q[t],\label{eq:bernoulli-moments}\\
+ \Bfun(F(x))
+ &=\frac1p\sum_{c=0}^{p-1}\Bfun_Y(F(c+pY)),
+       &&F\in\Q[x].\label{eq:bernoulli-distribution}
+\end{align}
+The first follows on each monomial from \eqref{eq:rational-moments}.
+For the second, applying both sides to $e^{zx}$ as a formal generating
+function gives $z/(e^z-1)$ on each side: the finite geometric sum
+over $c$ cancels the factor $e^{pz}-1$.
+
+\begin{proposition}\label{prop:small-primes}
+For any prime $p$, put $L_p=\floor{\log_p(4R+4)}$. Every entry of the
+full matrix in \eqref{eq:full-pencil} satisfies
+\begin{equation}\label{eq:small-prime-entry}
+ v_p(A_{N,R}(X)_{jk})\ge-9L_p-v_p(96).
+\end{equation}
+For all sufficiently large $N$, the positive integer
+\begin{equation}\label{eq:small-prime-factor}
+ E_N=96\prod_{p\le N^{9/10}}p^{9L_p}
+\end{equation}
+clears these primes in every entry, and $E_N^r$ clears them in $F_N$.
+Furthermore, $\log(E_N^r)=o(N^2)$.
+\end{proposition}
+\begin{proof}
+The product expansion in \cref{lem:newton-tools} reduces the estimate to
+\[
+ T_l(X)=(N!)^2\J_X\left(\frac{P_l(-t)}{D_N(t)}\right),
+ \qquad 0\le l\le2R-2,
+\]
+with an additional loss of at most $2v_p(2)$.
+We treat both the proper-fraction and polynomial-quotient cases.
+
+First suppose $l\le N$. Direct multiplication at $-i^2$ gives
+\begin{equation}\label{eq:residue-derivative}
+ D_N'(-i^2)=\frac{(-1)^{i-1}(N-i)!(N+i)!}{2i^2}.
+\end{equation}
+The factorial ratio appearing in $(N!)^2/D_N'(-i^2)$ is
+\[
+ \frac{(N!)^2}{(N-i)!(N+i)!}
+ =\frac{\binom{2N}{N-i}}{\binom{2N}{N}}.
+\]
+For $0\le b\le a$, Legendre's factorial formula gives
+\[
+ v_p\binom ab
+ =\sum_{j\ge1}\left(
+ \floor{a/p^j}-\floor{b/p^j}-\floor{(a-b)/p^j}\right)
+ \le\floor{\log_p a},
+\]
+since each summand is $0$ or $1$. Thus the displayed ratio has valuation
+at least $-L_p$. The values $P_l(i^2)$ lose at most $v_p(2)$ by
+\eqref{eq:central-binomial}; each $k_i(X)$ loses at most
+$5L_p+2v_p(2)$, directly from \eqref{eq:formal-functional}.
+The factor $2i^2$ in \eqref{eq:residue-derivative} causes no further
+loss. These bounds control every residue. For $l<N$ there is no
+polynomial quotient. For $l=N$ the sole quotient is constant and
+contributes
+\[
+ (-1)^N\frac{\mu_0}{\binom{2N}{N}},\qquad \mu_0=\frac5{12}.
+\]
+All these contributions, including the product-basis loss, satisfy
+\eqref{eq:small-prime-entry}.
+
+Now suppose $l\ge N+1$. The denominator $D_N$ divides $P_l(-t)$
+exactly. Up to a sign, the polynomial to which the right side of
+\eqref{eq:bernoulli-moments} is applied is
+\[
+ \frac{(N!)^2}{(2l)!}\,x^7
+ \prod_{a=N+1}^{l-1}(x-a)(x+a).
+\]
+Put $k=l-N-1\ge0$. At any integer $x$, each of the two products of
+$k$ consecutive integers is divisible by $k!$. The remaining scalar
+has the exact expression
+\[
+ \frac{(N!)^2(k!)^2}{(2l)!}
+ =\frac1{l^2\binom{2l}{l}\binom{l-1}{N}^2}.
+\]
+Its valuation is at least $-5L_p$: the factor $l^2$ costs at most
+$2L_p$, and the three binomial factors counted with multiplicity cost
+at most $3L_p$. The polynomial degree is at most
+$2l-2N+5\le4R-2N+1$. Equations
+\eqref{eq:bernoulli-newton}--\eqref{eq:newton-derivative} show that
+three derivatives followed by Bernoulli evaluation lose at most
+$4L_p$ further powers, and division by $24$ costs $v_p(24)$.
+Adding the product-basis loss $2v_p(2)$ proves the stated bound, since
+$24\cdot2^2=96$.
+
+Finally,
+$\log E_N\le\log96+9\pi(N^{9/10})\log(4R+4)
+=O(N^{9/10}\log N)$, using only the elementary bound $\pi(y)\le y$.
+Since $r=6N/5$, this gives
+$\log(E_N^r)=O(N^{19/10}\log N)=o(N^2)$.
+\end{proof}
+
+% END SHARED CORE 05_integer_valued
+
+% BEGIN SHARED CORE 06_local_kernel
+\section{The local quotient and restriction-kernel theorem}\label{sec:local-kernel}
+
+The main local estimate must accommodate $R>N$: the entries then have
+nonconstant polynomial quotients as well as proper fractions. We control
+both contributions with the same restriction map.
+
+Throughout this section a \emph{good prime} means a prime satisfying
+\begin{equation}\label{eq:good-prime}
+ p>5,\qquad p^2>4R+20.
+\end{equation}
+Write
+\begin{equation}\label{eq:local-parameters}
+ N=qp+\sigma,\quad 0\le\sigma<p,\qquad
+ \epsilon=\floor{2\sigma/p},\qquad
+ h=2q+1+\epsilon,\qquad D=\floor{(2R-2)/p}.
+\end{equation}
+In particular, $q=\floor{N/p}$ and $\epsilon\in\{0,1\}$.
+Let $V$ be the free $\mathcal O_p$-module spanned by
+$P_j(x^2)$, $0\le j<R$. Its elements are even polynomials, are
+integer-valued at $p$, and have degree at most $2R-2<p^2$.
+
+\begin{definition}\label{def:restriction-map}
+For $1\le c\le(p-1)/2$, the \emph{reflected residue class} $c$ comprises
+the physical indices $i\in\{1,\ldots,N\}$ with $i\equiv c$ or $-c$
+modulo $p$. Equivalently, use the signed levels
+\[
+ K_c=\{a\in\Z:1\le |c+pa|\le N\},\qquad
+ h_c=|K_c|=2q+\mathbf1_{c\le\sigma}+\mathbf1_{p-c\le\sigma}.
+\]
+Here $\mathbf1_E$ is $1$ when $E$ holds and $0$ otherwise.
+Call a class \emph{maximal} when $h_c=h$, and denote the set of these
+classes by $\mathcal C_p$. Their number is
+\begin{equation}\label{eq:maximal-class-count}
+ w_p=|\mathcal C_p|=
+ \begin{cases}
+ \sigma,&\epsilon=0,\\
+ \sigma-(p-1)/2,&\epsilon=1.
+ \end{cases}
+\end{equation}
+The set may be empty; when $\sigma=0$, the value $h$ is an upper
+threshold and not an attained class size. Define the polynomial restriction
+map
+\begin{equation}\label{eq:restriction-map}
+ \mathcal R_p:V/pV\longrightarrow
+       \bigoplus_{c\in\mathcal C_p}\Fp[Y]_{\le D},\qquad
+ \overline f\longmapsto
+       \bigl(\overline{f(c+pY)}\bigr)_{c\in\mathcal C_p}.
+\end{equation}
+Reduction here is reduction of polynomial coefficients, not just evaluation as a function on the finite field.
+\end{definition}
+
+The map is well-defined by \cref{lem:newton-tools}(iii). In particular,
+$\rank\mathcal R_p\le(D+1)w_p$. Formula
+\eqref{eq:maximal-class-count} follows by counting $c\le\sigma$ when
+$\sigma<p/2$, and counting $p-\sigma\le c\le(p-1)/2$ when
+$\sigma>p/2$.
+
+\begin{proposition}\label{prop:local-kernel}
+For every good prime, $p^{5+\epsilon}A_{N,R}(X)$ belongs to
+$M_R(\mathcal O_p[X])$. Its reduction modulo $p$ is constant in $X$,
+and, as a bilinear form on $V/pV$, has the kernel of $\mathcal R_p$
+in its radical. In particular its rank is at most $(D+1)w_p$, and
+\begin{equation}\label{eq:local-determinant-bound}
+ v_p(F_N)\ge-(4+\epsilon)r-\min\{r,(D+1)w_p\}.
+\end{equation}
+The radical of a bilinear form consists of those vectors whose pairing
+with every vector is zero.
+\end{proposition}
+\begin{proof}
+For $f=\sum_j a_jP_j(x^2)\in V$, write
+$\widehat f(t)=\sum_j a_jB_j(t)$, so $f(x)=\widehat f(-x^2)$.
+The bilinear form represented by the full matrix is
+$(N!)^2\J_X(\widehat f\widehat g/D_N)$.
+
+\emph{The exact quotient.}
+Expand $fg$ in the $P_l(x^2)$ basis, with coefficients in
+$\mathcal O_p$ by \cref{lem:newton-tools}, and retain the terms
+$0\le l\le N$; call this truncation $I$. It is even,
+integer-valued at $p$, and has degree at most $2N$.
+For each $i=0,1,\ldots,N$, all omitted terms vanish at $i$.
+Thus $fg-I$ vanishes at $0,\pm1,\ldots,\pm N$.
+Evenness gives a double zero at zero, so $x^2D_N(-x^2)$ divides
+$fg-I$ in $\Q[x]$. In particular,
+\begin{equation}\label{eq:normalized-local-quotient}
+ Q_{f,g}(x)=(N!)^2\frac{f(x)g(x)-I(x)}{D_N(-x^2)}
+\end{equation}
+is an even polynomial. The contribution of this polynomial to the
+bilinear form is obtained from \eqref{eq:bernoulli-moments}, with
+$q(-x^2)=Q_{f,g}(x)$. The only polynomial quotient contributed by
+$I$ is the constant from its $P_N$ term. Its valuation is at least
+$-\epsilon$, because
+$v_p((N!)^2/(2N)!)=-\epsilon$ and $\mu_0=5/12$ is a $p$-unit.
+
+\emph{Division on each residue class.}
+For nonzero $c$, factor exactly
+\begin{equation}\label{eq:local-denominator-factorization}
+ D_N(-(c+pY)^2)=p^{h_c}L_c(Y)U_c(Y),\qquad
+ L_c(Y)=\prod_{a\in K_c}(Y-a),
+\end{equation}
+where $U_c\in\mathcal O_p[Y]$ has nonzero constant reduction.
+Indeed, each physical index in the class supplies exactly one linear
+factor $p(Y-a)$ up to sign; every remaining factor reduces to a
+nonzero constant. The sign is included in $U_c$.
+The substituted numerator $(fg-I)(c+pY)$ belongs to
+$\mathcal O_p[Y]$. It is divisible by the monic polynomial $L_c$,
+so its quotient by $L_c$ still belongs to $\mathcal O_p[Y]$.
+This follows directly from the usual monic polynomial-division
+algorithm. The remaining quotient by $U_c$ is an actual polynomial,
+because \eqref{eq:normalized-local-quotient} already exists in
+$\Q[x]$. The Gauss identity \eqref{eq:gauss-laws} preserves its lower
+valuation bound, since $v_p(U_c)=0$. Finally
+$v_p((N!)^2)=2q$. Hence
+\[
+ v_p(Q_{f,g}(c+pY))\ge2q-h_c.
+\]
+At residue zero the denominator instead has the form
+$p^{2q}\prod_{a=1}^q(Y^2-a^2)U_0(Y)$, up to a sign, with
+$\overline U_0$ a nonzero constant. The same monic-division argument
+gives $v_p(Q_{f,g}(pY))\ge0$. Evenness covers the negative residue
+classes. It follows that $p^{1+\epsilon}Q_{f,g}$ is integer-valued
+at $p$.
+
+The degree of $x^5Q_{f,g}$ is at most $4R-2N+1$.
+This degree plus one is strictly less than $p^2$ by
+\eqref{eq:good-prime}. In the Newton basis, each of the three
+derivatives and the Bernoulli evaluation in
+\eqref{eq:bernoulli-moments} therefore loses at most one power of $p$.
+The denominator $24$ is a unit. Consequently the quotient contribution
+has valuation at least $-(5+\epsilon)$.
+
+\emph{The extra power on the restriction kernel.}
+Suppose $\overline f\in\ker\mathcal R_p$. On a maximal class,
+$\overline{fg(c+pY)}=0$. The reduction of $I(c+pY)$ has degree at most
+$\floor{2N/p}=h-1$ by \cref{lem:newton-tools}(iii), and vanishes at
+each of the $h$ levels in $K_c$, because $I$ agrees with $fg$ there.
+These levels are distinct modulo $p$: their pairwise differences have
+absolute value at most $2N/p<p$, by \eqref{eq:good-prime}.
+The reduction of $I(c+pY)$ is therefore the zero polynomial.
+The numerator in \eqref{eq:normalized-local-quotient} gains a factor
+$p$ on every maximal class. Monic division and the subsequent
+Gauss-valuation argument both preserve that factor. Nonmaximal
+classes already satisfy $h_c\le h-1$.
+Thus $p^\epsilon Q_{f,g}$ is integer-valued at $p$, and its moment
+contribution has valuation at least $-(4+\epsilon)$.
+
+\emph{The proper fractions.}
+At a physical node in nonzero class $c$, every other node in that
+class contributes exactly one power of $p$ to $D_N'(-i^2)$; all
+other factors are units. Exactness follows also from $2N<p^2$,
+which excludes a second power in a nonzero difference $i\pm j$.
+Hence
+\[
+ v_p\left(\frac{(N!)^2}{D_N'(-i^2)}\right)=2q-h_c+1.
+\]
+The factor $k_i(X)$ has valuation at least $-5$, because all integers
+in its harmonic sum are less than $p^2$. Only maximal classes can
+reach valuation $-(5+\epsilon)$. On those classes the condition
+$\overline f\in\ker\mathcal R_p$ gives $f(i)\in p\mathcal O_p$
+and therefore the same extra power as for the quotient.
+For a node $i=ap$, $1\le a\le q$, the derivative denominator has
+valuation $2(q-1)$, the normalized residue factor has valuation $2$,
+and $k_i$ has valuation at least $-1$. Such contributions are integral.
+Finally, the coefficient of $X$ in $k_i$ is $i^4$; the preceding
+formulas show that the coefficient of $X$ in the whole bilinear form
+has valuation at least $-\epsilon$.
+
+We have proved coefficientwise integrality after multiplication by
+$p^{5+\epsilon}$, independence of $X$ in its reduction, and the
+radical assertion. Rank is at most the dimension of the restriction
+image. The same upper bound holds after restricting to the window.
+If its reduced rank is $k\le\min\{r,(D+1)w_p\}$, constant invertible
+row operations over $\mathcal O_p$ make $r-k$ rows zero modulo $p$.
+Because the reduction is independent of $X$, every coefficient in
+each such row is divisible by $p$. The determinant of the scaled
+matrix therefore has valuation at least $r-k$. Removing the scale
+$p^{5+\epsilon}$ from its $r$ rows proves
+\eqref{eq:local-determinant-bound}.
+\end{proof}
+
+% END SHARED CORE 06_local_kernel
+
+% BEGIN SHARED CORE 07_monomial
+\section{Monomial residues, quotient support, and mixed minors}\label{sec:monomial}
+
+We now use the matrix $H$ in \cref{lem:basis-change}. Write
+$t_i=-i^2$ and $v_i=(1,t_i,\ldots,t_i^{r-1})^{\mathsf T}$.
+Polynomial division followed by partial fractions gives the exact
+decomposition
+\begin{equation}\label{eq:monomial-residue-decomposition}
+ H(X)=Q+\sum_{i=1}^N w_i(X)v_iv_i^{\mathsf T},\qquad
+ w_i(X)=\frac{C_m(t_i)^2k_i(X)}{D_N'(t_i)}.
+\end{equation}
+The matrix $Q$ consists of the moments of the polynomial quotients.
+It is constant in $X$. A summand $w_iv_iv_i^{\mathsf T}$ will be
+called a \emph{residue atom}; this denotes precisely this rank-one
+matrix, including its scalar weight.
+
+\begin{lemma}\label{lem:monomial-support}
+For a good prime, the moments needed in $Q$ have valuation at least
+$-1$. They are integral whenever their index $k$ is less than $2p-3$.
+There is a decomposition
+$Q=Q_0+p^{-1}Q_1$ with $Q_0,Q_1\in M_r(\mathcal O_p)$ such that
+$Q_1$ is supported in its last $t_p$ rows and columns, where
+\begin{equation}\label{eq:quotient-terminal-size}
+ t_p=\min\{r,\pos{2R-N-2p+2}\}.
+\end{equation}
+Consequently every minor of $Q$ of order $a$ has valuation at least
+$-\min(a,t_p)$.
+\end{lemma}
+\begin{proof}
+Whenever $n+1<p^2$, the Newton formula
+\eqref{eq:bernoulli-newton}, applied to the integer-valued monomial
+$x^n$, gives $v_p(\mathrm B_n)\ge-1$.
+For $n\ge1$ in this range, \eqref{eq:bernoulli-distribution} gives
+\[
+ p\mathrm B_n\equiv\sum_{c=0}^{p-1}c^n\pmod p.
+\]
+Indeed, in expanding $(c+pY)^n$, the term of degree one in $Y$
+has a factor $p\mathrm B_1=-p/2$, and every term of higher degree
+$a$ has valuation at least $a-1\ge1$.
+The sum of the $n$th powers in $\Fp^\times$ is zero unless
+$(p-1)\mid n$, in which case it is $-1$. This follows by summing
+the geometric progression in a generator of the cyclic group
+$\Fp^\times$. Hence $\mathrm B_n$ is integral unless $(p-1)\mid n$.
+
+For $n=2k+2$, the first three possible poles occur at
+$n=p-1,2(p-1),3(p-1)$. In \eqref{eq:rational-moments} they are
+canceled respectively by the factors $2k+3=p$, $2k+4=2p$, and
+$2k+5=3p$. Thus the first uncanceled possible index is
+$k=2p-3$. Every needed index satisfies $n+1<p^2$, because the
+maximum quotient degree is $2R-N-2$ and
+$p^2>4R+20$. The factor $24$ is a unit. This proves the moment
+assertions with the required index precision.
+
+The numerator $C_m(t)^2t^{k+l}$ and the monic denominator $D_N(t)$
+have integer coefficients. Their polynomial quotient therefore has
+integer coefficients and degree at most $2m+k+l-N$; if this upper
+bound is negative the quotient is zero. A fractional entry can occur
+only if
+\[
+ k+l\ge N+2p-3-2m.
+\]
+Since $k,l\le r-1$, this forces both $k$ and $l$ to be at least
+$r-t_p$. This is exactly the terminal support asserted in the lemma.
+Set $Q_0$ equal to $Q$ outside that terminal block and zero inside;
+put $Q_1=p(Q-Q_0)$. These are integral matrices of the stated form.
+In the multilinear column expansion of a minor of order $a$, at
+most $\min(a,t_p)$ columns can contribute from $Q_1$ to a nonzero
+term, because $\rank Q_1\le t_p$. Its denominator is accordingly
+bounded by $p^{\min(a,t_p)}$.
+\end{proof}
+
+\begin{lemma}\label{lem:mixed-minors}
+In the determinant expansion of \eqref{eq:monomial-residue-decomposition},
+a term using $\ell$ distinct atoms is a product, up to sign, of
+their $\ell$ weights, two evaluation minors of order $\ell$, and
+a complementary quotient minor of order $r-\ell$.
+Each evaluation minor is divisible in $\Z$ by the Vandermonde
+product of its selected nodes.
+
+Suppose $p\le N$ is good. In a nonzero reflected class containing
+two nodes below $p$ and $h$ nodes above $p$, selecting $\ell$
+atoms of which $b$ are above $p$ has denominator cost at most
+\begin{equation}\label{eq:cluster-cost}
+ 5b+\ell(h+2-\ell)
+ \le c_h(\ell):=5\min(\ell,h)+\ell(h+2-\ell),
+ \qquad 0\le\ell\le h+2.
+\end{equation}
+Here a cost $e$ means a valuation lower bound $-e$, and negative
+costs are permitted. The quotient cost in that same determinant
+term is at most $\min(t_p,r-\ell_{\rm all})$, where
+$\ell_{\rm all}$ is the total number of atoms selected from all classes.
+\end{lemma}
+\begin{proof}
+Expand the determinant by multilinearity, or apply Cauchy--Binet and
+then Laplace expansion to $Q+V\operatorname{diag}(w_i)V^{\mathsf T}$,
+where $V$ has columns $v_i$. A repeated atom gives two proportional
+columns and contributes zero. For each set $I$ of $\ell$ distinct
+atoms and sets $J,K$ of $\ell$ matrix indices, the resulting term
+has the form
+\[
+ \pm\left(\prod_{i\in I}w_i\right)
+ \det V_{J,I}\det V_{K,I}\det Q_{J^c,K^c}.
+\]
+An evaluation minor is an alternating polynomial with integer
+coefficients in its node variables. Setting any two variables equal
+makes it zero, so it is divisible by their difference. The distinct
+linear differences are prime, nonassociate factors in the polynomial
+ring over $\Z$; their product therefore divides the minor over $\Z$.
+Evaluation at the integer nodes proves the stated divisibility.
+
+Each nonzero reflected class contains the two low nodes $c,p-c$.
+Call its remaining $h$ nodes \emph{high}. Every difference of two
+squared nodes in this class has valuation exactly one, since its
+linear factors $i-j,i+j$ have absolute value below $p^2$, and only
+one of them is divisible by $p$. Thus $D_N'(t_i)$ has valuation
+$h+1$ for each node in this class. A low node has $v_p(k_i)\ge0$;
+a high node has $v_p(k_i)\ge-5$. Ignoring, for now, the integral
+factor $C_m(t_i)^2$, the product of weights costs at most
+$5b+\ell(h+1)$. The two evaluation minors restore
+$2\binom\ell2=\ell(\ell-1)$ powers of $p$. Subtraction gives
+\eqref{eq:cluster-cost}. The complementary minor has order
+$r-\ell_{\rm all}$, so \cref{lem:monomial-support} gives its stated
+cost. In particular this cost and the atomic costs share the same
+matrix dimension and cannot be maximized independently.
+\end{proof}
+
+\begin{lemma}\label{lem:large-prime-integrality}
+For a good prime, an all-low reflected pair contributes an integral matrix over
+$\mathcal O_p[X]$. For every prime $p>N$, the entire monomial matrix
+$H(X)$ is integral over $\mathcal O_p[X]$. Consequently the
+denominators of $F_N$ involve only primes at most $2R$.
+\end{lemma}
+\begin{proof}
+For $1\le i<p$ and $j=p-i$, the sum of inverse fifth powers of
+the nonzero residues is zero modulo $p$, since $p>5$. Hence
+$H_{p-i-1}^{(5)}\equiv H_i^{(5)}\pmod p$, and direct substitution
+in \eqref{eq:formal-functional} gives
+\begin{equation}\label{eq:stieltjes-reflection}
+ k_{p-i}(X)\equiv k_i(X)\pmod p.
+\end{equation}
+For clarity, the extra term $i^{-5}$ in $H_i^{(5)}$ contributes
+$-i^{-1}$ after multiplication by $i^4$, while the reflected term
+$-1/(2(p-i))$ contributes $+1/(2i)$. Their sum is $-1/(2i)$,
+as required.
+
+Suppose this pair is the whole reflected class. Write
+$D_N(t)=(t-t_i)(t-t_j)E(t)$. Both $E(t_i)$ and $E(t_j)$ are units
+and are congruent modulo $p$. For any matrix entry the paired sum is
+\[
+ \frac{C_m(t_i)^2t_i^{k+l}k_i(X)/E(t_i)
+       -C_m(t_j)^2t_j^{k+l}k_j(X)/E(t_j)}{t_i-t_j}.
+\]
+The numerator is zero modulo $p$, by \eqref{eq:stieltjes-reflection}
+and $t_i\equiv t_j$. The denominator has valuation exactly one,
+so the expression is integral coefficientwise.
+
+For $p>N$, every node is low, and every reflected class is either
+a singleton or such a pair. Singletons have unit derivative
+denominators and hence give integral atoms. There are no zero-class
+nodes. The quotient degree is at most
+$2R-N-2<2p-3$, so \cref{lem:monomial-support} makes the quotient
+integral as well. These primes are good because $N\ge20$ and
+$R=5N/4$. Finally, for $p>2R$ the factorial prefactor in
+\eqref{eq:monomial-change} is also integral (indeed a unit).
+This proves the denominator-support assertion.
+\end{proof}
+
+When integral pairs or other integral atoms are absorbed into the
+quotient matrix, its integral part $Q_0$ may become affine in $X$.
+This causes no change to the argument: we then have
+$Q_0\in M_r(\mathcal O_p[X])$, while the fractional part $p^{-1}Q_1$
+retains its terminal support. The minor estimate and all mixed-minor
+valuations remain coefficientwise polynomial assertions.
+
+% END SHARED CORE 07_monomial
+
+% BEGIN SHARED CORE 08_root_gain
+\section{The common-root gain and its shared dimension bound}\label{sec:root-gain}
+
+The common factor $C_m$ improves the residue estimate in a small,
+explicit collection of reflected classes. We prove the gain before
+passing to any limiting prime distribution, so that its interaction
+with the polynomial quotient is exact.
+
+In this section assume
+\begin{equation}\label{eq:root-gain-range}
+ N/3<p\le N,\qquad p>2m,\qquad p>5,\qquad p^2>4R+20.
+\end{equation}
+Thus $q=\floor{N/p}$ is $1$ or $2$, and write again
+$\sigma=N-qp$. Define
+\begin{equation}\label{eq:high-node-count}
+ H_p=N-p-(q-1),\qquad
+ t_p=\min\{r,\pos{2R-N-2p+2}\},
+\end{equation}
+and
+\begin{equation}\label{eq:affected-node-count}
+ A_m(p)=2(q-1)(m-1)+\min(m-1,\sigma)+\pos{m-p+\sigma}.
+\end{equation}
+Here $H_p$ counts high physical nodes in nonzero reflected classes.
+We call a class \emph{affected} if its representative satisfies
+$1\le c<m$; $A_m(p)$ will count its high nodes.
+
+\begin{proposition}\label{prop:root-gain}
+Under \eqref{eq:root-gain-range}, and provided $r\ge H_p$,
+\begin{equation}\label{eq:root-gain-bound}
+ v_p(\det H(X))\ge
+ -7H_p+2A_m(p)-\min(t_p,r-H_p).
+\end{equation}
+The condition $r\ge H_p$ holds for our fixed parameters.
+All valuations in this statement are coefficientwise in $X$.
+\end{proposition}
+\begin{proof}
+\emph{Valuation of the common roots.}
+Consider a nonzero reflected class represented by $c<m$.
+The low atom at $i=c$ vanishes exactly, because $C_m(-c^2)=0$.
+At every other node $i$ of the class, exactly one factor in
+\[
+ C_m(-i^2)=\prod_{a=0}^{m-1}(i^2-a^2)
+\]
+is divisible by $p$, namely the factor with $a=c$.
+Indeed, $p>2m$ makes the residues $\pm a$, $0\le a<m$,
+distinct except at zero. The surviving divisible factor has valuation
+exactly one: the nonzero integer $i-c$ or $i+c$ that contains $p$
+has absolute value below $p^2$. The other linear factor is a unit.
+Thus $C_m(-i^2)^2$ contributes exactly two powers of $p$ at each
+surviving node of an affected class.
+
+Write $h$ for the number of high nodes in the particular class under
+discussion, so that the original class has $2+h$ nodes.
+For $q=1$ its possible values are $0,1,2$; for $q=2$ they are
+$2,3,4$. A mixed-minor term selecting $\ell$ atoms from an affected
+class, of which $b$ are high, therefore has cost at most
+\begin{equation}\label{eq:affected-cluster-cost}
+ 5b+\ell(h+1)-2\ell-\ell(\ell-1)
+ =5b+\ell(h-\ell).
+\end{equation}
+There is at most one surviving low atom, so $0\le\ell\le h+1$.
+At fixed $\ell$ this is bounded above by
+\[
+ c_h^{\rm aff}(\ell)=5\min(\ell,h)+\ell(h-\ell).
+\]
+For $1\le h\le4$, its maximum is $5h$, attained at $\ell=h$.
+If $\ell=h-d<h$, its deficit from that maximum is
+$d(5-h)+d^2\ge d$. If $\ell=h+1$, its value is smaller than
+$5h$. In an unaffected class, \eqref{eq:cluster-cost} instead gives
+maximum $7h$, and the deficit at $\ell=h-d<h$ is
+$d(7-h)+d^2\ge d$. The choices $\ell=h+1,h+2$ do not exceed
+$7h$ when $h\ge1$.
+
+Classes with $h=0$ may be absorbed into the integral part of the
+quotient matrix. An unaffected all-low pair is integral by
+\cref{lem:large-prime-integrality}. In an affected class the node
+$c$ vanishes, and the other low node has valuation at least one
+after the two-power root gain. Absorption preserves the terminal
+fractional support, as explained at the end of \cref{sec:monomial}.
+
+\emph{The zero class.}
+For $i=ap$, $1\le a\le q$, only the factor with root zero in
+$C_m(-i^2)$ is divisible by $p$; it has valuation two.
+Thus $v_p(C_m(-i^2)^2)=4$. The derivative denominator has valuation
+$2(q-1)$, while $v_p(k_i(X))\ge-1$. The corresponding atom has
+valuation at least $5-2q\ge1$. All zero-class atoms can therefore
+be absorbed individually into the integral part of the quotient.
+
+\emph{Exact counts.}
+In a class $c$, the number of high nodes is
+\[
+ h(c)=2(q-1)+\mathbf1_{c\le\sigma}+\mathbf1_{c\ge p-\sigma}.
+\]
+Summing this identity over $1\le c<m$ gives exactly
+\eqref{eq:affected-node-count}. There are $N-p$ physical nodes
+strictly above $p$, of which $q-1$ are in the zero class. This proves
+\eqref{eq:high-node-count}. The sum of the maximum class costs is
+therefore
+\[
+ M_p=7\bigl(H_p-A_m(p)\bigr)+5A_m(p)
+     =7H_p-2A_m(p).
+\]
+
+\emph{The shared dimension.}
+After the integral classes and atoms have been absorbed, consider
+one mixed-minor term with $\ell$ atoms in total. The preceding
+deficit bounds imply that its atomic cost is at most
+\[
+ M_p-\pos{H_p-\ell}.
+\]
+Indeed, summing the deficits $(h(c)-\ell_c)_+$ over the classes
+is at least $(\sum_ch(c)-\sum_c\ell_c)_+$.
+The remaining minor has size $r-\ell$, so its quotient cost is
+at most $\min(t_p,r-\ell)$. For $r\ge H_p$,
+\[
+ \min(t_p,r-\ell)-\pos{H_p-\ell}
+ \le\min(t_p,r-H_p).
+\]
+If $\ell\ge H_p$, this follows by monotonicity. If $\ell<H_p$,
+write $d=H_p-\ell$ and use
+$\min(t_p,r-H_p+d)-d\le\min(t_p,r-H_p)$.
+Every term thus has cost at most $M_p+\min(t_p,r-H_p)$.
+The nonarchimedean inequality for Gauss valuations preserves this
+bound upon summation and proves \eqref{eq:root-gain-bound}.
+\end{proof}
+
+\subsection{Restoring the factorial basis}
+For a good prime, the exact opposite valuation of the prefactor in
+\eqref{eq:monomial-change} is
+\begin{equation}\label{eq:window-factorial-cost}
+ f_p^{[m,R)}=2\sum_{j=m}^{R-1}\floor{2j/p}-2rq.
+\end{equation}
+Here there are no higher factorial terms because $2R<p^2$.
+Combining this with \cref{prop:root-gain} gives the signed clearing
+exponent
+\begin{equation}\label{eq:upper-band-exponent}
+ e_p=f_p^{[m,R)}+7H_p-2A_m(p)+\min(t_p,r-H_p),
+ \qquad v_p(F_N)\ge-e_p.
+\end{equation}
+Using a negative $e_p$ is legitimate: it records a common factor
+of all coefficients, as in \cref{lem:primitive-normalizer}.
+
+\subsection{The size of the root gain on the upper prime band}
+For $N/2<p<N$, put $\beta=p/N$. Then $q=1$, and the exact count
+\eqref{eq:affected-node-count} gives, uniformly on this interval,
+\begin{equation}\label{eq:affected-mass}
+ \frac{A_m(p)}N
+ =\min(s,1-\beta)+\pos{1+s-2\beta}+O(1/N).
+\end{equation}
+Relative to the bound that discards the root gain, the limiting
+clearing-exponent profile is reduced by twice this expression.
+Its integral reduction is the exact quantity
+\begin{equation}\label{eq:integrated-root-gain}
+ 2\int_{1/2}^1
+ \left[\min(s,1-\beta)+\pos{1+s-2\beta}\right]\dd\beta
+ =s-\frac{s^2}{2}=\frac{39}{800}.
+\end{equation}
+To check the integral, the first summand has integral
+$s/2-s^2/2$, and the second is a triangle of base $s/2$ and
+height $s$, hence has integral $s^2/4$.
+
+The proposition also proves a gain on $N/3<p<N/2$, but our final
+arithmetic estimate uses the weaker bound obtained by discarding
+$A_m(p)$ on that band. The local floor formulas and their limiting
+affine pieces are used on open prime-ratio intervals. Their boundary
+treatment, including the possible jumps at rational endpoints, is
+given explicitly in \cref{sec:arithmetic}.
+
+% END SHARED CORE 08_root_gain
+
+% BEGIN SHARED CORE 09_potential
+\section{An explicit positive logarithmic potential}\label{sec:potential}
+
+We now estimate the determinant at its positive integral value. This part
+uses only elementary potential identities and a quantified construction of
+trial polynomials, proved in the next section. In particular, no general
+asymptotic theorem for orthogonal polynomials is needed.
+
+\subsection{Exact factorization into monic norms}
+Let $\widehat h_{k,N,m}$ be the least squared norm of a real monic polynomial
+of degree $k$ for the measure
+\[
+ \frac{B_m(t)^2}{D_N(t)}\,\dd\mu(t).
+\]
+Here and below $\mu$ is understood in the variable $t=x^2$, as defined in
+\cref{sec:functional}. A monic polynomial has leading coefficient $1$.
+Existence and uniqueness of the minimizer follow by minimizing a strictly
+positive quadratic form in its $k$ lower coefficients. Subtracting its
+orthogonal projections onto lower degrees gives the same minimizer.
+
+\begin{lemma}\label{lem:norm-product}
+The exact determinant identity is
+\begin{equation}\label{eq:norm-product}
+ F_N(\zeta(5))=
+ \prod_{k=0}^{r-1}
+ \frac{(N!)^2((2m)!)^2}{((2m+2k)!)^2}\,
+ \widehat h_{k,N,m}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The polynomial $B_{m+k}/B_m$ has degree $k$ and leading coefficient
+$(-1)^k(2m)!/(2m+2k)!$. A triangular change to monic orthogonal polynomials
+has determinant equal to the product of these leading coefficients.
+A Gram determinant changes by the square of that determinant.
+Multiplying by the entry scale $(N!)^2$ in each of the $r$ rows gives
+\eqref{eq:norm-product}. The common factor $B_m$ remains in the measure
+throughout this computation.
+\end{proof}
+
+For the analytic upper bound it is harmless to allow the additional
+factor $r!$ in the right-hand side of \eqref{eq:norm-product}.
+This is the slightly weaker determinant comparison used in the
+Lean formalization. Indeed $r!\ge1$, while Stirling gives
+$\log(r!)=O(N\log N)=o(N^2)$; therefore it changes neither the
+limiting analytic profile nor \cref{prop:analytic-rate}.
+
+For $a\ge0$ and $y\ge0$, define
+\begin{equation}\label{eq:external-field}
+ I_a(y)=\int_0^a\log(y^2+t^2)\,\dd t,\qquad
+ V_s(y)=2\pi y+I_1(y)-2I_s(y).
+\end{equation}
+The integrals at $y=0$ converge, with the convention $0\log0=0$.
+In particular $V_s(0)=-2-4s\log s+4s$.
+Monotonicity of $t\mapsto\log(y^2+t^2)$ gives the exact Riemann-sum bounds
+\begin{equation}\label{eq:riemann-weight}
+ D_N(N^2y^2)\ge N^{2N}e^{NI_1(y)},\qquad
+ |B_m(N^2y^2)|^2
+ \le\frac{N^{4m}}{((2m)!)^2}e^{2NI_s(y)}.
+\end{equation}
+The second inequality at $y=0$ follows directly from $B_m(0)=0$.
+
+\subsection{The measure and its mass}
+For $b,t>0$, define a symmetric positive measure $\nu_{b,t}$ on $[-b,b]$
+by its density
+\begin{equation}\label{eq:nu-density}
+ \frac{\dd\nu_{b,t}}{\dd x}
+ =\frac{t\sqrt{b^2-x^2}}
+ {2\pi\sqrt{t^2+b^2}(x^2+t^2)}
+ \quad (|x|<b).
+\end{equation}
+Also define $\lambda_b$ by the density
+$\pi^{-1}\arcosh(b/|x|)$ on $0<|x|<b$, where
+$\arcosh z=\log(z+\sqrt{z^2-1})$ for $z\ge1$.
+The densities have integrable singularities where indicated.
+
+\begin{lemma}\label{lem:positive-potential}
+The measure
+\begin{equation}\label{eq:potential-measure}
+ \eta_{b,s}
+ =\lambda_b+\int_0^1\nu_{b,t}\,\dd t
+                  -2\int_0^s\nu_{b,t}\,\dd t
+ =2\int_s^\infty\nu_{b,t}\,\dd t+\int_0^1\nu_{b,t}\,\dd t
+\end{equation}
+is positive. Its total mass is
+\begin{equation}\label{eq:u-of-b}
+ u_s(b)=
+ \frac{b+1-2s-\sqrt{1+b^2}+2\sqrt{s^2+b^2}}2.
+\end{equation}
+The function $u_s$ increases continuously and strictly from zero to
+infinity. We denote its inverse by $b_s(u)$ for $u>0$.
+\end{lemma}
+\begin{proof}
+Direct integration of \eqref{eq:nu-density} gives mass
+$(1-t/\sqrt{t^2+b^2})/2$. For completeness, its Cauchy transform is
+\begin{equation}\label{eq:cauchy-nu}
+ \int_{-b}^{b}\frac{\dd\nu_{b,t}(x)}{z-x}
+ =\frac{z-t\sqrt{z^2-b^2}/\sqrt{t^2+b^2}}{2(z^2+t^2)},
+ \qquad z\notin[-b,b],
+\end{equation}
+where the branch is fixed by $\sqrt{z^2-b^2}\sim z$ at infinity.
+The jump of the right side across the interval is $-2\pi i$ times
+\eqref{eq:nu-density}; its apparent poles at $\pm it$ cancel. The difference
+between the two sides extends analytically across the interval and its
+endpoints and vanishes at infinity, so it is zero. At the endpoints this
+removability follows also from the $O(\sqrt{b-|x|})$ density bound, which
+makes the transforms bounded there. The coefficient of $1/z$
+then gives the mass just stated. Alternatively, substitution $x=b\sin\theta$
+gives that mass by a real integral.
+
+At each $0<|x|<b$, substitution $z=\sqrt{t^2+b^2}$ in the density integral
+gives $\lambda_b=2\int_0^\infty\nu_{b,t}\,\dd t$. Tonelli's theorem applies
+to these nonnegative densities. This proves the second expression in
+\eqref{eq:potential-measure} and hence positivity. Integrating the masses
+gives \eqref{eq:u-of-b}. Finally,
+\[
+ u_s'(b)=\frac12\left(
+  1-\frac b{\sqrt{1+b^2}}+\frac{2b}{\sqrt{s^2+b^2}}
+ \right)>0.
+\]
+The formula shows $u_s(0)=0$ and $u_s(b)\to\infty$.
+\end{proof}
+
+We use $\eta_{b,s}$, rather than $\mu$, for this auxiliary measure to avoid
+confusing it with the original measure in the determinant. Define its
+logarithmic potential by
+\[
+ U_{b,s}(y)=\int_{-b}^{b}\log|y-x|\,\dd\eta_{b,s}(x).
+\]
+The logarithmic singularity is integrable against its density; the potential
+is continuous on the real line. To justify the latter statement explicitly,
+$0\le\eta_{b,s}\le(3/2)\lambda_b$, whose density is
+$O(1+|\log|x||)$ for fixed $b$. Integrating the logarithmic kernel over a
+short interval around its singularity then gives a bound tending to zero
+uniformly in the center of that interval; off that interval continuity
+follows by dominated convergence.
+
+\begin{proposition}\label{prop:potential-inequality}
+For $u=u_s(b)$ there is a constant $\ell_s(u)$ such that
+\begin{align}
+ 4U_{b,s}(y)-V_s(y)&=\ell_s(u) &&(0\le y\le b),\label{eq:potential-equality}\\
+ 4U_{b,s}(y)-V_s(y)&\le\ell_s(u) &&(y\ge0).\label{eq:potential-inequality}
+\end{align}
+Moreover,
+\begin{align}
+ \ell_s(u)={}&2+4s\log s-4s
+  +4u\bigl(\log(b/2)-1\bigr)\notag\\
+ &-2\log\frac{1+\sqrt{1+b^2}}2
+  +4s\log\frac{s+\sqrt{s^2+b^2}}{2s},
+ \qquad b=b_s(u).\label{eq:ell-explicit}
+\end{align}
+\end{proposition}
+\begin{proof}
+On $0<y<b$, the real part of \eqref{eq:cauchy-nu} is
+$y/(2(y^2+t^2))$. Its principal-value meaning is obtained by differentiating
+the logarithmic potential; the density is smooth locally away from zero
+and the endpoints. Using \eqref{eq:potential-measure} therefore gives
+$4U_{b,s}'(y)=V_s'(y)$. For $y>b$, the same identity gives
+\begin{align}
+ 4U_{b,s}'(y)-V_s'(y)
+ ={}&-4\int_s^\infty
+ \frac{t\sqrt{y^2-b^2}}{\sqrt{t^2+b^2}(y^2+t^2)}\,\dd t\notag\\
+ &-2\int_0^1
+ \frac{t\sqrt{y^2-b^2}}{\sqrt{t^2+b^2}(y^2+t^2)}\,\dd t<0.
+ \label{eq:tail-derivative}
+\end{align}
+For example, the part without square roots in the first line before
+subtraction is $4\int_s^\infty y/(y^2+t^2)\,\dd t
+=2\pi-4\arctan(s/y)$; the other part is $2\arctan(1/y)$,
+exactly $V_s'(y)$. Continuity at $0$ and $b$ extends the identities to
+their endpoints and proves \eqref{eq:potential-equality}--\eqref{eq:potential-inequality}.
+
+Let $\omega_b$ be the unit arcsine measure with density
+$1/(\pi\sqrt{b^2-x^2})$ on $(-b,b)$. Differentiating
+\eqref{eq:nu-density} with respect to $b$ gives its mass derivative times
+$\omega_b$; differentiating the density of $\lambda_b$ gives $\omega_b$.
+The boundary density is zero, so there is no boundary atom. It follows
+against bounded continuous test functions that
+\[
+ \frac{\partial\eta_{b,s}}{\partial b}=u_s'(b)\omega_b.
+\]
+The arcsine potential on its interval is $\log(b/2)$: this follows from
+$x=b\cos\theta$ and
+$\pi^{-1}\int_0^\pi\log|y-b\cos\theta|\,\dd\theta=\log(b/2)$
+for $|y|\le b$. For the kernel $\log|x|$, first use bounded truncations.
+The explicit density derivatives have locally uniform finite logarithmic
+moments for $b$ in a compact subinterval of $(0,\infty)$, so the truncations
+may be removed by dominated convergence. Evaluating
+\eqref{eq:potential-equality} at $y=0$ and differentiating therefore gives
+\[
+ \frac{\dd\ell_s}{\dd u}=4\log(b_s(u)/2),\qquad
+ \ell_s(0)=-V_s(0).
+\]
+For the initial value, evaluate the potential at $y=0$.
+The domination $0\le\eta_{b,s}\le(3/2)\lambda_b$, followed by $x=bz$, gives
+\[
+ |U_{b,s}(0)|\le Cb(1+|\log b|)\longrightarrow0
+ \qquad(b\downarrow0);
+\]
+the required fixed integrals of $\arcosh(1/|z|)$ and its product with
+$|\log|z||$ over $(-1,1)$ are finite. This proves the initial value
+without relying on a small-mass argument alone.
+Integration by parts reduces the constant to
+$4u\log(b/2)-4\int_0^b u_s(v)/v\,\dd v$ plus the initial value. The elementary
+identity
+\[
+ \int_0^b\frac{u_s(v)}v\,\dd v
+ =u_s(b)+\frac12\log\frac{1+\sqrt{1+b^2}}2
+       -s\log\frac{s+\sqrt{s^2+b^2}}{2s}
+\]
+is checked by differentiation and its value at $b=0$. Substitution proves
+\eqref{eq:ell-explicit}.
+\end{proof}
+
+Uniformly for $u$ in a fixed compact subinterval of $(0,\delta]$, the
+quantity on the left of \eqref{eq:tail-derivative} is bounded above by a
+fixed negative constant outside a fixed compact interval. Indeed,
+$U_{b,s}'(y)\le u/(y-b)$ there and
+$V_s'(y)\ge2\pi-4s/y$. This uniform tail estimate will justify integrating
+our pointwise polynomial bounds.
+
+% END SHARED CORE 09_potential
+
+% BEGIN SHARED CORE 10_discretization
+\section{Quantified discretization and determinant decay}\label{sec:discretization}
+
+The passage from a continuous potential to a polynomial must control the
+logarithmic singularity uniformly. We provide that control explicitly.
+
+\begin{lemma}\label{lem:quantile-bound}
+Fix $0<\varepsilon<\delta$. For all sufficiently large $N$ and every integer $k$ with
+$\varepsilon N\le k\le\delta N$, choose $b=b_s(k/N)$. There is a real monic
+polynomial $p_{k,N}$ of degree $k$ such that, uniformly for $y\ge0$,
+\begin{equation}\label{eq:trial-polynomial}
+ |p_{k,N}(N^2y^2)|^2
+ \le N^{4k+C_\varepsilon}\exp\{4NU_{b,s}(y)\}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $\sigma_N$ be the image of $\eta_{b,s}$ under $x\mapsto x^2$.
+Thus $\sigma_N(E)=\eta_{b,s}(\{x:x^2\in E\})$ for a Borel set $E$;
+this operation preserves its total mass $k/N$. Symmetry gives
+\begin{equation}\label{eq:fold-potential}
+ \int\log|y^2-v|\,\dd\sigma_N(v)=2U_{b,s}(y).
+\end{equation}
+On the present compact parameter range its density is bounded by
+\begin{equation}\label{eq:squared-density}
+ C v^{-1/2}(1+|\log v|),\qquad 0<v\le b^2.
+\end{equation}
+Indeed, \eqref{eq:potential-measure} is bounded above by
+$\lambda_b+\int_0^1\nu_{b,t}\,\dd t$. The first density is
+$O(1+|\log|x||)$, and the second is bounded by a constant times
+$\int_0^1 t/(x^2+t^2)\,\dd t$, which has the same bound. The change of
+variable $v=x^2$ proves \eqref{eq:squared-density}.
+
+Partition $[0,b^2]$ into $k$ consecutive intervals, each of
+$\sigma_N$-mass $1/N$, and take their ordinary coordinate midpoints $v_j$.
+The measure has positive density in the interior and no atoms, so these
+quantile intervals exist. From \eqref{eq:squared-density}, every interval
+of length $a\le1$ has mass at most $C\sqrt a(1+|\log a|)$.
+Consequently each quantile interval has length at least $N^{-3}$ for all
+sufficiently large $N$, uniformly in $k$.
+
+We claim the upper quadrature estimate
+\begin{equation}\label{eq:log-quadrature}
+ \sum_{j=1}^k\log|v-v_j|
+ \le N\int\log|v-w|\,\dd\sigma_N(w)+C\log N
+ \qquad(v\ge0).
+\end{equation}
+When $v$ is in the support, remove its containing interval and at most two
+neighbors on each side. When $v$ is outside the support but in a fixed
+bounded interval, remove the nearest terminal interval and its two inward
+neighbors. On each remaining side $\log|v-w|$ is monotone. On one cell, its
+sampled value exceeds its $N$-weighted integral by no more than the
+oscillation on that cell. Summing these oscillations telescopes to the
+total variation on that side. Distances to the remaining cells are at
+least $N^{-3}$, so the total is $O(\log N)$.
+
+For the union $E$ of the at most five removed cells, define
+$\log^-z=\max(0,-\log z)$ for $z>0$. The interval-mass estimate and
+integration of nonnegative level sets give
+\[
+ \int_E\log^-|v-w|\,\dd\sigma_N(w)
+ \le\int_0^\infty
+   \min\{5/N,\ C(1+t)e^{-t/2}\}\,\dd t
+ =O(\log N/N).
+\]
+The positive parts of the sampled logarithms are bounded on a fixed
+bounded interval. This proves \eqref{eq:log-quadrature} there. For $v$
+beyond twice a fixed upper bound for the support, monotonicity gives
+bounded total variation without removing cells. If a sample equals $v$,
+the left side is $-\infty$ and the inequality is automatic.
+
+Set $p_{k,N}(t)=\prod_{j=1}^k(t-N^2v_j)$. Taking twice
+\eqref{eq:log-quadrature}, then using \eqref{eq:fold-potential}, gives
+\eqref{eq:trial-polynomial}. The coefficients of this trial polynomial
+need not be rational: it is used only to bound a minimum over real
+monic polynomials.
+\end{proof}
+
+\begin{proposition}\label{prop:analytic-rate}
+Define $b=b_s(u)$ for $u>0$ and
+\begin{align}
+ f_s(u)={}&
+ 4u\log\frac{b}{4(s+u)}
+ +4s\log\frac{s+\sqrt{s^2+b^2}}{4(s+u)}
+ -2\log\frac{1+\sqrt{1+b^2}}2,\label{eq:f-profile}\\
+ f_s(0)={}&-4s\log2.\notag
+\end{align}
+Then $f_s$ is continuous on $[0,\delta]$, and
+\begin{equation}\label{eq:analytic-rate}
+ \limsup_{N\to\infty}\frac{\log F_N(\zeta(5))}{N^2}
+ \le \int_0^\delta f_s(u)\,\dd u.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The original density in the $x$ variable satisfies
+\[
+ 0<\frac{\dd\mu(x^2)}{\dd x}
+ =\frac{x^5}{12}\left(\frac{\dd}{\dd x}\right)^4
+                 \frac1{e^{2\pi x}-1}
+ \le C(1+x^5)e^{-2\pi x}.
+\]
+For $x\ge1$ this follows by differentiating the positive geometric series;
+for $0<x\le1$ it follows from its Laurent expansion, since multiplication
+by $x^5$ removes the leading pole. These arguments also show boundedness
+at zero.
+
+Combine this density bound, \eqref{eq:riemann-weight}, and
+\eqref{eq:trial-polynomial}, substituting $x=Ny$. The exponent left in the
+integral is $N(4U_{b,s}(y)-V_s(y))$.
+By \cref{prop:potential-inequality} it is at most $N\ell_s(k/N)$.
+Outside a fixed compact interval it decreases at a uniform linear rate,
+by \eqref{eq:tail-derivative} and the following paragraph of
+\cref{sec:potential}. All remaining factors are bounded by a fixed
+power of $N$ times $1+y^5$. The variational definition of
+$\widehat h_{k,N,m}$ therefore gives, uniformly when
+$\varepsilon N\le k\le\delta N$,
+\begin{equation}\label{eq:norm-bound}
+ \log\widehat h_{k,N,m}
+ \le(4k+4m-2N)\log N-2\log((2m)!)
+       +N\ell_s(k/N)+O_\varepsilon(\log N).
+\end{equation}
+Using $\log(n!)=n\log n-n+O(\log(n+1))$ in
+\eqref{eq:norm-product}, the logarithm of its $k$th factor is at most
+\[
+ N\{\ell_s(u)-2+4(s+u)-4(s+u)\log(2(s+u))\}
+ +O_\varepsilon(\log N),\qquad u=k/N.
+\]
+The expression in braces equals \eqref{eq:f-profile} after substitution
+of \eqref{eq:ell-explicit}. This calculation exhibits explicitly the
+cancellation of all $N\log N$ terms and of the common $(2m)!$ factors.
+Since $u_s(b)=b/2+O(b^2)$ near zero, its limit as $u\downarrow0$ is
+$-4s\log2$.
+
+It remains to treat $0\le k<\varepsilon N$, where the preceding uniformity
+was not asserted. The actual polynomial $B_{m+k}/B_m$, after multiplication
+by its inverse leading coefficient, is an admissible monic trial
+polynomial. Hence the $k$th factor in \eqref{eq:norm-product} is at most
+\[
+ (N!)^2\int_0^\infty\frac{B_{m+k}(x^2)^2}{D_N(x^2)}
+                         \,\dd\mu(x^2)
+ \le\int_0^\infty B_{m+k}(x^2)^2\,\dd\mu(x^2).
+\]
+Here $D_N(x^2)\ge(N!)^2$. If $j=m+k$, then
+$|B_j(x^2)|\le(x+j)^{2j}/(2j)!$. Substitution $z=x+j$, followed by extending
+the integral down to zero, bounds the last display by
+\[
+ \frac{Ce^{2\pi j}}{((2j)!)^2}
+ \left\{\frac{(4j)!}{(2\pi)^{4j+1}}
+       +\frac{(4j+5)!}{(2\pi)^{4j+6}}\right\}
+ \le e^{C_1N}N^{C_2}.
+\]
+The last inequality follows, for example, from
+$(4j)!/((2j)!)^2=\binom{4j}{2j}\le2^{4j}$ and $j\le R$.
+Thus these initial rows contribute at most
+$C_1\varepsilon N^2+O(N\log N)$.
+
+Summing the remaining rows and passing to a Riemann integral yields
+the claimed bound. If the conservative $r!$ comparison is used, its
+logarithm contributes $o(N^2)$ by Stirling and vanishes in the limit.
+Thus $\limsup N^{-2}\log F_N(\zeta(5))
+\le C_1\varepsilon+\int_\varepsilon^\delta f_s(u)\,\dd u$.
+Finally let $\varepsilon\downarrow0$, using continuity at zero.
+\end{proof}
+
+% END SHARED CORE 10_discretization
+
+% BEGIN SHARED CORE 11_arithmetic
+\section{Summation of the local arithmetic bounds}\label{sec:arithmetic}
+
+We turn the coefficientwise estimates into an upper bound for
+$\log Q_N$. The \emph{arithmetic profile} below is a function of
+$\beta=p/N$ giving the limiting denominator exponent divided by $N$.
+Some of its values are negative: these record divisibility of every
+coefficient and are retained in the primitive normalizer.
+
+\subsection{The profile below 9/20}
+For $0<\beta<9/20$, put
+\[
+ q=\floor{1/\beta},\qquad
+ \theta=1/\beta-q,\qquad
+ \epsilon=\floor{2\theta},\qquad
+ D=\floor{2\rho/\beta}.
+\]
+The limit of \cref{prop:local-kernel} is
+\begin{equation}\label{eq:rank-profile}
+ e_{\mathrm{rank}}(\beta)
+ =(4+\epsilon)\delta+
+ \min\{\delta,(D+1)\beta(\theta-\epsilon/2)\}.
+\end{equation}
+Away from the floor discontinuities, its finite version differs from
+$Ne_{\mathrm{rank}}(p/N)$ by $O(1)$ on any fixed compact $\beta$-interval.
+The finite parameter in that proposition is
+$\floor{(2R-2)/p}$; the possible difference from $D$ at its boundaries
+will be handled explicitly below.
+
+For comparison, the following sharper infinite-period bound is valid but
+\emph{not required} by the fully checked proof. The proof we use instead
+has the fixed cutoff $\beta_0=1/512$ and the uniform estimate given
+below. Since
+$D+1\le2\rho/\beta+1$ and $\theta-\epsilon/2\ge0$,
+\[
+ e_{\mathrm{rank}}(\beta)
+ \le4\delta+2\rho\theta-s\epsilon
+                   +\beta(\theta-\epsilon/2)
+ \le4\delta+2\rho\theta+\frac{\beta}{2}.
+\]
+The interval $(0,1/40)$ is the union of the complete periods
+$\beta=1/(q+\theta)$, $q\ge40$, $0<\theta<1$.
+The weight $(q+\theta)^{-2}$ decreases with $\theta$, so its weighted
+mean of $\theta$ is at most $1/2$. One proof pairs $\theta$ and $1-\theta$
+in the integral of $(\theta-1/2)(q+\theta)^{-2}$.
+Consequently
+\begin{equation}\label{eq:small-profile-tail}
+ \int_0^{1/40}e_{\mathrm{rank}}(\beta)\,\dd\beta
+ \le\frac{4\delta+\rho}{40}
+           +\frac{1}{4\cdot40^2}
+ =\frac{969}{6400}.
+\end{equation}
+
+\paragraph{The fixed-cutoff replacement used in the verified proof.}
+Write $N=20n$ and let
+\[
+ \beta_0=\frac1{512},\qquad
+ Y_n=100(\floor{\sqrt n}+1).
+\]
+By \cref{prop:small-primes}, the sum of the local small-prime costs for
+$p\le Y_n$ is $o(N^2)$. For all sufficiently large $n$, one has
+$Y_n<N/512$, and every prime $Y_n<p\le N/512$ satisfies the
+square-threshold hypotheses of \cref{prop:local-kernel}. Its uniform
+bound $6r=144n$ therefore gives
+\begin{equation}\label{eq:verified-small-tail}
+ \limsup_{n\to\infty}\frac1{N^2}
+ \sum_{Y_n<p\le N/512}6r\log p
+ \le\frac{6\delta}{512}=\frac{36}{5\cdot512}.
+\end{equation}
+This uses only $\vartheta(x)\sim x$ at the fixed scale $N/512$;
+no infinite sequence of floor-function periods must be integrated.
+
+On $[1/512,9/20]$ a finite rational partition into $3060$ cells
+supplies a rigorously checked piecewise affine \emph{majorant} for
+$e_{\mathrm{rank}}$. The exact fit of each cell, the choice of the
+correct branch, and its rational upper area are proved in the companion
+Lean source (24 certificate blocks). Their aggregate bound is
+\begin{equation}\label{eq:verified-middle-area}
+ \int_{1/512}^{9/20}e_{\mathrm{rank}}(\beta)\,\dd\beta
+ \le\frac{33853132329}{12500000000}.
+\end{equation}
+The profile may have many more branches than the former 228-piece
+calculation on $[1/40,9/20]$; using upper affine pieces instead of
+an exact integral is intentional and sufficient.
+
+\subsection{An explicit table on the upper interval}
+For $\beta>9/20$ the monomial estimates give a simpler table. The exact
+factorial charge from the change of basis is
+\[
+ f_p=2\sum_{j=m}^{R-1}\floor{2j/p}
+                  -2r\floor{N/p}.
+\]
+Since $p>2m$ here, its normalized limit is
+\begin{equation}\label{eq:factorial-profile}
+ f_{\mathrm{fac}}(\beta)
+ =2D\rho-\frac{\beta D(D+1)}2-2\delta q,
+ \qquad D=\floor{2\rho/\beta},\quad q=\floor{1/\beta}.
+\end{equation}
+For example,
+$N^{-1}\sum_j\floor{2j/p}\to\int_s^\rho\floor{2x/\beta}\,\dd x$;
+the integral equals
+$D\rho-\beta D(D+1)/4$ because $s<\beta/2$.
+
+For $9/20<\beta<1/2$, $q=2$, and the residue classes in
+\cref{lem:mixed-minors} have $h=2,3$, or $4$ high atoms.
+Their total number, divided by $N$, tends to $1-\beta$.
+Apply \cref{prop:root-gain}, discarding its nonnegative term $2A_m(p)$;
+that proposition also handles the zero class and the shared dimension.
+The bound $7h$ for each class and the quotient support give the additional
+cost
+$7(1-\beta)+T(\beta)$, where
+\[
+ T(\beta)=(3/2-2\beta)_+.
+\]
+This uses the available matrix dimension, since
+$T(\beta)\le\delta-(1-\beta)$ on the range in question.
+For $1/2<\beta<1$, \cref{prop:root-gain} improves the cost to
+\[
+ 7(1-\beta)-2A(\beta)+T(\beta),\qquad
+ A(\beta)=\min(s,1-\beta)+(1+s-2\beta)_+ .
+\]
+The term $A$ is the limiting number of affected high atoms divided by $N$.
+Substitution in \eqref{eq:factorial-profile} gives the following valid
+profile on the \emph{open interiors} of the intervals:
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Interval for $\beta$ & $e_{\mathrm{upper}}(\beta)$\\
+\midrule
+$(9/20,\,1/2)$ & $81/5-24\beta$\\
+$(1/2,\,21/40)$ & $139/10-15\beta$\\
+$(21/40,\,5/8)$ & $16-19\beta$\\
+$(5/8,\,3/4)$ & $27/2-15\beta$\\
+$(3/4,\,5/6)$ & $12-13\beta$\\
+$(5/6,\,19/20)$ & $19/2-10\beta$\\
+$(19/20,\,1)$ & $38/5-8\beta$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All entries follow from the displayed formulas; the changes occur precisely
+where $D$, $T$, or $A$ changes formula. Their integral is
+\begin{equation}\label{eq:upper-table-area}
+ \int_{9/20}^{1}e_{\mathrm{upper}}(\beta)\,\dd\beta
+ =\frac{901}{600}.
+\end{equation}
+In the $q=2$ interval we have discarded a nonnegative common-root
+improvement, so no claim of optimality is needed.
+
+For $p>N$, the monomial matrix is coefficientwise integral by
+\cref{lem:large-prime-integrality}. Thus only the factorial charge remains.
+For $x\le\rho=5/4<3/2$,
+\[
+ \int_1^\infty\floor{2x/\beta}\,\dd\beta
+ =(2x-1)_++(x-1)_+.
+\]
+Integrating twice over $s\le x\le\rho$ gives
+\begin{equation}\label{eq:large-prime-area}
+ 2\int_s^\rho\{(2x-1)_++(x-1)_+\}\,\dd x
+ =3\rho^2-4\rho+\frac32=\frac{19}{16}.
+\end{equation}
+There is no factorial denominator prime beyond $2R-2$, and integrality
+of the monomial matrix proves that no further denominator prime is needed.
+Any additional numerator content can only decrease $Q_N$.
+
+\subsection{Boundary primes and passage to the limit}
+The fixed cutoff permits a single prime-summation limit, without first
+introducing a second parameter $Q\to\infty$. With $N=20n$ and $Y_n$
+as above, the contribution from $p\le Y_n$ is $o(N^2)$, while
+\eqref{eq:verified-small-tail} handles $Y_n<p\le N/512$.
+
+We use the prime number theorem \cite[\S27.12]{dlmf} in the form
+\begin{equation}\label{eq:pnt}
+ \vartheta(x):=\sum_{p\le x}\log p=x+o(x).
+\end{equation}
+For a fixed affine function $a+b\beta$, partial summation or the
+identity for $\vartheta$ gives, on a fixed interval $(c,d]$,
+\[
+ \frac1{N^2}\sum_{cN<p\le dN}
+ N(a+bp/N)\log p
+ \longrightarrow\int_c^d(a+b\beta)\,\dd\beta.
+\]
+By additivity this applies to the finitely many certified middle
+cells and the seven and two upper and large-prime rows. The affine
+weights may be negative; replacing them by their positive parts would
+lose the common-divisibility saving and is not done.
+
+Floor-function boundaries require a separate qualification. The
+finite local formula on the strict interior of a cell differs from
+its limiting affine majorant by a uniform $O(1)$ exponent, and its
+sum is $o(N^2)$. A possible right-endpoint prime, where a floor jumps,
+is charged separately. There are finitely many fixed rational boundaries,
+and their combined cost is $O(N\log N)=o(N^2)$. Equivalently one may
+use the half-open prime intervals $(\floor{aN},\floor{bN}]$, so that
+shared endpoints appear exactly once. The companion Lean proof
+establishes these errors explicitly for the actual signed prime
+charges, including the common-root terms. No result about primes in
+short intervals is required.
+
+\begin{proposition}\label{prop:arithmetic-rate}
+The primitive normalizer satisfies
+\begin{equation}\label{eq:arithmetic-rate}
+ \limsup_{N\to\infty}\frac{\log Q_N}{N^2}\le C_{\arith},
+\end{equation}
+where the convenient exact certified constant is
+\begin{align}
+ C_{\arith}
+ &:={\frac{36}{5\cdot512}}
+     +{\frac{33853132329}{12500000000}}
+     +{\frac{901}{600}}+{\frac{19}{16}}\notag\\
+ &=\frac{202930490737}{37500000000}
+ <\frac{5412}{1000}.
+ \label{eq:arithmetic-exact}
+\end{align}
+\end{proposition}
+\begin{proof}
+At each prime, the coefficientwise lower valuation estimate for
+$F_N$ bounds the exponent of that prime in the positive rational
+primitive normalizer $Q_N$. Summing these \emph{signed} exponents
+against $\log p$ uses the rational product formula and the finite
+support bound, rather than a replacement by nonnegative denominator charges.
+The small-prime contribution vanishes at scale $N^2$; the uniform
+tail is bounded by \eqref{eq:verified-small-tail}; the certified middle
+cells give \eqref{eq:verified-middle-area}; and the remaining two
+intervals have bounds \eqref{eq:upper-table-area} and
+\eqref{eq:large-prime-area}. The prime number theorem and the
+boundary-prime treatment just proved turn these local bounds into
+\eqref{eq:arithmetic-rate}.
+
+All four displayed contributions are rational. Exact addition gives
+the stated fraction and its strict comparison with $5412/1000$.
+The companion Lean development formalizes the finite partition and
+its connection to the actual normalizer, with all 3060 middle-cell
+checks discharged. The older infinite-period estimate
+\eqref{eq:small-profile-tail}, and the optional sharper comparison
+in \cref{app:certificate-code}, are not used here.
+\end{proof}
+
+% END SHARED CORE 11_arithmetic
+
+% BEGIN SHARED CORE 12_certificate
+\section{The exact rational comparison certificate}\label{sec:certificate}
+
+Define
+\[
+ C_{\an}=-\int_0^\delta f_s(u)\,\dd u,\qquad g(u)=-f_s(u).
+\]
+We now give a lower bound for $C_{\an}$ using rational arithmetic only.
+Every transcendental expression in this finite calculation is replaced by
+a rational one-sided bound whose direction is proved here.
+
+\begin{lemma}\label{lem:concavity}
+The function $g$ is positive and continuous on $[0,\delta]$, and strictly
+concave on $(0,\delta]$.
+\end{lemma}
+\begin{proof}
+Differentiating \eqref{eq:ell-explicit}, or the equivalent expression in
+the proof of \cref{prop:analytic-rate}, gives
+\[
+ f_s'(u)=4\log\frac{b}{4(s+u)},\qquad b=b_s(u).
+\]
+Write $v=s+u_s(b)$. Direct calculation gives
+\[
+ 2(v-bu_s'(b))
+ =1-\frac1{\sqrt{1+b^2}}+\frac{2s^2}{\sqrt{s^2+b^2}}>0.
+\]
+Since $u_s'(b)>0$,
+\[
+ f_s''(u)=\frac{4(v-bu_s'(b))}{b\,u_s'(b)\,v}>0
+ \qquad(u>0).
+\]
+Also $v>b$: this follows immediately from
+$\sqrt{1+b^2}<1+b$ and $\sqrt{s^2+b^2}>b$ in \eqref{eq:u-of-b}.
+Hence $f_s'(u)<0$. Together with $f_s(0)=-4s\log2<0$, this proves
+positivity of $g$ and the assertions about its shape.
+\end{proof}
+
+For a concave function the chord between any two graph points lies below
+the graph. Thus
+\begin{equation}\label{eq:trapezoid-lower}
+ \int_{u_{j-1}}^{u_j}g(u)\,\dd u
+ \ge\frac{u_j-u_{j-1}}2\{g(u_{j-1})+g(u_j)\}.
+\end{equation}
+Use the rational grid
+\begin{equation}\label{eq:b-grid}
+ b_j=\frac{96156889}{10^8}\frac{j}{2048},
+ \quad 0\le j\le2048,\qquad u_j=u_s(b_j).
+\end{equation}
+The program verifies $u_{2048}<\delta$ by rational bounds. The omitted
+terminal interval contributes positively and may be discarded.
+
+\subsection{Square roots and logarithms with directed bounds}
+Put $M=10^{30}$. For a nonnegative rational number $x$, let
+$a=\operatorname{isqrt}(\floor{xM^2})$, where
+$\operatorname{isqrt}(n)$ is the greatest integer whose square is at most
+the nonnegative integer $n$. Then
+\[
+ a/M\le\sqrt x\le(a+1)/M.
+\]
+The code also checks both squared inequalities exactly.
+
+For $1\le x\le2$ put $z=(x-1)/(x+1)$. Integration of the geometric series
+for $2/(1-z^2)$, or differentiation followed by evaluation at $z=0$, gives
+\[
+ \log x=2\sum_{j=0}^\infty\frac{z^{2j+1}}{2j+1}.
+\]
+All terms are nonnegative. The first $24$ terms therefore give a lower
+bound. The program rounds $z$, $z^2$, each successive odd power, and each
+summand down to the $M^{-1}$ grid. Because every operation involves
+nonnegative quantities, these rounds preserve a lower bound by induction.
+For $x>2$, division by powers of two reduces it to $[1,2]$, and the same
+lower bound for $\log2$ is added the appropriate number of times.
+There is no need to bound the positive remainder from above.
+
+For $b>0$, write $u=u_s(b)$. The expression used is
+\begin{align}
+ g(u)={}&4u\log\frac{4(s+u)}b
+  +4s\log\frac{4(s+u)}{s+\sqrt{s^2+b^2}}
+  +2\log\frac{1+\sqrt{1+b^2}}2.\label{eq:g-positive}
+\end{align}
+All three logarithms are nonnegative. Indeed $s+u>b$, and, if
+$c=\sqrt{s^2+b^2}$, then
+$s+u=(b+1-\sqrt{1+b^2})/2+c>c$ and $s\le c$.
+The third assertion is immediate.
+The prefactors and numerators can therefore be bounded downward, and
+the second denominator upward, to obtain a lower bound.
+The rational arguments supplied to the logarithm routine are checked
+to be at least $1$.
+
+At each $b_j$, let $u_j^-\le u_j\le u_j^+$ be the computed rational
+interval and let $g_j^-\le g(u_j)$ be the positive rational lower bound.
+For $j=0$ use $u_0^-=u_0^+=0$ and
+$g_0^-=4s$ times the lower bound for $\log2$.
+The program verifies $u_j^--u_{j-1}^+>0$ for every $j$.
+It then sums
+\begin{equation}\label{eq:rational-trapezoids}
+ L=\sum_{j=1}^{2048}
+   \frac{u_j^- -u_{j-1}^+}{2}(g_{j-1}^-+g_j^-).
+\end{equation}
+Every term is bounded above by its true trapezoid in
+\eqref{eq:trapezoid-lower}; the omitted terminal integral is positive.
+
+\begin{proposition}\label{prop:exact-gap}
+The analytic grid and the fixed-cutoff arithmetic certificates give
+\[
+ C_{\an}\ge L>\frac{54133705070}{10^{10}},
+ \qquad C_{\arith}=\frac{202930490737}{37500000000}
+ <\frac{5412}{1000},
+\]
+so in particular
+\begin{equation}\label{eq:verified-gap}
+ C_{\an}-C_{\arith}>\frac{137}{100000}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The preceding inequalities prove $C_{\an}\ge L$. The analytic grid
+of 2048 points is checked by exact rational bounds in the companion
+Lean development. The arithmetic estimate uses the certified fixed
+$1/512$ cutoff, 3060 rational middle cells in 24 blocks, seven upper
+rows, and two large-prime rows, with the four rational bounds
+of \eqref{eq:arithmetic-exact}. Every cell-fit, branch selection,
+area bound, and final addition used by this proof has a Lean proof term.
+The standalone Python program in \cref{app:certificate-code} remains
+available as an optional, somewhat sharper comparison based on the
+original $1/40$ split, but its stronger constant is not needed here.
+\end{proof}
+
+The exact arithmetic checks alone do not establish the analytic and
+local-arithmetic lemmas in the preceding sections. In this revision,
+however, those lemmas and their connections to the certified real
+integrals and the primitive normalizer are part of the independent
+Lean verification \cite{zeta5lean2026}. The older Python certificate
+is supplementary rather than a hypothesis of the formal theorem.
+
+% END SHARED CORE 12_certificate
+
+% BEGIN SHARED CORE 13_contradiction
+\section{The positive-integer contradiction}\label{sec:contradiction}
+
+\begin{proof}[Completion of the proof of \cref{thm:main}]
+Suppose that $\zeta(5)=a/q_*$ with $a\in\Z$ and $q_*\in\Z_{>0}$.
+By construction $Q_NF_N(X)\in\Z[X]$ and the universal
+matrix-size bound is $\deg F_N\le r=6N/5$.
+Consequently
+\[
+ A_N:=q_*^r Q_NF_N(a/q_*)\in\Z.
+\]
+The Gram determinant is strictly positive at $\zeta(5)$, and both
+normalizing factors are positive. Thus $A_N\ge1$ for every $N$ under
+consideration.
+
+On the other hand, \cref{prop:analytic-rate,prop:arithmetic-rate,prop:exact-gap}
+give
+\[
+ \limsup_{N\to\infty}\frac{\log A_N}{N^2}
+ \le C_{\arith}-C_{\an}<-\frac{137}{100000}.
+\]
+Here $r\log q_*/N^2\to0$, because $r=6N/5$ and the
+supposed denominator $q_*$ is fixed.
+It follows that $A_N\to0$, contradicting $A_N\ge1$.
+\end{proof}
+
+\subsection{Scope of the conclusion and of its checks}
+The logical inputs are the positive functional, the coefficientwise
+local estimates, the explicit polynomial norm construction, the prime
+number theorem, and the finite rational comparison proved in this
+manuscript. No earlier lattice-covering proposal, stronger arithmetic
+profile refinement, or external candidate proof of $\zeta(5)$ is an input.
+The chosen window $s=1/20$, $\rho=5/4$ is sufficient; no optimization or
+claim of best constants is needed.
+
+The independent Lean~4.33.1 development \cite{zeta5lean2026}
+proves the unconditional endpoint
+\texttt{Zeta5.irrational\_zeta\_five} with only the standard
+foundational axioms \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound} in its transitive dependency closure. Its numerical
+certificates are checked by the Lean kernel, rather than supplied as
+extra mathematical assumptions. The \texttt{--trust=0} check, project
+build, and transitive dependency audit are recorded in the companion
+archive.
+The historical implementations in \cref{sec:history} concern other
+arguments and their own documented trust boundaries.
+
+The present exposition also makes an endpoint qualification explicit:
+floor-function jumps in \cref{sec:arithmetic} are treated by isolating
+their finitely many nearby prime candidates before taking a limit.
+This changes no displayed fixed-cutoff limiting constant, but avoids an incorrect
+pointwise interpretation of adjacent closed intervals in an asymptotic
+profile table.
+
+% END SHARED CORE 13_contradiction
+
+% BEGIN JOURNAL ADDITION higher_odd
+\section{Outlook for \texorpdfstring{$\zeta(7)$}{zeta(7)} and higher odd values}\label{sec:higher-odd}
+
+The construction extends to higher odd arguments, but the strict
+arithmetic--analytic comparison does not extend with the present window.
+We make this distinction explicit. The available estimates for the primitive
+coefficient normalizer are too costly to close the comparison; existence and
+positivity of the determinant still hold. Related distinctions between rational approximation and the
+inequalities needed for an irrationality conclusion occur in
+\cite{prevostrivoal2021,zudilin2017}.
+
+\subsection{The construction for a fixed higher odd argument}
+
+Fix an integer $h\ge3$. All limits below keep $h$ fixed; they make no
+assertion for an argument $2h+1$ that grows with $N$. Retain
+$f(x)=(e^{2\pi x}-1)^{-1}$ and define a positive measure $\mu_{2h+1}$ by
+\begin{equation}\label{eq:higher-measure}
+ \int g(t)\,\dd\mu_{2h+1}(t)
+ =\frac{2}{(2h)!}\int_0^\infty
+       g(x^2)x^{2h+1}f^{(2h)}(x)\,\dd x.
+\end{equation}
+The formula initially applies to nonnegative measurable $g$.
+The even derivative of the exponential series is positive. Its density
+extends to $1/\pi$ at zero and is bounded by
+$C_h(1+x)^{2h+1}e^{-2\pi x}$. Thus every polynomial moment exists.
+The same calculation as in \cref{lem:positive-measure} gives
+\begin{equation}\label{eq:higher-moments}
+ \int t^j\,\dd\mu_{2h+1}(t)
+ =\frac{(-1)^j}{(2h)!}
+       \prod_{a=3}^{2h+1}(2j+a)\,\mathrm B_{2j+2}
+ \in\Q,\qquad j\ge0.
+\end{equation}
+
+Write $\zeta(2h+1,y)=\sum_{n\ge0}(n+y)^{-(2h+1)}$ for $y>0$.
+The Binet calculation of \cref{lem:stieltjes}, with $2h$ integrations
+by parts, yields
+\begin{equation}\label{eq:higher-stieltjes}
+ \int\frac{\dd\mu_{2h+1}(t)}{t+y^2}
+ =y^{2h}\zeta(2h+1,y)-\frac1{2y}-\frac1{2h}.
+\end{equation}
+Indeed, division of $x^{2h+1}$ by $x^2+y^2$ leaves
+$(-1)^hy^{2h}x/(x^2+y^2)$; harmonicity contributes the same sign
+when $2h$ derivatives in $x$ are replaced by derivatives in $y$.
+The polynomial quotient disappears under these derivatives, and all
+integration-by-parts boundary terms vanish as before.
+
+Consequently the formal functional $\J_{2h+1,X}$ has the rational moments
+in \eqref{eq:higher-moments} and the affine simple-fraction values
+\begin{equation}\label{eq:higher-affine}
+ \J_{2h+1,X}\!\left(\frac1{t+i^2}\right)
+ =i^{2h}X-i^{2h}H_{i-1}^{(2h+1)}-\frac1{2i}-\frac1{2h},
+ \quad H_n^{(2h+1)}=\sum_{a=1}^n a^{-(2h+1)}.
+\end{equation}
+Replace $\J_X$ by $\J_{2h+1,X}$ in \eqref{eq:window-pencil}, and denote
+the resulting determinant and primitive normalizer by $F_N^{(2h+1)}$ and
+$Q_N^{(2h+1)}$. Then
+\[
+ F_N^{(2h+1)}\in\Q[X],\qquad
+ \deg F_N^{(2h+1)}\le N-m+1,\qquad
+ F_N^{(2h+1)}(\zeta(2h+1))>0.
+\]
+Thus rationality $\zeta(2h+1)=a/b$, $b>0$, would again give the positive
+integer $b^NQ_N^{(2h+1)}F_N^{(2h+1)}(a/b)$.
+
+For fixed $h$, the extra polynomial factor in the density bound changes
+only the lower-order errors in the norm estimates of
+\cref{sec:discretization}. (It does not change the external field $V_s$.)
+For the same fixed $s=m/N$ and $\rho=R/N$, the analytic rate therefore
+remains the same explicitly defined $C_{\an}(s,\rho)$:
+\begin{equation}\label{eq:higher-analytic-rate}
+ \limsup_{N\to\infty}\frac1{N^2}
+   \log F_N^{(2h+1)}(\zeta(2h+1))\le-C_{\an}(s,\rho).
+\end{equation}
+The constants in the error terms may depend on $h$.
+
+\subsection{The changed local arithmetic}
+
+Here are the precise replacements in the local estimates. It suffices
+to use primes satisfying
+\[
+ p>2h+1,\qquad p^2>4R+4h+20.
+\]
+Enlarging this fixed good-prime cutoff has no effect on the limiting
+prime sum. Write $N=qp+\sigma$, $\epsilon=\floor{2\sigma/p}$, and
+$D=\floor{(2R-2)/p}$; let $w_p$ be the number of maximal reflected
+classes in \eqref{eq:maximal-class-count}. The restriction-kernel proof
+gives
+\begin{equation}\label{eq:higher-rank-bound}
+ v_p(F_N^{(2h+1)})\ge
+ -(2h+\epsilon)r-\min\{r,(D+1)w_p\}.
+\end{equation}
+To see the changed exponent, the Bernoulli identity is now
+\[
+ \J_{2h+1,X}(q(t))=
+ \frac1{(2h)!}\Bfun\!\left[
+ \frac{\mathrm d^{\,2h-1}}{\mathrm d x^{2h-1}}
+       \{x^{2h+1}q(-x^2)\}\right].
+\]
+There are $2h-1$ derivatives followed by one Bernoulli evaluation.
+The residue harmonic sum costs at most $2h+1$ powers of $p$.
+Both parts therefore admit the same restriction-kernel argument.
+For the small primes the derivative count is still fixed, so their
+total contribution remains $o(N^2)$.
+
+There is a compensating improvement in the polynomial quotient.
+In \eqref{eq:higher-moments}, the first $2h-1$ possible Bernoulli
+poles cancel: at $2j+2=a(p-1)$ the product contains the factor $ap$,
+for $1\le a\le2h-1$. The first uncanceled possible index is
+$j=hp-h-1$. Thus the terminal fractional block of the quotient has size
+\begin{equation}\label{eq:higher-terminal-block}
+ t_{p,h}=\min\{r,\pos{2R-N-hp+h}\}.
+\end{equation}
+
+For a nonzero reflected class with $c$ high nodes, selecting $\ell$
+atoms, of which $b$ are high, has cost at most
+\[
+ (2h+1)b+\ell(c+2-\ell).
+\]
+If $1\le c\le2h$, its maximum is $(2h+3)c$; an affected class has maximum
+$(2h+1)c$ after the common-root gain. The deficit from either maximum
+is at least one for each omitted atom below the maximizing count.
+Classes with no high node are absorbed into the integral part, as in
+\cref{lem:large-prime-integrality}.
+These observations justify the replacements below, including the
+shared dimension of the atoms and the complementary quotient minor.
+
+\subsection{The original window does not give the required comparison}
+
+Keep exactly
+$s=1/20$, $\rho=5/4$, $\delta=6/5$, and the split at $\beta=9/20$
+used in \cref{sec:arithmetic}. Let $C_{\arith}$ be the exact rational
+number in \eqref{eq:arithmetic-exact}. Applying the preceding local
+bounds with that same split gives a valid upper bound
+\begin{equation}\label{eq:higher-arithmetic-rate}
+ \limsup_{N\to\infty}\frac{\log Q_N^{(2h+1)}}{N^2}
+ \le C_{\arith}^{(h)}=C_{\arith}+\Delta_h,
+\end{equation}
+where
+\begin{equation}\label{eq:higher-rate-increment}
+ \Delta_h=
+ \frac{553}{400}(h-2)-\frac9{100}
+ +\frac{\pos{3/2-9h/20}^{2}}{2h}.
+\end{equation}
+This is an exact rational expression rather than a numerical fit.
+On $0<\beta<9/20$, the rank profile increases by
+$2(h-2)\delta$. On $9/20<\beta<1$, the atomic cost increases by
+$2(h-2)(1-\beta)$, while the quotient contribution changes from
+$(3/2-2\beta)_+$ to $(3/2-h\beta)_+$. The factorial charge and
+the common-root gain are unchanged. Integrating these differences
+gives \eqref{eq:higher-rate-increment}; the small-tail bound changes
+by the integral of the same constant increment. For $p>N$ the
+monomial matrix remains integral, so that part is unchanged as well.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Target & Exact increment $\Delta_h$ & $C_{\arith}^{(h)}$ (rounded)\\
+\midrule
+$\zeta(7)$  & $1037/800$ & $6.7063289381$\\
+$\zeta(9)$  & $107/40$   & $8.0850789381$\\
+$\zeta(11)$ & $1623/400$ & $9.4675789381$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The analytic rate in this table's window is unchanged. For orientation,
+numerical integration of its explicit formula gives
+$C_{\an}\approx5.4133707888$; accordingly the numerical difference
+$C_{\an}-C_{\arith}^{(3)}$ is approximately $-1.2929581493$.
+These decimal evaluations have no certificate role. The following
+elementary upper bound proves that the displayed rates fail the
+required comparison, independently of numerical quadrature.
+
+\begin{proposition}\label{prop:higher-window-failure}
+For this window, $C_{\an}<6<C_{\arith}^{(h)}$ for every $h\ge3$.
+\end{proposition}
+\begin{proof}
+Retain $g(u)=-f_s(u)$ from \cref{sec:certificate}. It is increasing
+and concave by \cref{lem:concavity} and its proof. Concavity, applied
+to the pair $u,\delta-u$ and integrated, gives
+\[
+ C_{\an}\le\delta g(\delta/2).
+\]
+Direct squaring of rational bounds for the square roots in
+\eqref{eq:u-of-b} gives
+\[
+ \frac35<u_s(1/2)<\frac{129}{200},\qquad
+ \sqrt{1+(1/2)^2}<\frac98,\qquad
+ \sqrt{s^2+(1/2)^2}>\frac12.
+\]
+Thus $s+u_s(1/2)<7/10$, and \eqref{eq:g-positive} implies
+\begin{align*}
+ g(u_s(1/2))
+ &<\frac{129}{50}\log\frac{28}{5}
+      +\frac15\log\frac{56}{11}+2\log\frac{17}{16}\\
+ &<\frac{129}{50}\frac74+\frac15\frac53+\frac18
+   =\frac{373}{75}<5.
+\end{align*}
+The first two logarithmic bounds follow respectively by retaining
+terms through degree five in the positive series for $e^{7/4}$ and
+through degree four for $e^{5/3}$; the third uses $\log(1+x)<x$.
+Monotonicity of $g$ now gives $C_{\an}<\delta\cdot5=6$.
+Finally, the exact rational value of $C_{\arith}$ and
+\eqref{eq:higher-rate-increment} give
+$C_{\arith}^{(3)}>67/10$, and the increments increase with $h\ge3$.
+\end{proof}
+
+This proposition concerns the explicitly derived rate bounds.
+In particular, \eqref{eq:higher-arithmetic-rate} is an upper bound
+for the primitive normalizer. Its failure to beat
+the analytic rate proves neither rationality of a higher odd value
+nor impossibility of a sharper analysis of this determinant family.
+No alternate window is asserted here to close the gap, and no
+numerical optimization is used as evidence for such an assertion.
+
+\subsection{The next structural questions}
+
+\paragraph{First, use the available arithmetic bounds jointly.}
+The split at $9/20$ was chosen for the present $\zeta(5)$ estimates and need not be retained for $\zeta(7)$. One can take the smaller of
+the restriction-kernel and monomial bounds wherever both apply,
+keeping the actual shared dimension and the signed factorial charge,
+and then vary $s$ and $\rho$. There is also a justified larger
+monomial range: for $\zeta(7)$, $q\le3$ gives at most six high nodes
+per reflected class, so the preceding maximum and deficit estimates
+apply for $p>N/4$, subject to $p>2m$. For $m\ge1$, the zero residue class has at
+most three atoms, each of valuation at least $-1$; handling them
+separately costs only $O(1)$ per such prime and hence $o(N^2)$ in
+the prime sum. Extending this comparison is a precise first task; it is possible that a better window succeeds.
+
+\paragraph{Second, change the common-root multiplicity.}
+A concrete different subspace is spanned by
+\begin{equation}\label{eq:higher-powered-window}
+ B_m(t)^{a-1}B_{m+j}(t),\qquad 0\le j<r,\qquad a\ge2.
+\end{equation}
+Its monomial weight contains $C_m^{2a}/D_N$. For $p>2m$, each
+surviving affected atom gains $2a$ powers of $p$, whereas the extra
+factorial normalization is a $p$-unit. The largest polynomial degree,
+however, increases to $R+(a-1)m-1$, and for $\zeta(7)$ the terminal
+quotient block becomes
+\[
+ \min\{r,\pos{2R+2(a-1)m-N-3p+3}\}.
+\]
+The dimension accounting must also change. With $a=2$, an affected
+class with $c$ high nodes has cost bounded by
+$7\min(\ell,c)+\ell(c-2-\ell)$.
+For $c=6$ its maximum $30$ occurs at both $\ell=5$ and $\ell=6$:
+one omitted atom is free, and that extra available dimension must
+be allowed in the complementary quotient minor.
+
+There is a further useful local effect. For $p>2m$, the additional
+factor $B_m$ reduces to zero on every affected residue class, and
+to a nonzero constant on every unaffected class. Thus affected
+maximal classes disappear from the leading restriction image;
+on the remaining classes the original restriction-degree bound
+still applies. These are genuine arithmetic gains for the new
+subspace. Completing this route requires combining them with a
+new analytic estimate for the changed external field
+\[
+ 2\pi y+I_1(y)-2aI_s(y).
+\]
+The potential constructed for $a=1$ cannot simply be reused.
+The effects of the larger quotient, the altered dimension count,
+and the changed analytic field must all be included before a
+numerical margin has mathematical significance.
+
+Finally, rational rescaling alone cannot repair a negative margin.
+For $c>0$ rational, primitivity gives
+\[
+ Q(cF)=Q(F)/c,\qquad Q(cF)\,cF=Q(F)F.
+\]
+A rational change of basis within the same polynomial subspace
+multiplies its Gram determinant by a rational square and has the
+same cancellation. Therefore improvements must sharpen the bounds
+for this invariant quantity or change the underlying subspace or
+rational-function family. The repeated-root construction above
+does change the subspace; whether its gains suffice for $\zeta(7)$,
+or for any higher individual odd value, remains an open question
+within the present investigation.
+
+% END JOURNAL ADDITION higher_odd
+
+
+\section*{Use of generative AI}
+\addcontentsline{toc}{section}{Use of generative AI}
+
+OpenAI's ChatGPT (GPT-6) was used extensively in the
+development of this work, including mathematical exploration,
+formulation and refinement of conjectures and proofs,
+computational experimentation, preparation of numerical
+certificates, assistance with Lean formalization, literature
+research, and drafting and revision of the manuscript.
+Mathematical claims and computational results were subjected
+to the verification procedures described in the paper and
+its accompanying reproducibility materials. The author
+assumes full responsibility for the mathematical correctness,
+originality, references, and final contents of this article.
+
+
+
+
+\appendix
+\section{Exact comparison programs and the Lean-certified numerical data}\label{app:certificate-code}
+\subsection{Primary certificate and reproducing the formal check}
+The finite computations used by \cref{prop:arithmetic-rate,prop:exact-gap}
+are contained in the companion archive \cite{zeta5lean2026}. The key
+files include \path{Zeta5/Certificate/ExtendedArithmetic.lean},
+\path{Zeta5/Certificate/AllPrimePieces.lean},
+\path{Zeta5/Analysis/ArithmeticRate.lean}, and the analytic-grid modules.
+From the archive's \path{zeta5/} directory, using the pinned
+Lean~4.33.1 toolchain, run
+\begin{verbatim}
+lake exe cache get
+lake build
+lake env lean --trust=0 evidence/FinalAudit.lean
+lake env lean Zeta5/Reuse/FinalTrustAudit.lean
+\end{verbatim}
+The dependency report records the exact Mathlib and prime-number-theorem
+commits and verifies that all numerical certificates are dependencies
+of the unconditional endpoint. The source includes the rational data
+for all $3060$ middle cells, rather than merely a decimal claim.
+
+\subsection{Optional independent sharper Python comparison}
+The following standalone program uses Python~3 and its standard library.
+The reproduced run used CPython~3.12.14. Run it with
+\texttt{python3 certificate\_explicit.py}; no optional package or network
+access is needed. Its assertions check the former, somewhat sharper $1/40$ comparison,
+which is \emph{not} used to close the present proof. All displayed
+decimal thresholds in those assertions are rational numbers.
+\begin{lstlisting}
+"""Exact rational certificate accompanying the Stage 60 manuscripts.
+
+Python 3, standard library only. No floating-point arithmetic is used.
+The program verifies an optional sharper comparison conditional on the local
+and analytic lemmas. The primary proof uses the separate Lean certificates.
+"""
+from fractions import Fraction as F
+from math import isqrt
+
+S = F(1, 20)
+RHO = F(5, 4)
+DELTA = RHO - S
+LEFT = F(1, 40)
+RIGHT = F(9, 20)
+ZERO = F(0)
+PRECISION = 10**30
+
+
+def floor_data(beta):
+    q = 1 // beta
+    epsilon = int(2 * (1 - q * beta) >= beta)
+    degree = (2 * RHO) // beta
+    return q, epsilon, degree
+
+
+def rank_profile(beta):
+    q, epsilon, degree = floor_data(beta)
+    width = 1 - (q + F(epsilon, 2)) * beta
+    return (4 + epsilon) * DELTA + min(DELTA, (degree + 1) * width)
+
+
+def exact_arithmetic():
+    points = {LEFT, RIGHT}
+    for q in range(1, 41):
+        points.update((F(1, q), F(2, 2 * q + 1)))
+    for k in range(1, 102):
+        points.add(2 * RHO / k)
+    points = sorted(x for x in points if LEFT <= x <= RIGHT)
+    pieces = []
+    for a, b in zip(points, points[1:]):
+        q, epsilon, degree = floor_data((a + b) / 2)
+        crossing = ((degree + 1 - DELTA)
+                    / ((degree + 1) * (q + F(epsilon, 2))))
+        cuts = [a, crossing, b] if a < crossing < b else [a, b]
+        for left, right in zip(cuts, cuts[1:]):
+            mid = (left + right) / 2
+            width = 1 - (q + F(epsilon, 2)) * mid
+            if (degree + 1) * width >= DELTA:
+                intercept, slope = (5 + epsilon) * DELTA, ZERO
+            else:
+                intercept = (4 + epsilon) * DELTA + degree + 1
+                slope = -(degree + 1) * (q + F(epsilon, 2))
+            assert intercept + slope * mid == rank_profile(mid)
+            area = (right - left) * (intercept + slope * mid)
+            pieces.append((left, right, intercept, slope, area))
+    assert pieces[0][0] == LEFT and pieces[-1][1] == RIGHT
+    assert all(a[1] == b[0] for a, b in zip(pieces, pieces[1:]))
+    assert len(pieces) == 228
+    upper_rows = [
+        (F(9, 20), F(1, 2), F(81, 5), -24),
+        (F(1, 2), F(21, 40), F(139, 10), -15),
+        (F(21, 40), F(5, 8), F(16), -19),
+        (F(5, 8), F(3, 4), F(27, 2), -15),
+        (F(3, 4), F(5, 6), F(12), -13),
+        (F(5, 6), F(19, 20), F(19, 2), -10),
+        (F(19, 20), F(1), F(38, 5), -8),
+    ]
+    upper_area = sum(((b - a) * (c + d * (a + b) / 2)
+                      for a, b, c, d in upper_rows), ZERO)
+    assert upper_area == F(901, 600)
+    small_tail = (4 * DELTA + RHO) * LEFT + LEFT**2 / 4
+    large_primes = 3 * RHO**2 - 4 * RHO + F(3, 2)
+    assert small_tail == F(969, 6400)
+    assert large_primes == F(19, 16)
+    total = small_tail + large_primes + upper_area
+    total += sum((row[4] for row in pieces), ZERO)
+    expected = F(
+        191258319415140413215011151671222972968539453509572803845881093658106414835114844023,
+        35352223433977492021442108242640841605890021236208954246644376534746108587827200000)
+    assert total == expected
+    assert total < F(54101, 10000)
+    return total, len(pieces) + len(upper_rows)
+
+
+def sqrt_bounds(x):
+    """Outward rational square-root bounds of width 10^-30."""
+    root = isqrt(x.numerator * PRECISION**2 // x.denominator)
+    lower, upper = F(root, PRECISION), F(root + 1, PRECISION)
+    assert lower * lower <= x <= upper * upper
+    return lower, upper
+
+
+def log_unit_lower(x, terms=24):
+    """Positive atanh series with every operation rounded down."""
+    assert 1 <= x <= 2
+    z = (x - 1) / (x + 1)
+    iz = z.numerator * PRECISION // z.denominator
+    iz2 = iz * iz // PRECISION
+    power, total = iz, 0
+    for j in range(terms):
+        total += 2 * power // (2 * j + 1)
+        power = power * iz2 // PRECISION
+    return F(total, PRECISION)
+
+
+LOG_TWO_LOWER = log_unit_lower(F(2))
+
+
+def log_lower(x):
+    assert x >= 1
+    exponent = 0
+    while x > 2:
+        x /= 2
+        exponent += 1
+    return log_unit_lower(x) + exponent * LOG_TWO_LOWER
+
+
+def u_and_g_lower(b):
+    if b == 0:
+        return ZERO, ZERO, 4 * S * LOG_TWO_LOWER
+    a_lower, a_upper = sqrt_bounds(1 + b * b)
+    c_lower, c_upper = sqrt_bounds(S**2 + b * b)
+    u_lower = (b + 1 - 2 * S - a_upper + 2 * c_lower) / 2
+    u_upper = (b + 1 - 2 * S - a_lower + 2 * c_upper) / 2
+    assert 0 < u_lower <= u_upper
+    v_lower = S + u_lower
+    g_lower = (4 * u_lower * log_lower(4 * v_lower / b)
+               + 4 * S * log_lower(4 * v_lower / (S + c_upper))
+               + 2 * log_lower((1 + a_lower) / 2))
+    assert g_lower > 0
+    return u_lower, u_upper, g_lower
+
+
+def exact_analytic_lower():
+    endpoint = F(96156889, 10**8)
+    subdivisions = 2048
+    _, previous_upper, previous_g = u_and_g_lower(ZERO)
+    total = ZERO
+    for j in range(1, subdivisions + 1):
+        b = endpoint * F(j, subdivisions)
+        u_lower, u_upper, g_lower = u_and_g_lower(b)
+        width_lower = u_lower - previous_upper
+        assert width_lower > 0
+        total += width_lower * (g_lower + previous_g) / 2
+        previous_upper, previous_g = u_upper, g_lower
+    assert previous_upper < DELTA
+    assert total > F(54133705070, 10**10)
+    assert total > F(54133, 10000)
+    return total
+
+
+def main():
+    arithmetic, pieces = exact_arithmetic()
+    analytic_lower = exact_analytic_lower()
+    assert analytic_lower - arithmetic > F(32, 10000)
+    print("EXACT COMPARISON CERTIFICATE PASS")
+    print("Arithmetic affine pieces:", pieces)
+    print("Arithmetic exact:", arithmetic)
+    print("Arithmetic < 54101/10000 = 5.4101")
+    print("Analytic lower bound > 54133/10000 = 5.4133")
+    print("Certified strict margin > 32/10000 = 0.0032")
+    print("Analytic lower bound, rounded down at 10 decimal places:",
+          analytic_lower.numerator * 10**10 // analytic_lower.denominator,
+          "/ 10000000000")
+    print("This checks the comparison, not the underlying mathematical lemmas.")
+
+
+if __name__ == "__main__":
+    main()
+
+\end{lstlisting}
+
+
+\newpage
+
+
+\begingroup
+\raggedright
+\begin{thebibliography}{99}
+% Research cutoff: 13 November 2026..
+\setlength{\itemsep}{0pt}
+
+\bibitem{euler1740}
+L. Euler, \emph{De summis serierum reciprocarum}, Commentarii academiae
+scientiarum Petropolitanae \textbf{7} (1740), 123--134, Enestr\"om E41;
+written 1735.  Euler Archive,
+\url{https://scholarlycommons.pacific.edu/euler-works/41/}.
+
+\bibitem{lindemann1882}
+F. Lindemann, \emph{\"Uber die Zahl $\pi$}, Mathematische Annalen
+\textbf{20} (1882), 213--225.
+
+\bibitem{dlmf}
+NIST Digital Library of Mathematical Functions, \S25.6, \emph{Integer
+Arguments}, especially formula 25.6.2;
+\S5.9, \emph{Integral Representations}, especially formula 5.9.15;
+and \S27.12, \emph{Asymptotic Formulas: Primes}.
+\url{https://dlmf.nist.gov/25.6};
+\url{https://dlmf.nist.gov/5.9};
+\url{https://dlmf.nist.gov/27.12}; consulted 13 November 2026.
+
+\bibitem{apery1979}
+R. Ap\'ery, \emph{Irrationalit\'e de $\zeta 2$ et $\zeta 3$}, in
+Journ\'ees Arithm\'etiques de Luminy, Ast\'erisque \textbf{61} (1979),
+11--13. \url{https://www.numdam.org/item/AST_1979__61__11_0/}.
+
+\bibitem{beukers1979}
+F. Beukers, \emph{A note on the irrationality of $\zeta(2)$ and
+$\zeta(3)$}, Bulletin of the London Mathematical Society \textbf{11}
+(1979), no.~3, 268--272. \url{https://doi.org/10.1112/blms/11.3.268}.
+
+\bibitem{rivoal2000}
+T. Rivoal, \emph{La fonction z\^eta de Riemann prend une infinit\'e de
+valeurs irrationnelles aux entiers impairs}, Comptes Rendus de
+l'Acad\'emie des Sciences, S\'erie I, \textbf{331} (2000), 267--270.
+\url{https://doi.org/10.1016/S0764-4442(00)01624-4};
+\url{https://arxiv.org/abs/math/0008051v1}.
+
+\bibitem{ballrivoal2001}
+K. Ball and T. Rivoal, \emph{Irrationalit\'e d'une infinit\'e de valeurs
+de la fonction z\^eta aux entiers impairs}, Inventiones Mathematicae
+\textbf{146} (2001), no.~1, 193--207.
+
+\bibitem{rivoal2002}
+T. Rivoal, \emph{Irrationalit\'e d'au moins un des neuf nombres
+$\zeta(5),\zeta(7),\ldots,\zeta(21)$}, Acta Arithmetica \textbf{103}
+(2002), no.~2, 157--167; preprint 2001.
+\url{https://arxiv.org/abs/math/0104221}.
+
+\bibitem{zudilin2001}
+W. Zudilin, \emph{One of the numbers $\zeta(5)$, $\zeta(7)$,
+$\zeta(9)$, $\zeta(11)$ is irrational}, Russian Mathematical Surveys
+\textbf{56} (2001), no.~4, 774--776.
+\url{https://doi.org/10.1070/RM2001v056n04ABEH000427};
+\url{https://www.mathnet.ru/eng/rm427}.
+
+\bibitem{zudilin2001windows}
+W. Zudilin, \emph{One of the eight numbers
+$\zeta(5),\zeta(7),\ldots,\zeta(17),\zeta(19)$ is irrational},
+Mathematical Notes \textbf{70} (2001), no.~3, 426--431; Theorems~2--3
+give the shifted windows ending at 35 and 51.
+\url{https://doi.org/10.1023/A:1012312315852};
+\url{https://www.mathnet.ru/eng/mzm759}.
+
+\bibitem{zudilin2001note}
+W. Zudilin, \emph{Irrationality of values of zeta-function},
+preprint, 26 April 2001. \url{https://arxiv.org/abs/math/0104249v1}.
+
+\bibitem{fsz2019}
+S. Fischler, J. Sprang, and W. Zudilin, \emph{Many odd zeta values are
+irrational}, Compositio Mathematica \textbf{155} (2019), no.~5, 938--952.
+\url{https://doi.org/10.1112/S0010437X1900722X};
+\url{https://arxiv.org/abs/1803.08905}.
+
+\bibitem{rivoalzudilin2020}
+T. Rivoal and W. Zudilin, \emph{A note on odd zeta values}, S\'eminaire
+Lotharingien de Combinatoire \textbf{81} (2020), article B81b, 13 pp.;
+preprint 8 March 2018. \url{https://arxiv.org/abs/1803.03160v1};
+\url{https://www.mat.univie.ac.at/~slc/wpapers/s81rivzud.html}.
+
+\bibitem{laiyu2020}
+L. Lai and P. Yu, \emph{A note on the number of irrational odd zeta
+values}, Compositio Mathematica \textbf{156} (2020), 1699--1717.
+\url{https://doi.org/10.1112/S0010437X20007307};
+\url{https://arxiv.org/abs/1911.08458v2}.
+
+\bibitem{laizhou2022}
+L. Lai and L. Zhou, \emph{At least two of
+$\zeta(5),\zeta(7),\ldots,\zeta(35)$ are irrational},
+Publicationes Mathematicae Debrecen \textbf{101} (2022), nos.~3--4,
+353--372. \url{https://doi.org/10.5486/PMD.2022.9252};
+\url{https://arxiv.org/abs/2103.00904v2}.
+
+\bibitem{fischler2026}
+S. Fischler, \emph{Linear independence of odd zeta values using
+Siegel's lemma}, Journal of the London Mathematical Society
+\textbf{113} (2026), no.~4, e70535; published 20 April 2026.
+\url{https://doi.org/10.1112/jlms.70535}.
+
+\bibitem{lai2026count}
+L. Lai, \emph{A note on the number of irrational odd zeta values, II}, Journal
+de Th\'eorie des Nombres de Bordeaux \textbf{38} (2026), no.~2,
+469--487; published 16 September 2026.
+\url{https://doi.org/10.5802/jtnb.1368};
+\url{https://arxiv.org/abs/2501.05321v2}.
+
+\bibitem{lai2026small}
+L. Lai, \emph{Small improvements to the Ball--Rivoal theorem and its
+$p$-adic variant}, Frontiers in Combinatorics and Number Theory
+\textbf{4} (2026), 1--44; published 8 October 2026.
+\url{https://doi.org/10.3934/fcnt.2026024}.
+
+\bibitem{lai2026linear}
+L. Lai, \emph{The linear independence of $1$, $\zeta(3)$, and
+$\zeta(4)$}, preprint, submitted 5 October 2026, revised 15 October
+2026. \url{https://arxiv.org/abs/2610.06838v2}.
+
+\bibitem{fauzan2026}
+A. Fauzan, \emph{$\zeta(5)$ is irrational}, Zenodo preprint, version~1,
+17 September 2026. \url{https://doi.org/10.5281/zenodo.22826419};
+\url{https://zenodo.org/records/22826419}.
+
+\bibitem{delsolar2026}
+C. Del Solar, \emph{Zeta5: a Lean formalization of Fauzan's proof},
+repository snapshot 23 September 2026, Lean 4.35.0-rc2.
+\url{https://github.com/domino14/zeta5/tree/3da8eb1b91f9a90a1c0b7959e845c060dbd16256}.
+Mathlib commit \texttt{065356127b1dc0016f66b7283ce0ce2c4055aa55}.
+See the README, \texttt{Zeta5/lean-toolchain}, and
+\texttt{Zeta5/Claim.lean}; reported endpoint axiom audit, not replayed
+for this survey.
+
+\bibitem{firsching2026}
+M. Firsching, \emph{Zeta5}, repository snapshot 27 September 2026,
+Lean 4.34.0-rc1.
+\url{https://github.com/mo271/Zeta5/tree/7fe736760f4b96bfdb4334b68e3b3124ecbe10b0}.
+Mathlib commit \texttt{f385f9fd18abed332ebcd3df239cb357e264aceb};
+PrimeNumberTheoremAnd commit
+\texttt{04d81b2a68ea3548b9990813fdc463c78511f412}.
+Build record: \url{https://reservoir.lean-lang.org/@mo271/Apery}.
+
+\bibitem{romik2026}
+D. Romik, \emph{A Lean formalization of the irrationality of
+$\zeta(5)$}, repository snapshot 25 September 2026, Lean 4.34.0.
+\url{https://github.com/danromik/zeta5-irrationality/tree/fc2fefa77076e22e7e80b4c101ded5a98d53e14d}.
+Mathlib commit \texttt{5ed2965256430c3649e86755f9576b54eca72435}.
+The report \texttt{docs/CERTIFICATION.md} records checks of parent
+commit \texttt{a87234f50f4c0d257a2aaed0894e6587c022e5ba}; the explicit
+prime-number-theorem axiom remains part of the endpoint assumptions.
+
+\bibitem{hyman2026}
+A. R. Hyman, \emph{The irrationality of $\zeta(5)$}, Archive of
+Formal Proofs, 26 October 2026, Isabelle/HOL development.
+\url{https://isa-afp.org/entries/Zeta_5_Irrational.html}.
+Endpoint and oracle report:
+\url{https://isa-afp.org/browser_info/current/AFP/Zeta_5_Irrational/Zeta_5_Irrational.html}.
+Exact Isabelle release not established from the inspected record.
+
+\bibitem{devincenzis2026}
+G. M. Devincenzis, \emph{At least one of
+$\zeta(7),\zeta(9),\ldots,\zeta(21)$ is irrational}, Lean development,
+September 2026; Lean 4.35.0-rc2.
+\url{https://github.com/gmDevi/zeta-7-21-lean/tree/4e48690ab5f9d04cbf3cede2b657f8db91ef6878}.
+Mathlib commit \texttt{065356127b1dc0016f66b7283ce0ce2c4055aa55}.
+The repository reports registration PALOMAR-2026-09-30-000007, version~1,
+for snapshot \texttt{a3b69fc43aea3dd140540f6e8380c7d0fecce028}; the
+registry page itself was unavailable in this survey.
+
+\bibitem{lin2026}
+Y. Lin, \emph{Odd zeta irrationality}, repository snapshot
+29 September 2026, Lean 4.35.0-rc3.
+\url{https://github.com/CoolRmal/odd-zeta-irrationality/tree/4a9a71ccbd1d7ef229bf149e56f3f8d6c53416eb}.
+Mathlib commit \texttt{3cb72cfd416d1b5ec4b930d67648ef036a5df24f}.
+The inspected successful checker workflow instead fixes commit
+\texttt{b1f6999fbcb0f7c6bdef92ed172e845d39f99732}:
+\url{https://github.com/CoolRmal/odd-zeta-irrationality/actions/runs/36503793020}.
+
+\bibitem{tang2026}
+Q. Tang, \emph{Linear independence of $1$, $\zeta(2)$ and $\zeta(3)$
+over $\Q$}, repository snapshot 30 September 2026, Lean 4.35.0-rc3.
+\url{https://github.com/dtq1997/zeta2-zeta3-linear-independence/tree/669c92bf7a3728e0de9ad80c373bc29fb5ca3d58}.
+Mathlib commit \texttt{c55e6e786f49471c72fbddbec5415808896aec1e}.
+Palomar registration PALOMAR-2026-09-30-000030, version~1:
+\url{https://palomar-registry.org/entry?id=PALOMAR-2026-09-30-000030&version=1}.
+The indexed registry record identifies Lean toolchain commit
+\texttt{470d5ce1400764999581fd26d5d72b00d990b0f4} and successful
+Lean, NanoDa, and \texttt{con-ron} checks on 30 September 2026;
+their proof-checking run was not replayed here.
+
+\bibitem{jingweiliu2026}
+J. Liu (Jingwei Liu), \emph{At least one of
+$\zeta(7),\zeta(9),\ldots,\zeta(19)$ is irrational: a growing-determinant
+proof with Lean certification}, version~1.0.0, 6 October 2026,
+Lean 4.34.0-rc2. \url{https://doi.org/10.5281/zenodo.23191331}.
+\url{https://github.com/AlexxxxxLiu/odd-zeta-seven-lean/tree/7a7e3a2895c468306d28ba584558aed6decf45aa}.
+Mathlib commit \texttt{dc4b8d60d5edb3c493c3662126b1b7ccae7d67cf}.
+
+\bibitem{krisman2026}
+S. Krisman, \emph{One of $\zeta(7),\zeta(9),\ldots,\zeta(21)$ is
+irrational}, preprint, \url{https://hexagonmath.org/2610.00516v2};
+Lean 4.35.0 formalization reported complete 22 October 2026.
+Inspected source snapshot, 11 November 2026:
+\url{https://github.com/telaviv/zeta-irrationality/tree/d6ec102d61ed954169f7a8778e28f21a80bf6851}.
+Mathlib commit \texttt{56a005855ea17e0b0958f73ec801ae140b0a1679}.
+
+\bibitem{davidson2026}
+M. Davidson, \emph{Four odd zeta values: a determinant argument},
+Round~29 report, 15 October 2026; source snapshot 16 October 2026.
+\url{https://github.com/morley988/four-odd-zeta/tree/fd23dd59e5d638c9684eb2d7776fb51e8b427b55}.
+Lean 4.33.1; Mathlib commit
+\texttt{0df444a360eaa60ab8c11dca51a86af692955474};
+PrimeNumberTheoremAnd commit
+\texttt{650d31264be65f4cd6e70c45d8b25d86d482a761}.
+See \texttt{docs/VERIFICATION.md} and
+\texttt{proof/Four\_Value\_Final\_Report\_2026-10-15.txt} for the
+certificate-conditional endpoint and the eight numerical admissions.
+
+\bibitem{chyzak2014}
+F. Chyzak, A. Mahboubi, T. Sibut-Pinote, and E. Tassi,
+\emph{A computer-algebra-based formal proof of the irrationality of
+$\zeta(3)$}, Interactive Theorem Proving, Lecture Notes in Computer
+Science \textbf{8558} (2014), 160--176.
+\url{https://doi.org/10.1007/978-3-319-08970-6_11}.
+
+\bibitem{mahboubi2021}
+A. Mahboubi and T. Sibut-Pinote, \emph{A formal proof of the
+irrationality of $\zeta(3)$}, Logical Methods in Computer Science
+\textbf{17} (2021), no.~1, article~16, 16:1--16:25.
+\url{https://doi.org/10.23638/LMCS-17(1:16)2021};
+\url{https://arxiv.org/abs/1912.06611v6}.
+The completed paper cites Coq 8.11.0.
+
+\bibitem{aperysource}
+Rocq Community, \emph{apery}, maintained source snapshot
+25 April 2026.
+\url{https://github.com/rocq-community/apery/tree/97f0c01bec4282c4504c0225a71ff0e75aeab115}.
+The current source specifies Coq 8.20+; CI configurations for Coq 8.20
+and Rocq 9.0/9.1 are version declarations, rather than fresh build results
+reported by this survey.
+
+\bibitem{eberl2019}
+M. Eberl, \emph{The irrationality of $\zeta(3)$}, Archive of Formal
+Proofs, 27 December 2019.
+\url{https://isa-afp.org/entries/Zeta_3_Irrational.html}.
+An inspected development-build receipt, dated 13 November 2026, names
+Isabelle revision \texttt{559e5864efb7} and AFP revision
+\texttt{62317ad25318}:
+\url{https://devel.isa-afp.org/entries/Zeta_3_Irrational.html}.
+The original 2019 Isabelle release was not established here.
+
+\bibitem{liuzhangzhi2025}
+J. Liu (Junqi Liu), J. Zhang, and L. Zhi, \emph{A formal proof of the
+irrationality of $\zeta(3)$ in Lean 4}, preprint, revised 8 August 2025.
+\url{https://arxiv.org/abs/2503.07625v2}.
+Source snapshot 20 March 2026, Lean 4.18.0:
+\url{https://github.com/ahhwuhu/zeta_3_irrational/tree/e8785315a01c8fbcddaa0fc03b3c8b29a61bc1f1}.
+Mathlib commit \texttt{aa936c36e8484abd300577139faf8e945850831a}.
+
+\bibitem{anand2026}
+P. Anand, \emph{Zeta7 is Irrational}, announced Zenodo preprint,
+23 September 2026, version~1,
+\url{https://doi.org/10.5281/zenodo.22920911}.
+The source claim is cited in the Devincenzis repository; the Zenodo
+record itself was unavailable during this survey.  This entry is not
+an endorsement of the argument.
+
+\bibitem{anandobjection}
+Public discussion of the arithmetic in Anand's claimed $\zeta(7)$
+argument, issue~1 of the Devincenzis repository,
+\url{https://github.com/gmDevi/zeta-7-21-lean/issues/1}; consulted
+13 November 2026.
+
+\bibitem{zudilin2017}
+W. Zudilin, \emph{A determinantal approach to irrationality},
+Constructive Approximation \textbf{45} (2017), no.~2, 301--310.
+\url{https://doi.org/10.1007/s00365-016-9333-7};
+\url{https://arxiv.org/abs/1507.05697v2}.
+
+\bibitem{hayneszudilin2015}
+A. Haynes and W. Zudilin, \emph{Hankel determinants of zeta values},
+SIGMA \textbf{11} (2015), article~101, 5 pp.
+\url{https://doi.org/10.3842/SIGMA.2015.101};
+\url{https://arxiv.org/abs/1510.01901v3}.
+
+\bibitem{prevost1996}
+M. Pr\'evost, \emph{A new proof of the irrationality of $\zeta(2)$ and
+$\zeta(3)$ using Pad\'e approximants}, Journal of Computational and Applied
+Mathematics \textbf{67} (1996), no.~2, 219--235.
+\url{https://doi.org/10.1016/0377-0427(95)00019-4}.
+
+\bibitem{prevost2019}
+M. Pr\'evost, \emph{Remainder Pad\'e approximants for the Hurwitz zeta
+function}, Results in Mathematics \textbf{74} (2019), no.~1, article~51,
+22~pp. \url{https://doi.org/10.1007/s00025-019-0976-0}.
+Preprint: \url{https://arxiv.org/abs/1709.05389}.
+The section and equation references in the text refer to the arXiv version.
+
+\bibitem{prevostrivoal2021}
+M. Pr\'evost and T. Rivoal, \emph{Diagonal convergence of the remainder
+Pad\'e approximants for the Hurwitz zeta function}, Journal of Number
+Theory \textbf{222} (2021), 346--361.
+\url{https://doi.org/10.1016/j.jnt.2020.10.019};
+\url{https://hal.science/hal-02498437}.
+
+\bibitem{calegari2026}
+F. Calegari, \emph{zeta(5) is irrational}, Persiflage,
+24 September 2026, online mathematical exposition.
+\url{https://galoisrepresentations.org/2026/09/24/zeta5-is-irrational/};
+consulted 13 November 2026.
+This reference is used for the comparison of constructions, and is not an input to the arithmetic or analytic estimates proved here.
+
+\bibitem{zeta5lean2026}
+Zeta Irrationality Project,
+\emph{Independent Lean verification of positive
+	factorial-window determinants and the irrationality of
+	$\zeta(5)$},
+formalization, source code, numerical certificates, and
+reproducibility report, 2026.
+Lean~4.33.1, Mathlib commit
+\texttt{0df444a360eaa60ab8c11dca51a86af692955474},
+PrimeNumberTheoremAnd commit
+\texttt{650d31264be65f4cd6e70c45d8b25d86d482a761}.
+Final declaration
+\texttt{Zeta5.irrational\_zeta\_five};
+transitive axioms
+\texttt{propext}, \texttt{Classical.choice},
+\texttt{Quot.sound}.
+Public source and verification records:
+\url{https://github.com/morley988/zeta5-independent-lean},
+release \texttt{v1.0.0}.
+
+
+
+\end{thebibliography}
+\endgroup
+\end{document}
