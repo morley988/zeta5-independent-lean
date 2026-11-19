@@ -242,9 +242,9 @@ published \cite{fischler2026}.\\
 16 Sept. 2026 & $N(s-1)\geq1.284\sqrt{s/\log s}$ for sufficiently large
 even $s$. & Li Lai; 2025 preprint, 2026 journal publication
 \cite{lai2026count}.\\
-17 Sept. 2026 & $\zeta(5)$ is irrational; the preprint also states an
-irrationality-measure estimate.  The implementations below certify the
-irrationality endpoint, and not that additional estimate. & Aabir Fauzan;
+17 Sept. 2026 & $\zeta(5)$ is irrational. The preprint also gives $260$
+as an upper bound for its irrationality exponent. The formalizations in
+\cref{tab:history-formal} certify irrationality alone. & Aabir Fauzan;
 Zenodo v1 \cite{fauzan2026}.\\
 Sept.--Oct. 2026 & One in $W(7,21)$ (eight values), in separate public
 developments. & Devincenzis, Lin, and Krisman; repositories/preprint
@@ -267,9 +267,36 @@ arXiv v2, no formal verification identified \cite{lai2026linear}.\\
 The public Lean endpoint depends on eight numerical admissions; the
 certificate-conditional theorem is separately proved. & Morley Davidson;
 public project snapshot \cite{davidson2026}.\\
+1 Nov. 2026 & The upper bound for the irrationality exponent of $\zeta(5)$
+from Fauzan's construction improves to $171$, conditional on the results
+of Fauzan specified below. & Niedbala Giraudin, preprint
+\cite[Thm.~1]{niedbalagiraudin2026}.\\
 Nov. 2026 & Simplified proof of the Oct. 2026 four-value result, Lean-checked without dependency on external numerics. Source not yet available. & Zaz Brown; private development.\\
+12 Nov. 2026 & $N(s)\geq 2.78\sqrt{s\log\log s/\log s}$ for all
+sufficiently large odd $s$. & Fischler, Lai, Sprang, and Zudilin,
+preprint \cite[Thm.~1.1]{flsz2026}.\\
 \end{longtable}
 \endgroup
+
+For an irrational real number $x$, its irrationality exponent $\mu(x)$ is
+the supremum of the $\nu$ for which $|x-a/b|<b^{-\nu}$ holds for
+infinitely many reduced fractions $a/b$ with $b>0$. Niedbala Giraudin
+assumes Theorem~2.1, equations (2.10), (C.3), (C.5), and
+\S C.2 of Fauzan's preprint \cite{fauzan2026}. Lowering the exponent
+in a relative matrix norm estimate from $6933/500$ to $9.09$ gives
+$|\zeta(5)-a/b|>b^{-171}$ for every integer $a$ and all sufficiently
+large positive integers $b$, hence $\mu(\zeta(5))\leq171$
+\cite[Thm.~1]{niedbalagiraudin2026}.
+
+Fischler, Lai, Sprang, and Zudilin combine the hypergeometric construction
+of Lai and Yu with a Hankel determinant of varying order. Their lower
+bound for $N(s)$ gains a factor of order $\sqrt{\log\log s}$ over Lai's
+September estimate \cite{laiyu2020,lai2026count,flsz2026}. In the
+November bound, any fixed positive coefficient below
+$\sqrt{4\zeta(2)\zeta(3)/\zeta(6)}=2.788258\ldots$ is admissible
+for all sufficiently large odd $s$ \cite[Thm.~1.1]{flsz2026}.
+The count specifies no new individual index and gives no stronger lower
+bound for the dimension $D(s)$.
 
 The shifted-window numbers in the 2001 row refer to Zudilin's published
 \emph{Mathematical Notes} paper.  Its bounds $35$ and $51$ improve the
@@ -3729,7 +3756,15 @@ Public source and verification records:
 \url{https://github.com/morley988/zeta5-independent-lean},
 release \texttt{v1.0.0}.
 
+\bibitem{niedbalagiraudin2026}
+David Niedbala Giraudin, \emph{A new upper bound for the irrationality
+exponent of $\zeta(5)$}, 1 November 2026,
+\href{https://arxiv.org/abs/2611.01708v1}{arXiv:2611.01708v1} [math.NT].
 
+\bibitem{flsz2026}
+St\'ephane Fischler, Li Lai, Johannes Sprang, and Wadim Zudilin,
+\emph{Many more odd zeta values are irrational}, 12 November 2026,
+\href{https://arxiv.org/abs/2611.16156v1}{arXiv:2611.16156v1} [math.NT].
 
 \end{thebibliography}
 \endgroup
